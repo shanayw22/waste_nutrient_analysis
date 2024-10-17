@@ -1,0 +1,83 @@
+---
+title: "Landing page"
+---
+
+**Audio instructions:**
+
+If you want, you can listen to the instructions:
+
+<audio controls><source src="audio/landing-page-instructions.mp3" type="audio/mpeg"></audio>
+
+<sup> **Source**: Text-to-speech conversion done with Amazon Polly on AWS </sup>
+
+`Note`: These audio instructions should not be included in your final submission or repository, once you are done wiht them, please delete the files and remove them from the website. 
+
+## Getting Started
+
+To begin the project, first read the instruction document ([click here](instructions/overview.qmd)). This document is also accessible from the navigation bar.
+
+Once you’ve completed that, you can proceed with the instructions found throughout the website.
+
+## What to Include on This Page
+
+This is the landing page for your project. Content from this page can be reused in sections of your final report.
+
+### Create an "About You" Page  
+
+- Develop your "About You" page. You can reuse content from previous assignments.
+- You can include the content here or on a separate page.
+   - It’s recommended to create one "About You" page for all DSAN projects, with links to your various class projects.
+
+### Create a Landing Page for Your Project  
+
+- Summarize your topic, its significance, related work, and the questions you plan to explore.
+- Draft an introduction with at least **5 research questions**. These may evolve as your project progresses, since data science is an iterative process.
+- Include your data science questions on this page.
+
+### Literature review
+
+Once you decide on a topic, you should `ALWAYS START WITH A LITERATURE REVIEW`, this is particularly important for academic projects.
+
+The literature review is the most important part of most projects. 
+
+It allows you to; 
+
+* 1. Determine what is already known and what has already been tried, so that you `don't re-invent the wheel`.
+* 2. It makes you more of a subject matter expert, allowing you to `ask the right questions`, `target impactful projects`, and `communicate with other professionals`.
+
+> Doing a project that you think will change the world, only to find at the end that a very similar version of your project was already done in the 1980's, isn't a great use of time.
+
+In this section, please do a literature review and cite at least **3 academic publications** per group member, and include **internal academic citations**.
+
+**Optional**: Consider using LLM tools to 10X your literature review, e.g. instead of focusing on 3 papers, aim for 30 or more
+
+By following these steps, you can 10X the efficiency of your literature review process, gaining more insights while minimizing the time spent on manual reading.
+
+1. **Expand Your Literature Search**  
+   Aim to gather a larger pool of papers. Use academic databases (Google Scholar, arXiv, etc.) to find relevant studies and ensure a broad scope.
+
+2. **Skim the Abstracts**  
+   Read the abstracts of each paper to quickly understand their focus and identify those most relevant to your topic. Prioritize these papers for deeper analysis.
+
+3. **Use LLM Tools for Summarization**  
+   Upload the selected papers to an LLM tool capable of text summarization. Have it condense the main points of each paper into a concise, manageable summary (e.g., condense hundreds of pages into a 10-page summary). Carefully review this summary to absorb the key insights.
+
+4. **Leverage Interactive LLM Tools**  
+   Use tools like NotebookLM or other AI-based text digesters to ask specific, targeted questions about the papers:
+   - Example questions:
+     - "In the papers uploaded, did any of them explore XYZ?"
+     - "Which paper is most closely related to the following project idea: [explain idea]?"
+   These tools will help you quickly extract relevant information without re-reading entire papers.
+
+
+## Additional Ideas for things to include 
+
+- **Audience**: Who is this for? Data professionals, businesses, researchers, or curious readers.
+- **Headline**: A captivating title introducing the data science theme (e.g., "Unlocking Insights Through Data Stories").
+- **Introduction**: A brief, engaging overview of what the website offers (e.g., data-driven stories, insights, or case studies).
+- **Questions You Are Addressing**: What do you hope to learn?
+- **Motivation**: Explain why this topic matters, highlighting the importance of data in solving real-world problems.
+- **Key Topics**: List the main focus areas (e.g., machine learning, data visualization, predictive modeling).
+- **Use Cases/Examples**: A brief teaser of compelling stories or case studies you’ve worked on.
+- **Call to Action**: Invite visitors to explore the content, follow along, or contact you for more information.
+- **Visual/Infographic**: Add a simple graphic or visual element to make the page more dynamic.

@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DSAN-5000: Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/gu-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">DSAN-5000: Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../instructions/overview.html" aria-current="page"> 
+<span class="menu-text">Instructions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../report/report.html"> 
+<span class="menu-text">Report</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-technical-details" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Technical details</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-technical-details">    
+        <li>
+    <a class="dropdown-item" href="../technical-details/data-collection/main.html">
+ <span class="dropdown-text">Data-collection</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../technical-details/data-cleaning/main.html">
+ <span class="dropdown-text">Data-cleaning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../technical-details/eda/main.html">
+ <span class="dropdown-text">Exploratory Data Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../technical-details/unsupervised-learning/main.html">
+ <span class="dropdown-text">Unsupervised Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../technical-details/supervised-learning/main.html">
+ <span class="dropdown-text">Supervised Learning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../technical-details/progress-log.html">
+ <span class="dropdown-text">Progress Log</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../technical-details/llm-usage-log.html">
+ <span class="dropdown-text">LLM usage Log</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#project-instruction" id="toc-project-instruction" class="nav-link active" data-scroll-target="#project-instruction">Project instruction:</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <ul class="collapse">
+  <li><a href="#python-package-optional" id="toc-python-package-optional" class="nav-link" data-scroll-target="#python-package-optional">Python package (optional)</a></li>
+  </ul></li>
+  <li><a href="#topic-selection" id="toc-topic-selection" class="nav-link" data-scroll-target="#topic-selection">Topic selection</a>
+  <ul class="collapse">
+  <li><a href="#select-a-broad-topic-area" id="toc-select-a-broad-topic-area" class="nav-link" data-scroll-target="#select-a-broad-topic-area">Select a broad topic area</a></li>
+  <li><a href="#narrow-your-focus" id="toc-narrow-your-focus" class="nav-link" data-scroll-target="#narrow-your-focus">Narrow your focus</a></li>
+  <li><a href="#data-science-questions" id="toc-data-science-questions" class="nav-link" data-scroll-target="#data-science-questions">Data Science Questions</a></li>
+  </ul></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a>
+  <ul class="collapse">
+  <li><a href="#repository-setup" id="toc-repository-setup" class="nav-link" data-scroll-target="#repository-setup">Repository Setup</a></li>
+  <li><a href="#expectations-for-github-usage" id="toc-expectations-for-github-usage" class="nav-link" data-scroll-target="#expectations-for-github-usage">Expectations for GitHub Usage</a>
+  <ul class="collapse">
+  <li><a href="#use-a-logical-repository-structure" id="toc-use-a-logical-repository-structure" class="nav-link" data-scroll-target="#use-a-logical-repository-structure">1. Use a Logical Repository Structure</a></li>
+  <li><a href="#commit-regularly" id="toc-commit-regularly" class="nav-link" data-scroll-target="#commit-regularly">2. Commit Regularly</a></li>
+  <li><a href="#data-storage" id="toc-data-storage" class="nav-link" data-scroll-target="#data-storage">3. Data Storage</a></li>
+  <li><a href="#syncing-with-gu-domains" id="toc-syncing-with-gu-domains" class="nav-link" data-scroll-target="#syncing-with-gu-domains">4. Syncing with GU Domains</a></li>
+  <li><a href="#code-documentation" id="toc-code-documentation" class="nav-link" data-scroll-target="#code-documentation">5. Code Documentation</a></li>
+  </ul></li>
+  <li><a href="#collaboration-in-groups-if-applicable" id="toc-collaboration-in-groups-if-applicable" class="nav-link" data-scroll-target="#collaboration-in-groups-if-applicable">Collaboration in Groups (If Applicable)</a></li>
+  </ul></li>
+  <li><a href="#website-project-structure" id="toc-website-project-structure" class="nav-link" data-scroll-target="#website-project-structure">Website project structure</a>
+  <ul class="collapse">
+  <li><a href="#website-development" id="toc-website-development" class="nav-link" data-scroll-target="#website-development">Website Development</a></li>
+  <li><a href="#website-hosting" id="toc-website-hosting" class="nav-link" data-scroll-target="#website-hosting">Website Hosting</a></li>
+  <li><a href="#the-two-audiences" id="toc-the-two-audiences" class="nav-link" data-scroll-target="#the-two-audiences">The two audiences</a></li>
+  </ul></li>
+  <li><a href="#general-tips-and-expectations" id="toc-general-tips-and-expectations" class="nav-link" data-scroll-target="#general-tips-and-expectations">General Tips and Expectations</a>
+  <ul class="collapse">
+  <li><a href="#get-started-early" id="toc-get-started-early" class="nav-link" data-scroll-target="#get-started-early">Get started early</a></li>
+  <li><a href="#graduate-level-work" id="toc-graduate-level-work" class="nav-link" data-scroll-target="#graduate-level-work">Graduate level work</a></li>
+  <li><a href="#the-intersection-of-skills-and-domain-knowledge" id="toc-the-intersection-of-skills-and-domain-knowledge" class="nav-link" data-scroll-target="#the-intersection-of-skills-and-domain-knowledge">The intersection of skills and domain knowledge</a></li>
+  <li><a href="#what-is-impact" id="toc-what-is-impact" class="nav-link" data-scroll-target="#what-is-impact">What is “impact”?</a></li>
+  <li><a href="#what-makes-a-good-research-project" id="toc-what-makes-a-good-research-project" class="nav-link" data-scroll-target="#what-makes-a-good-research-project">What makes a good research project?</a></li>
+  <li><a href="#time-management" id="toc-time-management" class="nav-link" data-scroll-target="#time-management">Time management</a></li>
+  <li><a href="#visualization-guidelines" id="toc-visualization-guidelines" class="nav-link" data-scroll-target="#visualization-guidelines">Visualization guidelines</a></li>
+  <li><a href="#coding" id="toc-coding" class="nav-link" data-scroll-target="#coding">Coding</a>
+  <ul class="collapse">
+  <li><a href="#practice-first" id="toc-practice-first" class="nav-link" data-scroll-target="#practice-first">Practice First</a></li>
+  <li><a href="#prototype-and-develop-on-a-small-data-set" id="toc-prototype-and-develop-on-a-small-data-set" class="nav-link" data-scroll-target="#prototype-and-develop-on-a-small-data-set">Prototype and develop on a small data set</a></li>
+  </ul></li>
+  <li><a href="#debugging" id="toc-debugging" class="nav-link" data-scroll-target="#debugging">Debugging</a></li>
+  </ul></li>
+  <li><a href="#quarto-tips" id="toc-quarto-tips" class="nav-link" data-scroll-target="#quarto-tips">Quarto Tips</a>
+  <ul class="collapse">
+  <li><a href="#file-types" id="toc-file-types" class="nav-link" data-scroll-target="#file-types">File Types</a></li>
+  <li><a href="#quarto-includes" id="toc-quarto-includes" class="nav-link" data-scroll-target="#quarto-includes">Quarto Includes</a>
+  <ul class="collapse">
+  <li><a href="#why-use-quarto-includes" id="toc-why-use-quarto-includes" class="nav-link" data-scroll-target="#why-use-quarto-includes">Why Use Quarto Includes?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#llm-usage" id="toc-llm-usage" class="nav-link" data-scroll-target="#llm-usage">LLM usage</a>
+  <ul class="collapse">
+  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
+  <li><a href="#acceptable-use-cases" id="toc-acceptable-use-cases" class="nav-link" data-scroll-target="#acceptable-use-cases">Acceptable use cases</a></li>
+  <li><a href="#unacceptable-use-cases" id="toc-unacceptable-use-cases" class="nav-link" data-scroll-target="#unacceptable-use-cases">Unacceptable use cases</a>
+  <ul class="collapse">
+  <li><a href="#effect-on-grade" id="toc-effect-on-grade" class="nav-link" data-scroll-target="#effect-on-grade">Effect on grade</a></li>
+  <li><a href="#plagiarism-investigation" id="toc-plagiarism-investigation" class="nav-link" data-scroll-target="#plagiarism-investigation">Plagiarism investigation</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="project-instruction" class="level1">
+<h1>Project instruction:</h1>
+<p>Author(s): Dr.&nbsp;H and Gerard Pendleton Thurston the 4th</p>
+<p><code>Note:</code> You can delete this folder and remove it from the project website once you have read and understood the instructions. It shouldn’t be part of your final submission.</p>
+<p><strong>Audio instructions:</strong></p>
+<p>If you want, you can listen to the instructions:</p>
+<audio controls="">
+<source src="../audio/instruction-page.mp3" type="audio/mpeg">
+</audio>
+<p><sup> <strong>Source</strong>: Text-to-speech conversion done with Amazon Polly on AWS </sup></p>
+<p><code>Note</code>: These audio instructions should not be included in your final submission or repository, once you are done wiht them, please delete the files and remove them from the website.</p>
+</section>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Writing and communicating technical information in an understandable way is a critical and highly valued skill. The goal of this project is to create a data science story that explores and explains a particular topic or issue in a data-driven manner. Your portfolio will take the form of a narrative website that you will design. Each website must have a clear flow, be easy to navigate, load quickly, and tell an engaging, well-structured data science story. Additionally, your portfolio should be highly visual, featuring numerous visualizations throughout.</p>
+<p><code>Framing</code>: To structure your project, consider framing it in one of the following ways:</p>
+<ul>
+<li><strong>Academic Paper</strong>: Similar to a peer-reviewed paper, focusing on a data-driven problem.</li>
+<li><strong>Industry Project</strong>: You are hired as a data scientist to solve a company problem and present your findings.</li>
+<li><strong>Data Story</strong>: A narrative that uses data to tell a compelling story, similar to a data-driven news article from the <em>New York Times</em>.</li>
+</ul>
+<p>In all three cases, you will need a final “report” for the stakeholder, ensuring transparency with your data, code, and processing methods.</p>
+<p>We provide a website skeleton as a starting point for your project. Please do not modify the overall directory structure, though you are free to customize the look and feel. Each page in the skeleton includes specific instructions on what should be covered there.</p>
+<p><strong>OVERALL-GOAL:</strong> <code>Portfolio website creation</code></p>
+<p>Creating an impressive portfolio is essential because it becomes something you “own” and can take with you after graduation. It serves as a lasting reminder of the skills and knowledge you’ve gained, and more importantly, it acts as a valuable asset during job interviews. You’ll be able to showcase your work and demonstrate your expertise to potential employers with concrete examples.</p>
+<p>This portfolio will be your professional showcase, representing what you’ve accomplished. It will help you stand out in interviews by giving you a tangible way to present your work. <strong>This portfolio is a reflection of you</strong>, so ensure it represents your best work and creativity—make it as awesome as you are!</p>
+<p><strong>DUE DATES:</strong> See the assignment’s Canvas page for the due date</p>
+<p><strong>LATE POLICY:</strong> See the syllabus</p>
+<p><strong>MEMBERSHIP</strong>: This project can be completed individually, or as a small group project with up to a maximum of <strong>2 students</strong> per group. You can choose your own group members.</p>
+<ul>
+<li><code>Everyone</code>, even students working individually, must add themselves to the project group on Canvas (this is tedious but required by the Canvas grading system)
+<ul>
+<li><a href="https://georgetown.instructure.com/courses/193247/groups#tab-28372">https://georgetown.instructure.com/courses/193247/groups#tab-28372</a></li>
+</ul></li>
+<li>If you choose to work in a group, all group members must contribute equally.</li>
+<li>Collaboration and teamwork are essential; ensure that the workload is evenly distributed among group members.</li>
+</ul>
+<p><strong>SUBMISSION:</strong></p>
+<ul>
+<li>The final project will be submitted to Canvas with the following content, you MUST include ALL of the following:
+<ul class="task-list">
+<li><label><input type="checkbox">A URL pointing to your project on GU Domains.</label></li>
+<li><label><input type="checkbox">A URL to your GitHub repository.</label></li>
+<li><label><input type="checkbox">At the very end, print the following pages from your website as PDFs, stitch them into a single PDF</label>
+<ul>
+<li>Landing page</li>
+<li>Report</li>
+<li>Technical details
+<ul>
+<li>Data collection</li>
+<li>Data cleaning</li>
+<li>EDA</li>
+<li>unsupervised-learning</li>
+<li>supervised-learning</li>
+</ul></li>
+</ul></li>
+<li><label><input type="checkbox">Upload a compressed zipped directory of your course website AND a compressed zipped directory of your code (without the data files).</label></li>
+</ul></li>
+</ul>
+<p><code>IMPORTANT:</code> The PDF submission WILL be automatically processed by Canvas in a plagiarism-checking and LLM usage software tool called <code>turn-it-in</code>. It is your responsibility to ensure that your submission is original and that you have properly cited all sources.</p>
+<p>This is done to have a “static,” time-stamped version of your final submission.</p>
+<p><strong>OPTIONAL BONUS PRESENTATION</strong>: During the final week of class, you have the opportunity to present your project results for up to +7.5 bonus points. To qualify, you must create a concise 10-minute presentation with an accompanying slide deck. Simply opening your website and talking about it will not be sufficient. Sign-up will be voluntary and will be made available towards the end of the semester.</p>
+</section>
+<section id="code" class="level1">
+<h1>Code</h1>
+<p>For this project, you can use R or Python, or both. However, python is recommended, since it is more heavily represented in the class.</p>
+<section id="python-package-optional" class="level2">
+<h2 class="anchored" data-anchor-id="python-package-optional">Python package (optional)</h2>
+<p>This is an optional component of the project, if you’d like, you can create a dedicated Python package for your project. The source folder for this package should be included in the root of your repository, and it can be imported into your processing scripts used in the various technical-details sections. If you create a package, it should be well-documented, with an additional tab on the navigation bar for the package documentation.</p>
+<p>While a package would typically have its own GitHub repository, for this project, please include it within the same repository.</p>
+<p>The skeleton for the package is not provided in the repo, but you can recycle what you created in past assignments.</p>
+</section>
+</section>
+<section id="topic-selection" class="level1">
+<h1>Topic selection</h1>
+<section id="select-a-broad-topic-area" class="level2">
+<h2 class="anchored" data-anchor-id="select-a-broad-topic-area">Select a broad topic area</h2>
+<p>Start by selecting a broad topic area.</p>
+<p>Here are some examples:</p>
+<ul>
+<li>Bio and Health<br>
+</li>
+<li>Climate<br>
+</li>
+<li>Finance and Economics<br>
+</li>
+<li>Public Policy<br>
+</li>
+<li>Materials Discovery<br>
+</li>
+<li>Transportation<br>
+</li>
+<li>Education<br>
+</li>
+<li>Crime and Punishment<br>
+</li>
+<li>Politics and Government<br>
+</li>
+<li>Zoology and Botany<br>
+</li>
+<li>Social Phenomena</li>
+</ul>
+</section>
+<section id="narrow-your-focus" class="level2">
+<h2 class="anchored" data-anchor-id="narrow-your-focus">Narrow your focus</h2>
+<ul>
+<li>Narrow your focus to a topic that can realistically be addressed in a data driven way.
+<ul>
+<li>e.g.&nbsp;<code>Study the effect of climate change on extreme weather</code></li>
+<li>Avoid commonly used topics from Kaggle.</li>
+</ul></li>
+<li>Claim your topic in the “project topic page in the shared documeent”
+<ul>
+<li><a href="https://docs.google.com/spreadsheets/d/1QL3BLRI56oFzG00RcGXGYxEiDGSTD01-0OibOk9gzAE/edit?usp=sharing">click here to claim your topic</a></li>
+</ul></li>
+</ul>
+<p>Even if multiple students choose similar topics, each portfolio must be original. Portfolios that are too similar will be reviewed for plagiarism and may result in Honor Council violation.</p>
+</section>
+<section id="data-science-questions" class="level2">
+<h2 class="anchored" data-anchor-id="data-science-questions">Data Science Questions</h2>
+<p>The data science life cycle starts with well-posed questions, similar to the scientific method. A data science question is a broad idea that can be broken down into 5 to 10 smaller questions, guiding your investigation.</p>
+<ul>
+<li>“What effect is climate change having on frequency of extreme weather events? e.g hurricane, drought, forest fires, etc”</li>
+</ul>
+<p>Here are some additional example questions:</p>
+<ul>
+<li><strong>Health &amp; Medicine</strong>
+<ul>
+<li>What factors predict heart disease across different age groups?<br>
+</li>
+<li>How does cancer treatment effectiveness vary by demographics?<br>
+</li>
+<li>Can wearables predict the onset of diabetes?</li>
+</ul></li>
+<li><strong>Climate &amp; Environment</strong>
+<ul>
+<li>What is the impact of deforestation on regional climates?</li>
+</ul></li>
+<li><strong>Education</strong>
+<ul>
+<li>How do socioeconomic factors affect student performance?<br>
+</li>
+<li>What is the impact of remote learning post-pandemic?</li>
+</ul></li>
+<li><strong>Social Science &amp; Public Policy</strong>
+<ul>
+<li>How does income inequality correlate with crime rates?<br>
+</li>
+<li>What factors influence voter turnout?</li>
+</ul></li>
+<li><strong>Finance &amp; Economics</strong>
+<ul>
+<li>What indicators predict stock market crashes?<br>
+</li>
+<li>How does inflation impact consumer spending?</li>
+</ul></li>
+<li><strong>Transportation</strong>
+<ul>
+<li>How has ride-sharing impacted taxi services?<br>
+</li>
+<li>What are the busiest transportation hubs, and how can congestion be reduced?</li>
+</ul></li>
+<li><strong>Crime &amp; Law Enforcement</strong>
+<ul>
+<li>What factors predict recidivism in former inmates?<br>
+</li>
+<li>How do different policing strategies impact crime rates?</li>
+</ul></li>
+<li><strong>Sports &amp; Entertainment</strong>
+<ul>
+<li>What factors predict an athlete’s long-term performance?<br>
+</li>
+<li>Can machine learning predict sports match outcomes?</li>
+</ul></li>
+<li><strong>Technology &amp; Social Media</strong>
+<ul>
+<li>How do online reviews impact product sales?<br>
+</li>
+<li>What strategies drive viral social media campaigns?</li>
+</ul></li>
+</ul>
+<p>Choose a topic you’re passionate about, and develop creative, “outside-the-box” questions to guide your project throughout the course.</p>
+</section>
+</section>
+<section id="github" class="level1">
+<h1>GitHub</h1>
+<p>Your project will be fully transparent, with all source code hosted on GitHub. This platform will serve as the main repository for your project code, documentation, and website. Proper organization and regular updates are key for effective collaboration and project management.</p>
+<blockquote class="blockquote">
+<p><strong>IMPORTANT</strong>: Proficiency in GitHub for collaboration is a valuable addition to your resume. Being able to join a team and immediately contribute by solving problems and adding value is a highly sought-after skill. Now is the time to develop this expertise—embrace Git fully, become proficient, and graduate with a critical skill for your future career.</p>
+</blockquote>
+<section id="repository-setup" class="level2">
+<h2 class="anchored" data-anchor-id="repository-setup">Repository Setup</h2>
+<ul>
+<li>You <strong>MUST</strong> use GitHub Classroom to create your project repository. This ensures TAs can access your code and track your progress.</li>
+<li>Clone the repository to your local machine, which will provide a basic directory structure.</li>
+</ul>
+</section>
+<section id="expectations-for-github-usage" class="level2">
+<h2 class="anchored" data-anchor-id="expectations-for-github-usage">Expectations for GitHub Usage</h2>
+<p>Your grade will reflect how effectively you use Git, including:</p>
+<ul>
+<li>Incremental progress on the project</li>
+<li>The frequency and quality of commits</li>
+<li>Repository structure and organization</li>
+<li>Adherence to GitHub guidelines outlined below</li>
+</ul>
+<p>Ensure regular commits to GitHub (e.g., <code>git add</code>, <code>git commit</code>, <code>git push</code>) to sync your work and maintain a smooth development process.</p>
+<section id="use-a-logical-repository-structure" class="level3">
+<h3 class="anchored" data-anchor-id="use-a-logical-repository-structure">1. Use a Logical Repository Structure</h3>
+<ul>
+<li>Include a comprehensive README file that explains the purpose of the project.</li>
+<li>Organize files logically to make navigation easier for collaborators and TAs.</li>
+<li>Ensure all files are well-documented and the code is easy to follow.</li>
+</ul>
+</section>
+<section id="commit-regularly" class="level3">
+<h3 class="anchored" data-anchor-id="commit-regularly">2. Commit Regularly</h3>
+<ul>
+<li>Commit frequently with clear, meaningful commit messages that reflect the changes made.
+<ul>
+<li><strong>Good commit message example:</strong> <code>Added data cleaning script for tabular data</code></li>
+<li><strong>Poor commit message example:</strong> <code>Fix</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="data-storage" class="level3">
+<h3 class="anchored" data-anchor-id="data-storage">3. Data Storage</h3>
+<ul>
+<li>Do <strong>not</strong> store large data files in your repository.
+<ul>
+<li>Store raw data in the <code>raw-data</code> folder and processed data in the <code>processed-data</code> folder; these folders should be added to <code>.gitignore</code>.</li>
+<li><strong>Tip:</strong> Use external storage like Google Drive or GU Domains for large datasets and provide access links within the repository.</li>
+</ul></li>
+</ul>
+</section>
+<section id="syncing-with-gu-domains" class="level3">
+<h3 class="anchored" data-anchor-id="syncing-with-gu-domains">4. Syncing with GU Domains</h3>
+<ul>
+<li>Sync your GitHub repository with your GU Domains website before submission deadlines to keep everything up to date. (this should be fully automated)</li>
+<li>Ensure your code repository and website are always in sync, particularly before the final submission, to avoid losing points.</li>
+</ul>
+</section>
+<section id="code-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="code-documentation">5. Code Documentation</h3>
+<ul>
+<li>Provide clear and thorough documentation for each file and function in your project.</li>
+<li>Include a <code>README.md</code> that outlines the project purpose, how to run the code, and any necessary dependencies.</li>
+</ul>
+</section>
+</section>
+<section id="collaboration-in-groups-if-applicable" class="level2">
+<h2 class="anchored" data-anchor-id="collaboration-in-groups-if-applicable">Collaboration in Groups (If Applicable)</h2>
+<p>If you are working in a group, make full use of GitHub’s collaboration features:</p>
+<ol type="1">
+<li><strong>Task Assignment:</strong>
+<ul>
+<li>Assign tasks using GitHub Issues or Project Boards to keep track of progress.</li>
+</ul></li>
+<li><strong>Branching and Pull Requests:</strong>
+<ul>
+<li>Use branches for feature development and pull requests for code reviews before merging into the main branch.</li>
+</ul></li>
+<li><strong>Communication:</strong>
+<ul>
+<li>Maintain regular communication and conduct code reviews with your teammates to prevent conflicts.</li>
+</ul></li>
+<li><strong>Equal Contribution:</strong>
+<ul>
+<li>Ensure equal contribution from all team members. Unequal contributions will negatively affect individual grades.</li>
+<li><strong>Note:</strong> Team members not contributing equally may be flagged by the group and penalized after review.</li>
+</ul></li>
+<li><strong>Contribution Documentation:</strong>
+<ul>
+<li>Document each member’s contributions clearly in the <code>collaborators.qmd</code> file, detailing who worked on specific aspects of the project.</li>
+</ul></li>
+<li><strong>Code Reviews:</strong>
+<ul>
+<li>Conduct peer code reviews before merging changes into the main branch to maintain quality and consistency.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="website-project-structure" class="level1">
+<h1>Website project structure</h1>
+<p>Please at miniumum include the following pages in your website:</p>
+<ul>
+<li>Landing page</li>
+<li>Report</li>
+<li>Technical details
+<ul>
+<li>Data collection</li>
+<li>Data cleaning</li>
+<li>EDA</li>
+<li>Unsupervised-learning</li>
+<li>Supervised-learning</li>
+<li>LLM-usage</li>
+<li>Progress-log</li>
+</ul></li>
+</ul>
+<p>Please adhere closely to this structure, for consistency accross projects.</p>
+<p>Sub-sections can be handles as markdown headers in the respective pages.</p>
+<p>You can add more pages,and if you want, you can merge EDA and unsupervised learning into one page, since the are similar. Or make these section headers in the dropdown menu, for further sub-sections creation.</p>
+<p>For example:</p>
+<ul>
+<li>Landing page</li>
+<li>Report</li>
+<li>Technical details
+<ul>
+<li>Data collection</li>
+<li>Data cleaning</li>
+<li>EDA</li>
+<li>Unsupervised-learning
+<ul>
+<li>Clustering</li>
+<li>Dimensionality Reduction</li>
+</ul></li>
+<li>Supervised-learning
+<ul>
+<li>Feature selection
+<ul>
+<li>regression</li>
+<li>classification</li>
+</ul></li>
+<li>Classification
+<ul>
+<li>Binary classification</li>
+<li>Multi-class classification</li>
+</ul></li>
+<li>Regression</li>
+</ul></li>
+<li>LLM-usage</li>
+<li>Progress-log</li>
+</ul></li>
+</ul>
+<p><code>Important</code>: Exactly what you put on these pages will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
+<p>A skeleton of the recommended version of the website is provided in the github classroom repository.</p>
+<pre><code>./
+├── README.md
+├── _quarto.yml
+├── assets
+│   ├── gu-logo.png
+│   ├── nature.csl
+│   └── references.bib
+├── build.sh
+├── data
+│   ├── processed-data
+│   │   └── countries_population.csv
+│   └── raw-data
+│       └── countries_population.csv
+├── index.qmd
+├── instructions
+│   ├── expectations.qmd
+│   ├── github-usage.qmd
+│   ├── llm-usage.qmd
+│   ├── overview.qmd
+│   ├── quarto-tips.qmd
+│   ├── topic-selection.qmd
+│   └── website-structure.qmd
+├── report
+│   └── report.qmd
+└── technical-details
+    ├── data-cleaning
+    │   ├── instructions.qmd
+    │   └── main.ipynb
+    ├── data-collection
+    │   ├── closing.qmd
+    │   ├── instructions.qmd
+    │   ├── main.ipynb
+    │   ├── methods.qmd
+    │   └── overview.qmd
+    ├── eda
+    │   ├── instructions.qmd
+    │   └── main.ipynb
+    ├── llm-usage-log.qmd
+    ├── progress-log.qmd
+    ├── supervised-learning
+    │   ├── instructions.qmd
+    │   └── main.ipynb
+    └── unsupervised-learning
+        ├── instructions.qmd
+        └── main.ipynb</code></pre>
+<p>Always strive to incorporate the following:</p>
+<ul>
+<li><strong>Structure</strong>: Use clear headings and subheadings to break down each section of your EDA.</li>
+<li><strong>Clarity</strong>: Provide concise explanations for all tables and visualizations, ensuring they are easy to interpret.</li>
+<li><strong>Code Links</strong>: Link to relevant code (e.g., GitHub) or embed code snippets for transparency and reproducibility.</li>
+<li><strong>Reproducibility</strong>: Make your EDA reproducible by providing access to the dataset, scripts, and tools you used.</li>
+<li><strong>Visualization</strong>: Use visualizations to convey key insights</li>
+</ul>
+<section id="website-development" class="level2">
+<h2 class="anchored" data-anchor-id="website-development">Website Development</h2>
+<p>It is required that you build your website with <a href="https://quarto.org/">Quarto</a>.</p>
+</section>
+<section id="website-hosting" class="level2">
+<h2 class="anchored" data-anchor-id="website-hosting">Website Hosting</h2>
+<p>You <strong>MUST</strong> host your website on the <strong>Georgetown Domains</strong> web space.</p>
+<p><strong>No exceptions.</strong> You may <strong>NOT</strong> use anything other than Georgetown Domains to host your website. For example, no RPubs, WordPress, Squarespace, or any other website development toolset. <strong>Failure to comply with this rule will result in a ZERO.</strong></p>
+</section>
+<section id="the-two-audiences" class="level2">
+<h2 class="anchored" data-anchor-id="the-two-audiences">The two audiences</h2>
+<p>Knowing your audience in data science writing is crucial because it shapes how you present information. Technical stakeholders may require detailed explanations of methodologies, while non-technical audiences need clear, simplified insights and data-driven conclusions. Tailoring your message ensures your analysis is both understandable and impactful, driving informed decision-making.</p>
+<ul>
+<li><p>Examples of <strong>technical audiences</strong> include data scientists, software engineers, and IT professionals. These individuals expect detailed explanations of models, algorithms, methodologies, or system architectures, and they’re comfortable with technical jargon, such as discussing hyperparameters, programming frameworks, or machine learning techniques.</p></li>
+<li><p><strong>Non-technical audiences</strong> include executives, marketing teams, and clients. They prioritize high-level insights, actionable results, and visualizations that convey the impact of data without requiring an understanding of complex methods. For instance, a CEO may want to know how a model affects business strategy or revenue, without diving into the underlying technical details.</p></li>
+</ul>
+<p><strong>In this project you will cater to both audiences</strong>. This is done by having regions of your website for both audiences (see website struture)</p>
+</section>
+</section>
+<section id="general-tips-and-expectations" class="level1">
+<h1>General Tips and Expectations</h1>
+<section id="get-started-early" class="level2">
+<h2 class="anchored" data-anchor-id="get-started-early">Get started early</h2>
+<p>Remember, <code>slow and steady wins the race</code></p>
+<p>Making steady, incremental progress on a large project generally makes it more manageable. Rushing to throw something together under a tight deadline often turns the process into a nightmare.</p>
+</section>
+<section id="graduate-level-work" class="level2">
+<h2 class="anchored" data-anchor-id="graduate-level-work">Graduate level work</h2>
+<p>This is a graduate-level class, so each project should be viewed as <strong>specifications</strong>, not simple step-by-step requirements. Graduate-level work must be creative, individualized, and of high quality. To achieve an A-level grade, you are expected to <strong>exceed</strong> the specifications and <strong>create unique, novel solutions</strong>.</p>
+<p><strong>For example</strong>: If you’re asked to build visualizations to support your data science story, you won’t be told how many or what type of visualizations to create. This is up to you, based on your data and the creativity and quality you want to demonstrate.</p>
+<p>We want you to move away from expecting someone else to tell you what to do, how to do it, and how much to do. Instead, you’ll adopt a professional approach—reviewing specifications provided in the assignments, determining what’s needed to <strong>exceed expectations</strong>, and demonstrating professional excellence.</p>
+<p>There are countless ways to approach the project requirements, so be creative and thoughtful. Instructions outline the <strong>minimum</strong> requirements, but exceeding them will elevate the quality of your work.</p>
+<p><strong>Autonomy and Critical Thinking</strong>:</p>
+<ul>
+<li>In the workplace, step-by-step instructions are rare. You’ll need to interpret broad requirements and deliver professional results. Producing high-quality, accurate work with limited guidance is a key professional skill.</li>
+<li>At this stage, move away from asking, “Do I have to do XYZ?” Instead, critically analyze challenges. If something is unclear, investigate and break it down fundamentally.</li>
+</ul>
+<p>Developing problem-solving skills is crucial. While it’s important to work independently for at least 10–20 minutes, if you’re still stuck after 30 minutes, seek help. Being resourceful is important, but knowing when to ask for assistance is equally valuable.</p>
+</section>
+<section id="the-intersection-of-skills-and-domain-knowledge" class="level2">
+<h2 class="anchored" data-anchor-id="the-intersection-of-skills-and-domain-knowledge">The intersection of skills and domain knowledge</h2>
+<p>“Data science” is essentially a collection of useful computational and mathematical skills (statistics, cloud computing, machine learning, coding, etc). However, to maximize your effectiveness, these skills should be applied to a domain of interest (e.g., materials science, finance, healthcare, etc). Focusing and learning about a particular domain will help you specialize and make you more marketable.</p>
+<p>That beind said, don’t worry about choosing the “perfect” domain—it’s always possible to pivot later, as many of the skills learned, such as problem-solving, critical thinking, and self-education, are transferable across all fields.</p>
+</section>
+<section id="what-is-impact" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-impact">What is “impact”?</h2>
+<p>Impact in science refers to the significance and influence of research, often measured by metrics like citations, impact factor of journals, and indices like h-index. These metrics reflect how widely recognized and valuable the work is within the scientific community. Such quanities are used to compare researchers and journals, and are used to determine grant funding and career opportunities.</p>
+<ul>
+<li><strong>Impact Factor (IF)</strong>:
+<ul>
+<li>A measure of a journal’s influence, calculated by averaging the number of citations to articles published in the journal over the past two years.</li>
+<li>Higher impact factors indicate a more influential journal.</li>
+</ul></li>
+<li><strong>Number of Citations</strong>:
+<ul>
+<li>The total count of how often a researcher’s work is cited by others, reflecting its influence within the scientific community.</li>
+<li>More citations generally signal broader recognition or relevance of the research.</li>
+</ul></li>
+<li><strong>h-index</strong>:
+<ul>
+<li>A metric that measures both productivity and citation impact. An h-index of 10 means a researcher has 10 papers each cited at least 10 times.</li>
+<li>Higher h-index indicates more influential and widely recognized work.</li>
+</ul></li>
+<li><strong>i10-index</strong>:
+<ul>
+<li>Counts the number of a researcher’s publications with at least 10 citations.</li>
+<li>A straightforward measure of citation impact, commonly used by Google Scholar.</li>
+</ul></li>
+<li><strong>Importance of Citations</strong>:
+<ul>
+<li>Citations indicate that other researchers find the work valuable for their own research, increasing its perceived credibility and impact in the field.</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-makes-a-good-research-project" class="level2">
+<h2 class="anchored" data-anchor-id="what-makes-a-good-research-project">What makes a good research project?</h2>
+<p>Professional academic or industrial research is all about <strong>discovery, improvement, and novelty</strong>. You don’t necessarily need to have a project that acheive the following, but here are some guidelines for what makes “high impact” projects:</p>
+<p>In no particular order:</p>
+<ul>
+<li><strong>Novel computational tools</strong>: For example, development of a new Python package to tackle a class of problem which doesn’t have an existing suitable tool.</li>
+<li><strong>Creating more user-friendly tools</strong>: For example, there might be a great C++ code, but with no python analogue. Python is easier to use, so if you make a pythonic version of an existing tool, it may get higher adoption, provided it is more or less as efficient to the competitors.</li>
+<li><strong>More efficient tools or methods</strong>: Achieving something 1.25x, 2x, 10x or 10000x faster than existing methods, or creating a new code package that is more efficient than a previous one.</li>
+<li><strong>Novel methods</strong>: A completely new way of doing something (e.g.&nbsp;new classification algorithm)</li>
+<li><strong>Existing methods applied to new domains</strong>: Using established methods to solve problems in a novel domain, e.g.&nbsp;applying a particular classification methodology to a problem or dataset that no one has applied it to before. Extent of impact obviously depends on the importance of the domain or use-case.</li>
+<li><strong>Creation of novel Data Sets</strong>: Provides well-curated, clean datasets that can be used to address important scientific questions or problems.(often more useful if there is an accompanying API)</li>
+<li><strong>New insights or phenomena</strong>: Using data analysis techniques to uncover new insights or patterns that address key questions or problems. For example, discovering overarching governing rules (e.g., differential equations) that describe some observed phenomena.<br>
+</li>
+<li><strong>Solves a Major Problem</strong>: Addresses a critical or unresolved issue in the field, offering a breakthrough or significant advancement.<br>
+</li>
+<li><strong>Robust Data and Methodology</strong>: Employs sound, validated methodologies and high-quality data to ensure credibility and reliability (i.e.&nbsp;doing something rigorously, correctly, and generally better than the competition).</li>
+<li><strong>Interdisciplinary Impact</strong>: Influences multiple fields or areas of study, increasing the breadth of its significance.</li>
+<li><strong>High Citation Potential</strong>: Likely to be widely cited due to its significance, relevance, and applicability across different areas.</li>
+</ul>
+<p>You can, of course, have multiple of these components in a single project, which will increase its prestige.</p>
+<p>This is especially true when conducting academic research. Publications need to be novel and make a unique contribution to the body of human knowledge; otherwise, they will not be highly cited or considered particularly important.</p>
+</section>
+<section id="time-management" class="level2">
+<h2 class="anchored" data-anchor-id="time-management">Time management</h2>
+<p><strong>80-20 Rule</strong>: This rule of thumb suggests that 80% of results come from 20% of causes. In other words, a small number of key factors drive the majority of outcomes. This principle applies to project management, where a few critical steps or decisions often determine the success of a project.</p>
+<p>For example, it might take one week of steady work (30-40 hours) to complete 80% of a project, while the final 20% could take an additional four weeks.</p>
+<blockquote class="blockquote">
+<p>Projects tend to expand to fill the time available. No creative project—whether a book, song, poem, or paper—is ever truly 100% complete. There is an asymptotic limit as <span class="math inline">\(t \rightarrow \infty\)</span>, and true perfection is unattainable. The key is knowing when to “call it done.” This might happen at 95% or 99% completion, but eventually, we all have to stop. Strive to take this project as far as possible, but remember to stop and “call it done” at some point.</p>
+</blockquote>
+</section>
+<section id="visualization-guidelines" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-guidelines">Visualization guidelines</h2>
+<p>Visualizations are a critical component of your portfolio. Use them strategically to support your narrative. The more visual representations of your data, the better—higher-quality visualizations will result in a higher grade. Ensure that all graphics follow best practices:</p>
+<ul>
+<li><strong>Choose the right chart type</strong>: Match the chart to the data (e.g., bar for categories, line for trends).</li>
+<li><strong>Maintain simplicity</strong>: Avoid clutter and focus on the essential message.</li>
+<li><strong>Use appropriate scales</strong>: Ensure axes have correct and intuitive scaling to avoid misinterpretation.</li>
+<li><strong>Label axes clearly</strong>: Include meaningful axis labels with units (e.g., “Temperature (°C)” or “Revenue (USD)”).</li>
+<li><strong>Include descriptive titles</strong>: Provide a concise, informative title that explains the visualization’s main takeaway.</li>
+<li><strong>Ensure consistency</strong>: Use uniform color schemes, fonts, and styles across all charts in a presentation.</li>
+<li><strong>Highlight key data</strong>: Use contrasting colors or annotations to draw attention to important points or trends.</li>
+<li><strong>Keep proportions accurate</strong>: Maintain correct data-to-visual size relationships to avoid distortion.</li>
+<li><strong>Consider the audience</strong>: Tailor the level of detail and style to the audience’s technical proficiency.</li>
+<li><strong>Test readability</strong>: Ensure fonts, colors, and elements are clear and legible in various formats and sizes.</li>
+<li><strong>Use interactivity carefully</strong>: Interactive features should add clarity, not complexity, to the visual.</li>
+</ul>
+</section>
+<section id="coding" class="level2">
+<h2 class="anchored" data-anchor-id="coding">Coding</h2>
+<section id="practice-first" class="level3">
+<h3 class="anchored" data-anchor-id="practice-first">Practice First</h3>
+<p>While not required, practice is highly beneficial. It’s also a good habit to write your code from scratch, as this will build your problem-solving skills. You can use the code provided by professors as a reference, but always strive to write your own. Starting with a blank page is a valuable practice.</p>
+<p>To get comfortable with the methods, review and modify the R and Python codes provided in class. Try applying these to your project data and experiment with creating small toy datasets, such as a CSV file or a text corpus. This helps you understand the structure of the data and what the algorithms are doing.</p>
+</section>
+<section id="prototype-and-develop-on-a-small-data-set" class="level3">
+<h3 class="anchored" data-anchor-id="prototype-and-develop-on-a-small-data-set">Prototype and develop on a small data set</h3>
+<p>If you have big data, ALWAYS prototype on a small subset of the data, so that your code runs fast so that you can develop quickly, without waiting several minutes for each code cell to run. Do this by including a downsampling hyper-parameter at the beginning of your code, e.g.&nbsp;0.1. When the code is robust and finalized, you can set the downsampling factor to 1, run it on the complete data set, and let your computer run overnight.</p>
+<p>It is not a crazy idea to do a “trial run” of the project first from start to finish with a very basic dataset, e.g.&nbsp;penguins,diabetes, or iris. Make sure the “toy” data set is similar to your planned real world data set, for example, if you are planning an NLP project, don’t use a image dataset for your development process.</p>
+<p>This will have the following benefits:</p>
+<ol type="1">
+<li><strong>Clarifies Workflow</strong>: Understand the complete process from start to finish.</li>
+<li><strong>Identifies Challenges</strong>: Spot potential issues early on.</li>
+<li><strong>Validates Assumptions</strong>: Ensure methods and approaches are suitable.</li>
+<li><strong>Enhances Skills</strong>: Improve technical skills through practice.</li>
+<li><strong>Builds Confidence</strong>: Familiarity with tools and techniques.</li>
+<li><strong>Refines Methods</strong>: Test and optimize analytical strategies.</li>
+<li><strong>Estimates Resources</strong>: Better planning for time and resource allocation.</li>
+<li><strong>Facilitates Communication</strong>: Clearly convey project goals and outcomes.</li>
+<li><strong>Documents Process</strong>: Create a reference for reproducibility.</li>
+<li><strong>Gathers Early Feedback</strong>: Obtain input for adjustments before full implementation.</li>
+</ol>
+<p><a href="https://scikit-learn.org/1.5/datasets/toy_dataset.html">https://scikit-learn.org/1.5/datasets/toy_dataset.html</a></p>
+<p>Once that is working as a starter <code>code-base</code> you can swap it out for your full data later and start developing further for a more realistic real world project .</p>
+</section>
+</section>
+<section id="debugging" class="level2">
+<h2 class="anchored" data-anchor-id="debugging">Debugging</h2>
+<ul>
+<li><p>Always remember the following <strong>Debugging Steps:</strong></p>
+<ul>
+<li><strong>Step A:</strong> Copy the error message and search it online (Google or similar).</li>
+<li><strong>Step B:</strong> Look through forums or documentation to find a solution.</li>
+<li><strong>Step C:</strong> Implement the solution.</li>
+<li><strong>Step D:</strong> If you’re still stuck, ask for help from classmates, TAs, or professors.</li>
+<li><strong>Step E:</strong> Move on to the next issue and repeat the process.</li>
+</ul></li>
+</ul>
+<p><em>(Note: You can also use ChatGPT for debugging, but be cautious as the solutions may sometimes be inaccurate or incomplete.)</em></p>
+</section>
+</section>
+<section id="quarto-tips" class="level1">
+<h1>Quarto Tips</h1>
+<section id="file-types" class="level2">
+<h2 class="anchored" data-anchor-id="file-types">File Types</h2>
+<p>You can decide when to use <code>.qmd</code> vs <code>.ipynb</code> for structuring your code, but I recommend the following guidelines:</p>
+<ol type="1">
+<li>If the file contains <strong>any code</strong> (either in <code>R</code> or <code>Python</code>), ALWAYS use <code>.ipynb</code>.</li>
+<li>Do not mix <code>R</code> and <code>Python</code> in the same notebook.</li>
+<li>If the file is <strong>purely markdown</strong> without code, use <code>.qmd</code>.</li>
+<li>Use Quarto includes to modularize your content (see below for more details). This is also demonstrated in the project skeleton.</li>
+</ol>
+</section>
+<section id="quarto-includes" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-includes">Quarto Includes</h2>
+<p>Quarto includes (e.g., <code>{{&lt; include _content.qmd &gt;}}</code>) are highly recommended for modularizing and organizing your content. While optional, they offer several advantages.</p>
+<p><code>Note</code>: You can include a <code>.qmd</code> file in a <code>.ipynb</code> file, but not vice versa.</p>
+<section id="why-use-quarto-includes" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-quarto-includes">Why Use Quarto Includes?</h3>
+<ol type="1">
+<li><p><strong>Modularization</strong>: Breaking your project into smaller, reusable chunks simplifies the management of complex documents. You can work on specific sections without altering the entire project.</p></li>
+<li><p><strong>Reusability</strong>: Includes allow you to reuse content blocks across multiple documents, making them ideal for repetitive sections like headers or footers.</p></li>
+<li><p><strong>Consistency</strong>: By using includes, you ensure uniformity across your documents. Updating an include file will automatically apply the changes wherever it’s used.</p></li>
+<li><p><strong>Simplifies Collaboration</strong>: In team settings, includes allow different contributors to work on separate sections simultaneously, reducing merge conflicts and making the project easier to maintain.</p></li>
+<li><p><strong>Improved Organization</strong>: Includes help keep your main files clean and focused by loading content from separate, well-organized files. This makes your project more manageable and easier to navigate.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="llm-usage" class="level1">
+<h1>LLM usage</h1>
+<p>We believe that the adoption of LLM tools is inevitable and will be an important skill for success in your future career. Therefore, appropriate and acceptable use of LLM tools is encouraged for this project. Use them to accelerate your workflow and learning, but <strong>not</strong> as a replacement for critical thinking and understanding. Carefully review and process their output, use them judiciously, and avoid bloating your text with LLM-generated content. Overusing these tools often degrades the quality of your work rather than enhancing it.</p>
+<p><strong>Remember the following guidelines</strong>:</p>
+<ul>
+<li><strong>Use common sense</strong>: If you feel like you’re doing something questionable, you probably are. A good test is to ask yourself, “Would I openly tell the professor or classmates what I’m doing right now?” If the answer is no, you’re probably doing something you shouldn’t.</li>
+<li><strong>Cite your LLM use cases</strong>: Always cite when and how you’ve used LLM tools. This is a requirement for the project.</li>
+<li><strong>Is your use helping you grow professionally?</strong>: If your use of LLM tools is making you a more competent, efficient, and knowledgeable professional, you’re probably using them in an appropriate manner. If you’re using them as a shortcut to avoid work and gain free time, you’re using them incorrectly.</li>
+</ul>
+<section id="citation" class="level2">
+<h2 class="anchored" data-anchor-id="citation">Citation</h2>
+<p><code>ALWAY CITE CONTENT OR IDEAS TAKEN FROM EXTERNAL SOURCES</code>: e.g.&nbsp;websites, llm tools, papers</p>
+<p><code>ALWAYS BE TRANSPARENT WHEN YOU ARE USING LLM TOOLS:</code></p>
+<p>Please follow these guidelines:</p>
+<ul>
+<li><strong>General Tasks</strong>: Create and regularly update a dedicated <strong>LLM Transparency</strong> page to document how you are using LLM tools.
+<ul>
+<li>This page can serve as a “catch-all” for use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.</li>
+</ul></li>
+<li><strong>Content Creation</strong>: If non-original content (code or text) is generated by an LLM, you must also cite it on specific pages, just like any external source.
+<ul>
+<li>For non-original content, <strong>always provide a citation</strong>.</li>
+<li>Cite the LLM tool after each chunk of text or code it generates, using a BibTeX. For example<span class="citation" data-cites="gpt4o_code_gen"><sup><a href="#ref-gpt4o_code_gen" role="doc-biblioref">1</a></sup></span></li>
+</ul></li>
+</ul>
+</section>
+<section id="acceptable-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="acceptable-use-cases">Acceptable use cases</h2>
+<p><code>Note</code>: Various useful non-LLM research tools can be found here at the following link</p>
+<ul>
+<li><a href="https://jfh.georgetown.domains/centralized-lecture-content/content/general-resources/research/overview-of-AI-and-research-tools/notes.html#traditional-research-tools">Traditional research tools</a></li>
+</ul>
+<p>You can use LLM tools for the following use cases</p>
+<ul>
+<li><a href="https://jfh.georgetown.domains/centralized-lecture-content/content/general-resources/research/overview-of-AI-and-research-tools/notes.html#ai-driven-research-tools">AI research tools</a></li>
+<li>These include
+<ul>
+<li>re-formating text with LLM tools.</li>
+<li>Code explaination “describe what this code is doing in prose”</li>
+<li>Text summarization</li>
+<li>Proofreading<br>
+</li>
+<li>chatGPT for project brainstorming</li>
+<li>Using LLM tools to comment your code qualifies as an acceptible use case in this project. You can also use or code re-formatters such as <code>black</code> to increase the readability of your code.</li>
+</ul></li>
+</ul>
+</section>
+<section id="unacceptable-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="unacceptable-use-cases">Unacceptable use cases</h2>
+<p>DO NOT use ChatGPT or other LLM tools to write large portions of your text or code.</p>
+<section id="effect-on-grade" class="level3">
+<h3 class="anchored" data-anchor-id="effect-on-grade">Effect on grade</h3>
+<p>If it is clear that you have used LLM tools to write large portions of your code or text, your grade will reflect this, likely in the range of 0% to 50% of the total points, depending on the quality of the work. LLM outputs still require significant polishing to fit into a well-written, cohesive narrative. If it is evident that you simply inserted large portions of LLM-generated content into your assignment without taking the time to refine it into a high-quality submission, your grade will reflect this, even if the usage does not rise to the level of plagiarism.</p>
+</section>
+<section id="plagiarism-investigation" class="level3">
+<h3 class="anchored" data-anchor-id="plagiarism-investigation">Plagiarism investigation</h3>
+<p>In extreme cases,the following actions will occur.</p>
+<ol type="1">
+<li><p><strong>One-on-One Investigation</strong>: You will meet with department faculty for a thorough review of your project. You will be asked to explain your work in detail, including what specific chunks of code do, why you made certain decisions, and how you reached your conclusions.</p></li>
+<li><p><strong>Referral to the Honor Council</strong>: If, during this meeting, it is determined that you do not have sufficient understanding of the content that you claimed to have created, the case will be documented and sent to the honor council. This can result in a permanent mark on your transcript and may even lead to expulsion from the university.</p></li>
+</ol>
+
+
+
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-gpt4o_code_gen" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">The following code cell was generate primarily via GPT-4o, OpenAI, chat.openai.com.</div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

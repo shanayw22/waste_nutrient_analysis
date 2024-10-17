@@ -1,0 +1,21 @@
+---
+title: "LLM usage log"
+---
+
+This page can serve as a "catch-all" for LLM use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.
+
+LLM tools were used in the following way for the tasks below
+
+## Brainstorming
+
+* To create the initial idea, LLM tools were used to brainstorm ideas and provide feedback and refine the project plan.
+
+## Writing: 
+
+* Reformating text from bulleted lists into proses 
+* Proofreading
+* Text summarization for literature review 
+
+## Code: 
+
+* Code commenting and explanatory documentation 
