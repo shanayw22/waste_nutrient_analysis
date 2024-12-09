@@ -10,7 +10,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 from difflib import SequenceMatcher
 
-# Load API keys from config.json
+
 with open('technical-details/data-collection/config.json') as f:
     keys = json.load(f)
 API_KEY = keys['fdaapi']
@@ -40,6 +40,7 @@ with pdfplumber.open(pdf_path) as pdf:
             
             table_count += 1
 
+#SOURE : https://insights-engine.refed.org/food-waste-monitor?break_by=destination&indicator=tons-surplus&view=detail&year=2018
 foodwaste = pd.read_csv("data/raw-data/ReFED_US_Food_Surplus_Detail.csv")
 foodwaste.columns
 foodwaste["food_category"].nunique()
@@ -288,9 +289,9 @@ def find_best_match(food_name, df, used_matches):
     highest_overlap = 0
     best_index = -1
     
-    # Loop through all food names in the second dataframe
-    for idx, name2 in df['food_name'].items():  # Use items() instead of iteritems()
-        if idx not in used_matches:  # Ensure we only use food_name once
+    
+    for idx, name2 in df['food_name'].items():  
+        if idx not in used_matches:
             overlap = calculate_overlap(food_name, name2)
             if overlap > highest_overlap:
                 best_match = name2
@@ -323,17 +324,13 @@ result = pd.merge(result, df_grouped, left_on='best_match', right_on='food_name'
 print(result)
 columns_to_convert = ['calcium', 'iron', 'potassium', 'sodium', 'phosphorus']
 
+#convert to grams
 for col in columns_to_convert:
     if col in result.columns:
         result[col] = result[col] / 1000
         
 result.to_csv('data/processed-data/food_merged.csv')
 
-result['sodium'].isnull().sum()
-
-result['food_name_food_waste'].isnull().sum()
-
-result['best_match'].isnull().sum()
 
 result = pd.read_csv('data/processed-data/food_merged.csv')
 
