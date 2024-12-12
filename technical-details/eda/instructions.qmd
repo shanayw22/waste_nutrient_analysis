@@ -1,8 +1,29 @@
-# Instructions 
+# Introduction and Motivation
 
-`Note`: You should remove these instructions once you have read and understood them. They should not be included in your final submission.
+In this analysis, we aim to explore the relationship between food waste, nutritional composition, and associated economic and environmental impacts. Specifically, we are building predictive models to address two key questions: (1) What factors contribute to food being classified as unfit for human consumption? and (2) How can we estimate the surplus value of food waste in monetary terms? By answering these questions, we aim to identify patterns and characteristics that can inform strategies for waste reduction and better resource allocation.
 
-`Remember:` Exactly what do you put on this page will be specific you your project and data. Some things might "make more sense" on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.  
+The analysis seeks to combine multiple domains, including nutrition, sustainability, and machine learning, to provide actionable insights. This work is motivated by the growing need to address food waste as a critical global challenge, with implications for food security, environmental sustainability, and economic efficiency.
+
+# Overview of Methods
+
+The exploratory data analysis (EDA) leverages a comprehensive set of techniques designed to uncover patterns, relationships, and insights within the dataset, supporting the broader goals of understanding food waste dynamics, nutritional composition, and economic impacts. These methods provide a foundation for addressing the project’s overarching objectives:
+
+1.	Descriptive Analysis:
+	•	Techniques like univariate and bivariate visualizations (histograms, scatterplots, box plots) are employed to summarize key characteristics of the dataset, including waste metrics, water usage, and nutrient distributions. These insights lay the groundwork for identifying trends and outliers that may warrant further investigation.
+
+2.	Correlation and Relationship Mapping:
+	•	Correlation heatmaps and pairwise scatterplots reveal interdependencies among variables, such as the relationship between food waste quantities and nutritional properties. These insights help contextualize how different factors influence one another.
+
+3.	Clustering and Segmentation:
+	•	Clustering algorithms, like K-Means, group food categories based on their waste characteristics and nutritional profiles, providing a high-level understanding of similar food types and their shared challenges. This segmentation informs targeted interventions.
+
+4.	Dimensionality Reduction:
+	•	Methods such as Principal Component Analysis (PCA) reduce the complexity of the dataset, highlighting the most influential variables. This facilitates a clearer understanding of the main drivers behind food waste and economic losses.
+
+5.	Feature Engineering and Insights Discovery:
+	•	Through calculated metrics and encoded variables (e.g., categorical encodings of food_category), new perspectives emerge, enhancing the interpretability of the data.
+
+Each method plays a role in linking data-driven insights to the overarching goals of reducing food waste, promoting nutritional balance, and minimizing economic losses. Together, these techniques provide a holistic view of the dataset, guiding both exploratory research and subsequent predictive modeling efforts.
 
 ## Suggested page structure
 
