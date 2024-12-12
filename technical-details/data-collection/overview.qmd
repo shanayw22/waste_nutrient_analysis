@@ -9,4 +9,23 @@ In this section, provide a high-level overview for technical staff, summarizing 
 This overview should give technical staff a clear understanding of the context and importance of the work, while guiding them on what to focus on in the details that follow.
 
 
+# Introduction and Motivation
 
+Food waste is a global issue with profound economic, environmental, and social implications. According to the Food and Agriculture Organization (FAO), roughly one-third of all food produced globally—about 1.3 billion tons—is wasted annually, leading to significant losses in natural resources, energy, and human labor (FAO, 2013). In the United States, the Environmental Protection Agency (EPA) estimates that food waste constitutes 24% of municipal solid waste, making it the single largest category in landfills (EPA, 2021).
+
+This analysis examines a comprehensive dataset capturing the surplus and waste of various food categories, along with their nutritional compositions. The goal is to uncover insights into:
+
+	1.	The patterns and drivers of food surplus and waste.
+
+	2.	The relationship between nutrient density and food waste across categories.
+
+	3.	How resources like water and energy are impacted by food wastage.
+
+By quantifying these metrics and exploring trends, this analysis aims to inform policies and interventions to mitigate food waste while addressing nutritional and environmental challenges.
+
+
+## References:
+
+•	Food and Agriculture Organization (FAO). (2013). Food Wastage Footprint: Impacts on Natural Resources. Retrieved from FAO.org.
+
+•	Environmental Protection Agency (EPA). (2021). Food Recovery Hierarchy. Retrieved from EPA.gov.

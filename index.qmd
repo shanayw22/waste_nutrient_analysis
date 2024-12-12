@@ -1,83 +1,123 @@
 ---
-title: "Landing page"
+title: "Nutrient Waste: Analyzing the Journey of Food Waste Through Economic, Environmental, and Nutritional Lenses"
 ---
 
-**Audio instructions:**
-
-If you want, you can listen to the instructions:
-
-<audio controls><source src="audio/landing-page-instructions.mp3" type="audio/mpeg"></audio>
-
-<sup> **Source**: Text-to-speech conversion done with Amazon Polly on AWS </sup>
-
-`Note`: These audio instructions should not be included in your final submission or repository, once you are done wiht them, please delete the files and remove them from the website. 
-
-## Getting Started
-
-To begin the project, first read the instruction document ([click here](instructions/overview.qmd)). This document is also accessible from the navigation bar.
-
-Once you’ve completed that, you can proceed with the instructions found throughout the website.
-
-## What to Include on This Page
-
-This is the landing page for your project. Content from this page can be reused in sections of your final report.
-
-### Create an "About You" Page  
-
-- Develop your "About You" page. You can reuse content from previous assignments.
-- You can include the content here or on a separate page.
-   - It’s recommended to create one "About You" page for all DSAN projects, with links to your various class projects.
-
-### Create a Landing Page for Your Project  
-
-- Summarize your topic, its significance, related work, and the questions you plan to explore.
-- Draft an introduction with at least **5 research questions**. These may evolve as your project progresses, since data science is an iterative process.
-- Include your data science questions on this page.
-
-### Literature review
-
-Once you decide on a topic, you should `ALWAYS START WITH A LITERATURE REVIEW`, this is particularly important for academic projects.
-
-The literature review is the most important part of most projects. 
-
-It allows you to; 
-
-* 1. Determine what is already known and what has already been tried, so that you `don't re-invent the wheel`.
-* 2. It makes you more of a subject matter expert, allowing you to `ask the right questions`, `target impactful projects`, and `communicate with other professionals`.
-
-> Doing a project that you think will change the world, only to find at the end that a very similar version of your project was already done in the 1980's, isn't a great use of time.
-
-In this section, please do a literature review and cite at least **3 academic publications** per group member, and include **internal academic citations**.
-
-**Optional**: Consider using LLM tools to 10X your literature review, e.g. instead of focusing on 3 papers, aim for 30 or more
-
-By following these steps, you can 10X the efficiency of your literature review process, gaining more insights while minimizing the time spent on manual reading.
-
-1. **Expand Your Literature Search**  
-   Aim to gather a larger pool of papers. Use academic databases (Google Scholar, arXiv, etc.) to find relevant studies and ensure a broad scope.
-
-2. **Skim the Abstracts**  
-   Read the abstracts of each paper to quickly understand their focus and identify those most relevant to your topic. Prioritize these papers for deeper analysis.
-
-3. **Use LLM Tools for Summarization**  
-   Upload the selected papers to an LLM tool capable of text summarization. Have it condense the main points of each paper into a concise, manageable summary (e.g., condense hundreds of pages into a 10-page summary). Carefully review this summary to absorb the key insights.
-
-4. **Leverage Interactive LLM Tools**  
-   Use tools like NotebookLM or other AI-based text digesters to ask specific, targeted questions about the papers:
-   - Example questions:
-     - "In the papers uploaded, did any of them explore XYZ?"
-     - "Which paper is most closely related to the following project idea: [explain idea]?"
-   These tools will help you quickly extract relevant information without re-reading entire papers.
+## Introduction
 
 
-## Additional Ideas for things to include 
+Food waste represents a critical issue at the intersection of sustainability, public health, and economics. Globally, one-third of all food produced is wasted, leading to significant environmental strain, economic loss, and missed opportunities to alleviate hunger. Addressing this challenge requires an interdisciplinary approach, leveraging data science to analyze and inform actionable solutions. My project, Nutrient Waste: Analyzing the Journey of Food Waste Through Economic, Environmental, and Nutritional Lenses, aims to bridge these dimensions and provide a comprehensive framework for understanding and mitigating food waste.
 
-- **Audience**: Who is this for? Data professionals, businesses, researchers, or curious readers.
-- **Headline**: A captivating title introducing the data science theme (e.g., "Unlocking Insights Through Data Stories").
-- **Introduction**: A brief, engaging overview of what the website offers (e.g., data-driven stories, insights, or case studies).
-- **Questions You Are Addressing**: What do you hope to learn?
-- **Motivation**: Explain why this topic matters, highlighting the importance of data in solving real-world problems.
-- **Key Topics**: List the main focus areas (e.g., machine learning, data visualization, predictive modeling).
-- **Use Cases/Examples**: A brief teaser of compelling stories or case studies you’ve worked on.
-- **Call to Action**: Invite visitors to explore the content, follow along, or contact you for more information.
-- **Visual/Infographic**: Add a simple graphic or visual element to make the page more dynamic.
+Through this project, I aim to classify food donations based on nutrient composition, predict dollar surplus associated with surplus food, and explore primary disposal methods using advanced statistical and machine learning techniques. These efforts will contribute to smarter policies and practices for a more sustainable future.
+
+<div class="embed-container" style="text-align: center; width: 100%; margin: 0 auto;">
+  <iframe src="assets/voronoi.html" width="100%" height="600" style="border: none;"></iframe>
+</div>
+
+## Research Questions
+
+This project attempts to answer the following research questions:
+
+1.	How can we classify food donations based on the nutrient profiles of surplus food items?
+
+	•	This question focuses on building machine learning models to categorize surplus food by its nutritional content, enabling more effective redistribution strategies.
+
+
+2.	What is the economic surplus value (in dollars) associated with specific food categories, and how can we predict it?
+
+	•	A regression model will estimate the dollar surplus of food waste, offering insights into economic losses and potential cost-saving strategies.
+	
+   
+3.	What are the primary disposal methods for various types of food waste, and what factors determine these methods?
+
+	•	Classification models will help identify and predict disposal methods based on categorical and continuous features of food waste.
+	
+   
+4.	What patterns emerge when analyzing food waste through clustering and dimensionality reduction techniques like PCA and t-SNE?
+
+	•	These methods will uncover latent structures in the dataset, informing further exploratory and predictive modeling efforts.
+
+
+5.	How do waste patterns vary across food categories, and which attributes most significantly impact food’s fitness for human consumption?
+
+	•	By exploring multivariate relationships, this question examines the drivers of waste classification and surplus prediction.
+
+
+<div class="embed-container" style="text-align: center; width: 100%; margin: 0 auto;">
+  <iframe src="assets/dollarsurplus.html" width="100%" height="400" style="border: none;"></iframe>
+</div>
+
+## Methods
+
+In this project, I am using advanced data science techniques to analyze food waste from multiple perspectives:
+
+1.	Classification Models: I am applying supervised learning techniques to classify food donations based on their nutrient profiles.
+
+2.	Regression Analysis: I am building regression models to predict the dollar surplus of food waste, considering physical waste characteristics, water footprints, and nutritional attributes.
+
+3.	Disposal Method Prediction: I am using classification models to identify the primary disposal method for food waste, allowing me to develop targeted interventions to reduce landfill contributions.
+
+4.	Dimensionality Reduction and Clustering: I am utilizing techniques like PCA and clustering to uncover latent patterns in food waste data and segment food categories by waste characteristics.
+
+5.	Data Integration and Cleaning: I am combining diverse datasets, addressing missing values, and ensuring a solid foundation for analysis.
+
+## Call to Action
+
+I’m working on tackling one of the most pressing global challenges: food waste. Through a combination of innovative data science methodologies and a focus on sustainability, this project aims to provide actionable insights and support informed decision-making.
+
+If you’re passionate about sustainability, data science, or food systems, I would love to collaborate. Whether you’re a researcher, policymaker, or organization aiming to reduce food waste, let’s work together to create impactful solutions. Feel free to reach out and connect with me on here sw1449@georgetown.edu!
+
+
+## About Me
+
+![Shanay Wadhwani](assets/95E34F90-5425-445B-B564-3B8B876875CD.jpeg){width=220 height=320}
+
+Hi, I’m Shanay Wadhwani, a data scientist and graduate student at Georgetown University, currently pursuing a Master of Science in Data Science and Analytics. My academic and professional journey is guided by a strong commitment to using data for meaningful societal change, particularly in sustainability and public health. This passion drives my current project, “**Nutrient Waste: Analyzing the Journey of Food Waste Through Economic, Environmental, and Nutritional Lenses**.”
+
+This project focuses on exploring the multifaceted impact of food waste, delving into its economic costs, nutritional losses, and environmental consequences. By leveraging advanced data science techniques like **Principal Component Analysis (PCA), clustering algorithms, and predictive modeling**, I aim to classify food categories based on waste patterns and identify actionable insights to mitigate waste. My goal is to develop a comprehensive statistical interface that informs stakeholders about the ripple effects of food waste and highlights pathways for sustainability. Through this work, I hope to promote smarter policies and practices in food systems, from farm to table.
+
+At Georgetown, I’ve cultivated a strong foundation in Natural Language Processing (NLP), probabilistic modeling, and computational linguistics, complemented by my leadership roles as a Graduate Student Senator and Student Ambassador. My role as a Teaching Assistant for the Data Mining course has deepened my ability to collaborate and mentor others, qualities I bring to every project I undertake.
+
+Professionally, I’ve applied my expertise to diverse domains, including ETL development, AI-driven solutions, and financial modeling. At Argus Media, I spearheaded the development of ETL pipelines using the Golem framework, streamlining the processing of over a million pricing entries monthly while managing a team of 11 engineers. This experience honed my skills in project management and workflow optimization.
+
+My technical toolkit includes **Python, R, SQL, TensorFlow, Keras, ETL, and AWS**, enabling me to solve complex problems in machine learning, deep learning, and statistical modeling. Whether it’s enhancing financial forecasting models at ClearPrism or exploring sustainability in my current research, I strive to combine technical precision with real-world impact.
+
+The “Nutrient Waste” project reflects my broader mission to leverage data science for sustainable change. By analyzing the intersections of food waste, nutrition, and environmental resources, I aim to contribute to a more sustainable and equitable future. If you’re interested in this work or exploring potential collaborations, I’d love to connect. You can reach me at sw1449@georgetown.edu or explore my projects on [my GitHub Profile](https://github.com/shanayw22). Let’s create solutions that matter!
+
+
+## Literature Review: Leveraging Data Science for Food Waste Analysis
+
+The problem of food waste is a pressing global challenge, with significant environmental, economic, and social implications. Research in this domain increasingly focuses on utilizing data science techniques to uncover patterns, predict outcomes, and inform decision-making processes. This literature review synthesizes key studies relevant to our objectives: classifying food donations based on nutrient content, building a regression model for dollar surplus, and predicting primary disposal methods.
+
+<div class="embed-container" style="text-align: center; width: 100%; margin: 0 auto;">
+  <iframe src="assets/wastemethod.html" width="100%" height="400" style="border: none;"></iframe>
+</div>
+
+
+**Food Waste and Nutrient Analysis**
+
+Food waste analysis often incorporates nutritional dimensions to understand its broader implications. Researchers like Beretta et al. (2013) highlight the nutritional losses associated with food waste, emphasizing the need to connect food surplus with nutrient availability for donation purposes. Studies leveraging machine learning, such as those by Fiore et al. (2020), demonstrate the utility of classification algorithms in categorizing waste by food type and nutrient content. These approaches can guide interventions to redistribute surplus food to populations in need while minimizing waste.
+
+**Economic Valuation of Food Surplus**
+
+Economic studies, such as those by Gunders et al. (2017), have assessed the dollar value of food surplus and waste, shedding light on the financial implications of inefficiencies in the food system. Regression models are frequently applied to estimate surplus value, considering variables like production costs, market value, and transportation. These models provide actionable insights for optimizing redistribution strategies and reducing financial losses.
+
+**Disposal Method Classification**
+
+Identifying the primary disposal method for food waste is critical for environmental sustainability. Studies like those by Papargyropoulou et al. (2014) have categorized disposal methods—such as landfill, composting, and anaerobic digestion—based on factors like waste type, volume, and location. Machine learning classification models, as demonstrated by Song et al. (2018), are particularly effective in predicting disposal methods, combining categorical features with waste composition data.
+
+**Data Science Applications in Food Systems**
+
+Recent advancements in data science tools and techniques have significantly impacted food waste research. Unsupervised learning methods, including Principal Component Analysis (PCA) and clustering algorithms, have been employed to uncover patterns in food waste characteristics (e.g., nutrient composition and disposal methods). Supervised learning, including regression and classification, has been applied to forecast outcomes like economic surplus and redistribution potential.
+
+**Gaps and Opportunities**
+
+While substantial progress has been made, there are gaps in integrating nutritional, economic, and environmental dimensions into a unified analytical framework. Few studies explicitly combine nutrient profiling with economic surplus modeling or disposal classification. Bridging these dimensions could yield a comprehensive approach to managing food waste more effectively. Additionally, the inclusion of socio-economic factors, such as accessibility and donation feasibility, remains underexplored.
+
+**Relevance to Current Research**
+
+This body of work informs our project’s design in the following ways:
+	1.	Classification of Food Donations: Drawing on techniques from Fiore et al. (2020), we aim to build nutrient-based classification models to optimize food redistribution.
+	2.	Regression Modeling for Dollar Surplus: Guided by Gunders et al. (2017), we will leverage regression analysis to quantify the economic value of surplus food.
+	3.	Disposal Method Prediction: Inspired by Song et al. (2018), we intend to develop a predictive model for disposal methods, incorporating both categorical and continuous data.
+
+My project seeks to advance the integration of these dimensions, addressing gaps identified in the literature and contributing to a holistic understanding of food waste management.
