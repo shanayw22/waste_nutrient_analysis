@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
-<div id="cell-3" class="cell" data-execution_count="123">
+<div id="cell-3" class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -467,20 +467,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> plot_nutrient_boxplot_by_disposal(<span class="va">self</span>, disposal_col, nutrient_col, bins<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create bins for the disposal column</span></span>
 <span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>        sns.boxplot(data<span class="op">=</span><span class="va">self</span>.data, x<span class="op">=</span>disposal_col, y<span class="op">=</span>nutrient_col)</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'</span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss"> by </span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(disposal_col)</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(nutrient_col)</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>        sns.boxplot(data<span class="op">=</span><span class="va">self</span>.data, x<span class="op">=</span>nutrient_col, y<span class="op">=</span>disposal_col)</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'</span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss"> by </span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(nutrient_col)</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(disposal_col)</span>
 <span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>        plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>        <span class="co">#return plt</span></span>
 <span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> plot_scatter_with_regression(<span class="va">self</span>, disposal_col, nutrient_col):</span>
 <span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>        sns.regplot(data<span class="op">=</span><span class="va">self</span>.data, x<span class="op">=</span>disposal_col, y<span class="op">=</span>nutrient_col, scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.7</span>}, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'red'</span>})</span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'</span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss"> with Regression Line'</span>)</span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(disposal_col)</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(nutrient_col)</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>        sns.regplot(data<span class="op">=</span><span class="va">self</span>.data, x<span class="op">=</span>nutrient_col, y<span class="op">=</span>disposal_col, scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.7</span>}, line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'red'</span>})</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'</span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss"> with Regression Line'</span>)</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(nutrient_col)</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(disposal_col)</span>
 <span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>        <span class="co">#return plt</span></span>
 <span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
@@ -493,11 +493,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> plot_hexbin(<span class="va">self</span>, disposal_col, nutrient_col, gridsize<span class="op">=</span><span class="dv">30</span>):</span>
 <span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>        plt.hexbin(<span class="va">self</span>.data[disposal_col], <span class="va">self</span>.data[nutrient_col], gridsize<span class="op">=</span>gridsize, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, mincnt<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>        plt.hexbin(<span class="va">self</span>.data[nutrient_col], <span class="va">self</span>.data[disposal_col], gridsize<span class="op">=</span>gridsize, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, mincnt<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>        plt.colorbar(label<span class="op">=</span><span class="st">'Count'</span>)</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Hexbin Plot of </span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(disposal_col)</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(nutrient_col)</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Hexbin Plot of </span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(nutrient_col)</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(disposal_col)</span>
 <span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>        <span class="co">#return plt</span></span>
 <span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
@@ -505,11 +505,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> plot_kde_2d(<span class="va">self</span>, disposal_col, nutrient_col):</span>
 <span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>        sns.kdeplot(</span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span><span class="va">self</span>.data, x<span class="op">=</span>disposal_col, y<span class="op">=</span>nutrient_col, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span><span class="va">self</span>.data, x<span class="op">=</span>nutrient_col, y<span class="op">=</span>disposal_col, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span></span>
 <span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'2D KDE of </span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(disposal_col)</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(nutrient_col)</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'2D KDE of </span><span class="sc">{</span>disposal_col<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>nutrient_col<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(nutrient_col)</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(disposal_col)</span>
 <span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>        <span class="co">#return plt</span></span>
 <span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
@@ -713,7 +713,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>eda.analyze_missing_values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/sj/4yswlk7n08x8jfcfnyw2vkqw0000gn/T/ipykernel_3697/1801992205.py:429: FutureWarning:
+<pre><code>/var/folders/sj/4yswlk7n08x8jfcfnyw2vkqw0000gn/T/ipykernel_3697/3176648054.py:429: FutureWarning:
 
 The behavior of DataFrame.idxmax with all-NA values, or any-NA and skipna=False, is deprecated. In a future version this will raise ValueError
 </code></pre>
@@ -741,7 +741,7 @@ carbs                       28            0.395257
 fat                         28            0.395257</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="94">
+<div id="cell-4" class="cell" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#2 trues at the end of this class method add a trend line and get rid of outliers</span></span>
@@ -766,7 +766,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>In the context of our study, the plot above, along with Pearson’s correlation coefficient of 0.34, reveals a moderate positive correlation between the serving size of a food item and the tons left uneaten. This suggests that larger serving sizes are associated with greater amounts of food waste. Furthermore, the p-value associated with this correlation is extremely small, indicating a statistically significant relationship. As a result, we can confidently reject the null hypothesis that there is no correlation between serving size and food waste, supporting the idea that serving size is an important factor contributing to food waste patterns in our dataset.</p>
-<div id="cell-6" class="cell" data-execution_count="95">
+<div id="cell-6" class="cell" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eda.plot_distribution(col<span class="op">=</span><span class="st">'calories'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -777,7 +777,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The histogram of calories above demonstrates a bimodal distribution, with one peak in the range of 0-24 calories and another around 250 calories. The concentration of data in these two distinct ranges suggests that food items with low and moderate calorie content dominate the dataset. Additionally, the presence of outliers, particularly at higher calorie values, could be indicative of high-calorie, meal-prep food options. These items, likely designed for larger servings or specialized dietary needs, may contribute disproportionately to food waste, reflecting consumer preference patterns or over-purchasing behavior. This insight warrants further investigation into the relationship between food type, portion size, and waste generation.</p>
-<div id="cell-8" class="cell" data-execution_count="96">
+<div id="cell-8" class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eda.plot_boxplot(col<span class="op">=</span><span class="st">'serving_size'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -788,7 +788,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The boxplot of serving size reveals a median value of approximately 80 grams, indicating that the central tendency of serving sizes is relatively small. However, the plot also shows outliers beyond the 75th percentile, with some data points reaching up to 500 grams. These larger values likely correspond to meal kits or pre-packaged meals, which typically have larger portion sizes. The presence of these outliers suggests that a subset of food items, particularly those designed for meal preparation or larger servings, may contribute to higher levels of waste. This highlights the importance of considering portion size in waste reduction strategies, especially for meal kits and large-serving products.</p>
-<div id="cell-10" class="cell" data-execution_count="97">
+<div id="cell-10" class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eda.plot_pairplot(cols<span class="op">=</span>[<span class="st">'protein'</span>, <span class="st">'fat'</span>, <span class="st">'carbs'</span>, <span class="st">'calories'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -799,7 +799,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The pair plot of macronutrients provides valuable insights into the relationships between various nutritional components. It reveals a clear positive correlation between calories and fats, suggesting that higher fat content in foods is generally associated with higher caloric values. Similarly, fats and carbohydrates are positively related, indicating that foods rich in fats tend to also contain higher amounts of carbohydrates. Additionally, the plot shows that foods with lower carbohydrate content often have higher protein levels, which may suggest a trend toward protein-dense, low-carb options. Lastly, there is a strong positive relationship between proteins and calories, further reinforcing that higher protein foods tend to be more calorie-dense. These patterns could guide nutrition-based interventions for reducing food waste, particularly for food categories with high fat, carbohydrate, and calorie content.</p>
-<div id="cell-12" class="cell" data-execution_count="98">
+<div id="cell-12" class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>eda.plot_countplot(col<span class="op">=</span><span class="st">'disposal_method'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -810,7 +810,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The countplot of the primary disposal method clearly illustrates that the majority of food waste is disposed of in landfills, followed by composting, unharvested food, waste sent to the sewer, and recycling for animal feed, land application, and industrial uses. This distribution highlights the significant opportunity for a nutrition-based intervention to reduce food waste, particularly by targeting the food categories most commonly sent to landfills or underutilized for composting and animal feed. By optimizing food production and consumption practices through such interventions, the environmental impact of food waste can be mitigated, potentially shifting the focus toward more sustainable disposal methods</p>
-<div id="cell-14" class="cell" data-execution_count="108">
+<div id="cell-14" class="cell" data-execution_count="132">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>production_cols <span class="op">=</span> [<span class="st">'us_dollars_surplus'</span>, <span class="st">'gallons_water_footprint'</span>, <span class="st">'tons_rescue'</span>, <span class="st">'tons_recycling'</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>nutrient_cols <span class="op">=</span> [<span class="st">'protein'</span>, <span class="st">'calories'</span>, <span class="st">'fat'</span>, <span class="st">'carbs'</span>]</span>
@@ -823,7 +823,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="109">
+<div id="cell-15" class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eda.plot_disposal_nutrient_correlation(production_cols, nutrient_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -835,7 +835,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 <p>The correlational heatmap above highlights the relationships between us_dollars_surplus, protein, and gallons_water_footprint. It reveals that high-protein and high-fat foods are associated with resource-intensive upstream processes, which not only have a negative environmental impact but also contribute significantly to economic losses when these foods are wasted. This underscores the need to address both the environmental and financial consequences of food waste, particularly for resource-heavy food categories.</p>
 <p>Furthermore, the heatmap indicates a strong positive correlation between food waste recycling and potential food donation, as evidenced by the high correlation coefficient. This suggests that food waste that is recycled is often the same food that could have been donated, highlighting the opportunity to redirect edible waste to charitable causes, reducing waste while benefiting communities.</p>
-<div id="cell-17" class="cell">
+<div id="cell-17" class="cell" data-execution_count="134">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eda.plot_nutrient_boxplot_by_disposal(disposal_col<span class="op">=</span><span class="st">'disposal_method'</span>, nutrient_col<span class="op">=</span><span class="st">'calories'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -846,7 +846,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above boxplots reveal that, on average, higher-calorie foods are more likely to end up as landfill waste, be disposed of in the sewer, or be recycled as animal feed. In contrast, foods with lower calorific values tend to be composted or not harvested. This trend suggests that higher-calorie foods, which are often resource-intensive, may be more difficult to manage or repurpose, leading to their higher likelihood of disposal in environmentally damaging ways. Conversely, lower-calorie foods, which may have lower environmental impacts, are more commonly handled through sustainable methods such as composting or are left unharvested.</p>
-<div id="cell-19" class="cell">
+<div id="cell-19" class="cell" data-execution_count="135">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>eda.plot_scatter_with_regression(disposal_col<span class="op">=</span><span class="st">'gallons_water_footprint'</span>, nutrient_col<span class="op">=</span><span class="st">'protein'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -857,7 +857,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above scatter plot, with an accompanying trendline, clearly demonstrates the positive relationship between protein-rich foods and the gallons of water associated with their upstream manufacturing process. For instance, protein-rich foods such as meats, eggs, dairy products, and especially beef, require significant amounts of water in their production. This underscores the negative environmental impact of these food items, highlighting their substantial water footprint and the broader sustainability concerns associated with their consumption.</p>
-<div id="cell-21" class="cell" data-execution_count="105">
+<div id="cell-21" class="cell" data-execution_count="136">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>eda.plot_scatter_with_regression(disposal_col<span class="op">=</span><span class="st">'us_dollars_surplus'</span>, nutrient_col<span class="op">=</span><span class="st">'protein'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -868,7 +868,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above scatter plot, with an accompanying trendline, illustrates a clear positive relationship between protein-rich foods and the U.S. dollars surplus value associated with wasted food. As the protein content in the food increases, the economic loss associated with its waste also rises. This trend emphasizes the financial impact of wasting high-protein foods, such as meats, dairy, and eggs, which not only contribute to higher environmental costs but also result in significant monetary losses when wasted.</p>
-<div id="cell-23" class="cell">
+<div id="cell-23" class="cell" data-execution_count="137">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>eda.plot_scatter_with_regression(disposal_col<span class="op">=</span><span class="st">'tons_recycling'</span>, nutrient_col<span class="op">=</span><span class="st">'fiber'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -879,7 +879,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above scatter plot reveals a weak positive correlation between the fiber content of food (in grams) and the tons of food recycled. This suggests that fiber-rich foods, often organic and sourced from natural origins, tend to be recycled more frequently. Foods with higher fiber content contribute to greater amounts of recycled waste, possibly due to their biodegradability and the increased likelihood of their being composted or repurposed in recycling processes.</p>
-<div id="cell-25" class="cell">
+<div id="cell-25" class="cell" data-execution_count="138">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>eda.plot_hexbin(disposal_col<span class="op">=</span><span class="st">'tons_donations'</span>, nutrient_col<span class="op">=</span><span class="st">'calories'</span>, gridsize<span class="op">=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -890,7 +890,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above hexbin plot indicates that a significant amount of donated food (food used for rescue) comes from food sources with calorie ranges of 50-120 and 250-400. This pattern likely points to specific food types that are more frequently donated, possibly due to their lower calorie content or because they represent food categories commonly involved in food rescue efforts. These calorie ranges could reflect foods that are either smaller portion sizes or pre-packaged items often rescued before reaching expiration.</p>
-<div id="cell-27" class="cell" data-execution_count="110">
+<div id="cell-27" class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>eda.plot_kde_2d(disposal_col<span class="op">=</span><span class="st">'tons_recycling'</span>, nutrient_col<span class="op">=</span><span class="st">'calories'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -901,7 +901,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above kernel density estimation plot shows that food with a calorific value between 80-160 calories is most frequently recycled. This suggests that foods with lower caloric content have a higher likelihood of being repurposed, indicating that when these foods are wasted, they are more likely to be directed towards recycling or alternative uses. The plot highlights the potential for effectively redirecting lower-calorie food waste towards more sustainable practices.</p>
-<div id="cell-29" class="cell" data-execution_count="111">
+<div id="cell-29" class="cell" data-execution_count="140">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>eda.plot_kde_2d(disposal_col<span class="op">=</span><span class="st">'tons_donations'</span>, nutrient_col<span class="op">=</span><span class="st">'calories'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -912,7 +912,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 <p>The above Kernel Density Estimation (KDE) plot of calories versus tons donated indicates that foods with lower calorific values are donated the most. This suggests that low-calorie foods, which are often healthier or less resource-intensive to produce, are more likely to be rescued and redistributed. This trend may reflect both consumer preferences and organizational efforts to donate foods that are easier to store and distribute. Additionally, lower-calorie foods might be less perishable or more in demand for donation programs, leading to their higher donation rates compared to higher-calorie foods.</p>
-<div id="cell-31" class="cell" data-execution_count="118">
+<div id="cell-31" class="cell" data-execution_count="141">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>eda.plot_kde_2d(disposal_col<span class="op">=</span><span class="st">'us_dollars_surplus'</span>, nutrient_col<span class="op">=</span><span class="st">'serving_size'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -922,7 +922,7 @@ P-value: 2.368552259759485e-06</code></pre>
 </div>
 </div>
 </div>
-<p>The above Kernel Density Estimation (KDE) plot illustrates that foods with serving sizes between 40-60 grams and 150-200 grams are associated with surplus values in the range of 1-2 billion dollars. This suggests that both small and large serving sizes contribute significantly to food waste, with a considerable financial impact. The presence of these foods in the surplus category could indicate inefficiencies in portioning, consumption patterns, or supply chain management. Understanding the types of foods in these weight ranges can help target interventions aimed at reducing waste and mitigating associated economic losses.</p>
+<p>The above Kernel Density Estimation (KDE) plot illustrates that foods with serving sizes between 40-60 grams and 150-200 grams are associated with surplus values in the range of 1-2.6 billion dollars. This suggests that both small and large serving sizes contribute significantly to food waste, with a considerable financial impact. The presence of these foods in the surplus category could indicate inefficiencies in portioning, consumption patterns, or supply chain management. Understanding the types of foods in these weight ranges can help target interventions aimed at reducing waste and mitigating associated economic losses.</p>
 <section id="eda-summary" class="level2">
 <h2 class="anchored" data-anchor-id="eda-summary">EDA Summary</h2>
 <ol type="1">
