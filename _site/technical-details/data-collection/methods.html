@@ -151,7 +151,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">1. Exploratory Data Analysis (EDA):</a></li>
+  <li><a href="#standardization-of-nutrient-columns" id="toc-standardization-of-nutrient-columns" class="nav-link" data-scroll-target="#standardization-of-nutrient-columns">2. Standardization of Nutrient Columns:</a></li>
+  <li><a href="#statistical-summaries-and-relationships" id="toc-statistical-summaries-and-relationships" class="nav-link" data-scroll-target="#statistical-summaries-and-relationships">3. Statistical Summaries and Relationships:</a></li>
+  <li><a href="#clustering-nutritional-profiles" id="toc-clustering-nutritional-profiles" class="nav-link" data-scroll-target="#clustering-nutritional-profiles">4. Clustering Nutritional Profiles:</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -163,10 +170,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>In this section, provide an overview summary of the methods used on this page. This should include a brief description of the key techniques, algorithms, tools, or processes employed in your work. Make sure to outline the approach taken for data collection, processing, analysis, or any specific technical steps relevant to the project.</p>
-<p>If you are developing a package, include a reference to the relevant documentation and provide a link here for easy access. Ensure that the package details are properly documented in its dedicated section, but mentioned and connected here for a complete understanding of the methods used in this project.</p>
+<p>This analysis employs a combination of exploratory data analysis (EDA), normalization, and statistical modeling techniques to draw insights from the data.</p>
+<section id="exploratory-data-analysis-eda" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-eda">1. Exploratory Data Analysis (EDA):</h2>
+<p>• Data cleaning includes handling missing values, standardizing nutrient columns to consistent units (e.g., grams or milligrams per serving), and addressing outliers.</p>
+<p>• Visualization of key metrics like food surplus, waste, and nutrient content over time is used to identify patterns.</p>
+</section>
+<section id="standardization-of-nutrient-columns" class="level2">
+<h2 class="anchored" data-anchor-id="standardization-of-nutrient-columns">2. Standardization of Nutrient Columns:</h2>
+<p>Nutritional data for protein, fat, carbs, fiber, vitamins, and minerals were often expressed in inconsistent units across the dataset (e.g., grams for macronutrients and milligrams for micronutrients). Standardizing these units enables meaningful comparisons across categories. For example:</p>
+<p>• Macronutrients (protein, fat, carbs) are standardized to grams per serving.</p>
+<p>• Micronutrients (iron, calcium, potassium) are converted to milligrams per serving.</p>
+</section>
+<section id="statistical-summaries-and-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-summaries-and-relationships">3. Statistical Summaries and Relationships:</h2>
+<p>• Correlation analysis is used to identify links between food waste and nutrient density.</p>
+<p>• Regression models explore relationships between waste generation and external factors like supply and surplus.</p>
+</section>
+<section id="clustering-nutritional-profiles" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-nutritional-profiles">4. Clustering Nutritional Profiles:</h2>
+<p>• Techniques like K-Means are applied to group food categories based on nutritional similarity, highlighting waste trends in nutrient-dense versus nutrient-poor foods.</p>
+<p>These methods provide a robust framework for understanding food waste and its nutritional implications while offering actionable insights.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References:</h2>
+<p>• Everitt, B., Landau, S., Leese, M., &amp; Stahl, D. (2011). Cluster Analysis. John Wiley &amp; Sons.</p>
+<p>• Montgomery, D. C., Peck, E. A., &amp; Vining, G. G. (2012). Introduction to Linear Regression Analysis. Wiley.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

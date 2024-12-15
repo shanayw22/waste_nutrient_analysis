@@ -151,12 +151,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a>
-  <ul class="collapse">
-  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link active" data-scroll-target="#challenges">Challenges</a></li>
   <li><a href="#benchmarks" id="toc-benchmarks" class="nav-link" data-scroll-target="#benchmarks">Benchmarks</a></li>
   <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -166,33 +163,24 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>This section should be written for a <strong>technical audience</strong>, focusing on detailed analysis, factual reporting, and clear presentation of data. The following serves as a guide, but feel free to adjust as needed.</p>
 <section id="challenges" class="level2">
 <h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
-<ul>
-<li>Discuss any technical challenges faced during the project, such as data limitations, computational issues, or obstacles encountered during analysis.</li>
-<li>Explain unexpected results and their technical implications.</li>
-<li>Identify areas for future work, including potential optimizations, further analysis, or scaling solutions.</li>
-</ul>
+<p>During the course of this project, several technical challenges were encountered that impacted the analysis and interpretation of food waste data. One of the primary obstacles was the complexity and volume of the dataset, which included a wide range of food-related attributes, such as nutritional information, environmental impact, and waste characteristics. Handling missing data, inconsistent formatting, and discrepancies in unit measurements posed significant challenges during the preprocessing phase. Despite employing various data-cleaning techniques, some portions of the dataset still contained gaps or outliers that required careful treatment to avoid skewing the results.</p>
+<p>Computational limitations also became apparent when applying more complex machine learning algorithms, such as deep learning models or large-scale clustering techniques. These models required significant memory and processing power, particularly during the dimensionality reduction and clustering steps. Additionally, some algorithms, such as DBSCAN and hierarchical clustering, were sensitive to parameter tuning and often led to unexpected results, such as a high number of noise points or unclear cluster boundaries. This underlined the importance of selecting appropriate algorithms and fine-tuning their parameters for optimal results.</p>
+<p>Unexpected results, particularly in clustering and classification tasks, were observed when trying to identify distinct patterns in the food waste data. For instance, while PCA and t-SNE provided valuable insights into the structure of the data, they sometimes revealed overlapping clusters, making it difficult to draw definitive conclusions. These findings highlighted the inherent complexity of food waste patterns and suggested that more sophisticated feature engineering or additional data sources might be needed to improve model accuracy.</p>
+<p>Future work should focus on refining the feature engineering process to account for the broader contextual factors surrounding food waste, such as geographical location, socioeconomic status, and consumer behavior. Additionally, improving data quality through better standardization and exploring alternative machine learning models, such as ensemble techniques or advanced deep learning models, could enhance performance. Scaling the solution to handle larger datasets with more granular information would also be an important next step.</p>
 </section>
 <section id="benchmarks" class="level2">
 <h2 class="anchored" data-anchor-id="benchmarks">Benchmarks</h2>
-<ul>
-<li>Compare your findings to relevant research, industry benchmarks, or intuitive expectations, if applicable.</li>
-</ul>
+<p>The results of this project were compared to relevant industry benchmarks and existing research on food waste management and prediction. In general, the findings aligned with expectations from similar research, which suggests that food waste follows complex patterns influenced by various factors, such as nutritional content, environmental footprint, and supply chain dynamics.</p>
+<p>In terms of supervised learning, the accuracy of prediction models (such as regression and classification models) was assessed against known benchmarks in the field of food waste forecasting. While the results were promising, the performance of the models could be improved through additional data and feature refinement, which is consistent with challenges highlighted in existing literature.</p>
 </section>
 <section id="conclusion-and-future-steps" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion-and-future-steps">Conclusion and Future Steps</h2>
-<ul>
-<li>Summarize the key technical points and outcomes of the project.</li>
-<li>Suggest potential improvements or refinements to this part of the project.</li>
-<li>Based on the results, provide actionable recommendations for further research or optimization efforts.</li>
-</ul>
+<p>In conclusion, this project has provided valuable insights into the complex issue of food waste by employing a combination of unsupervised and supervised learning techniques. The results highlight both the potential and the limitations of using data science to address food waste. Key outcomes include the identification of clusters in the food waste data, the development of models for predicting economic impact, and the exploration of nutrient loss patterns. Despite these successes, several challenges remain, particularly in improving the precision of clustering results and refining the predictive models for greater accuracy.</p>
+<p>Future work should focus on optimizing the models and exploring additional sources of data, such as socio-economic factors, geographic information, and consumer behavior, to enhance prediction accuracy. Further investigation into advanced machine learning techniques, such as ensemble models or neural networks, may also help improve model robustness. Additionally, expanding the dataset to include more diverse food categories and waste disposal methods would help create a more comprehensive understanding of the issue. Based on the results, it is clear that data-driven solutions hold great potential for informing policies and practices aimed at reducing food waste and its associated economic, environmental, and nutritional costs.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

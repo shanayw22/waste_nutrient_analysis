@@ -185,23 +185,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
-  <li><a href="#start-collecting-data" id="toc-start-collecting-data" class="nav-link" data-scroll-target="#start-collecting-data">Start collecting data:</a></li>
-  <li><a href="#saving-the-raw-data" id="toc-saving-the-raw-data" class="nav-link" data-scroll-target="#saving-the-raw-data">Saving the raw data</a></li>
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements:</a></li>
-  </ul></li>
-  <li><a href="#what-do-include-on-this-page" id="toc-what-do-include-on-this-page" class="nav-link" data-scroll-target="#what-do-include-on-this-page">What do include on this page</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
-  <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
-  <ul class="collapse">
+  <li><a href="#introduction-and-motivation" id="toc-introduction-and-motivation" class="nav-link" data-scroll-target="#introduction-and-motivation">Introduction and Motivation</a></li>
+  <li><a href="#data-source-information" id="toc-data-source-information" class="nav-link" data-scroll-target="#data-source-information">Data Source Information</a></li>
+  <li><a href="#data-collection-methods" id="toc-data-collection-methods" class="nav-link" data-scroll-target="#data-collection-methods">Data Collection Methods</a></li>
+  <li><a href="#relevance-to-the-project" id="toc-relevance-to-the-project" class="nav-link" data-scroll-target="#relevance-to-the-project">Relevance to the Project</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
   <li><a href="#benchmarks" id="toc-benchmarks" class="nav-link" data-scroll-target="#benchmarks">Benchmarks</a></li>
   <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
@@ -231,194 +221,198 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instruction once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
-<p>In the provide repo, these subsections have been included in the <code>data-collection</code> file as separate <code>.qmd</code> files that can be embedded using the <code>{{&lt; include  &gt;}}</code> tag.</p>
-</section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>On this page, you will focus on <strong>data collection</strong>, which is an essential step for future analysis. You should have already selected a specific data-science question that can be addressed in a data-driven way.</p>
-<p>It is recommended that you focus on one or two of the following data formats, <strong>text</strong>, <strong>tabular</strong>, <strong>image</strong>, <strong>geospatial</strong>, or <strong>network</strong> data.</p>
-<p><strong>Tabular</strong> (e.g.&nbsp;CSV files) and <strong>text</strong> formats are highly recommended, as these are covered most thoroughly in the course. Deviating from these formats may require additional work on your end. Please avoid <strong>timeseries</strong> data formats, as these require special methods not covered in the course. You can include as many additional formats as you want. Your project will revolve around the data you gather and will include data collection, analysis, visualization, and storytelling.</p>
-</section>
-<section id="start-collecting-data" class="level2">
-<h2 class="anchored" data-anchor-id="start-collecting-data">Start collecting data:</h2>
-<p>Begin gathering your data and document the methods and sources on the <strong>Data Collection</strong> page of your project. Include screenshots or example tables to illustrate the data collection process without displaying entire datasets. Ensure <strong>transparency</strong> so anyone can replicate your work.</p>
-</section>
-<section id="saving-the-raw-data" class="level2">
-<h2 class="anchored" data-anchor-id="saving-the-raw-data">Saving the raw data</h2>
-<ul>
-<li>During the collection phase, save the collected data locally to the <code>data/raw-data</code> folder, in the root of the project, for later processing. (Do not sync this folder to GitHub.)</li>
-<li>Remember, the “raw data” should typically be left “pristine”, to ensure replicability.</li>
-<li>Later when you clean the data, you should save the cleaned data to the <code>data/processed-data</code> folder, in the root of the project.</li>
-<li>You should also save files you download manually from online to this folder</li>
-</ul>
-</section>
-<section id="requirements" class="level2">
-<h2 class="anchored" data-anchor-id="requirements">Requirements:</h2>
-<ul>
-<li>Your data must be relevant to the project’s overall goals and help solve your research questions.</li>
-<li>You must use <strong>at least one API</strong> to collect your data.</li>
-<li>Ensure you have at least one <strong>regression target</strong>: a continuous quantity that can be used for regression prediction with other features.</li>
-<li>Ensure you have at least one <strong>binary classification target</strong>: a two-class (A,B) label that can be predicted using other features.</li>
-<li>Ensure you have at least one <strong>multiclass-classification target</strong>: a multi-class (A,B,C …) label that can be predicted using other features.</li>
-<li><strong>Do not use a Kaggle topic</strong>—this project is meant to simulate a real-world project. Kaggle datasets are typically too clean and have already been prepped for analysis, which doesn’t align with the project’s goals.</li>
-</ul>
-<p>Focus on data that tells a compelling story and supports the techniques covered in the class (e.g., clustering, classification, regression).</p>
-</section>
-</section>
-<section id="what-do-include-on-this-page" class="level1">
-<h1>What do include on this page</h1>
-<p>To ensure clarity and transparency throughout your project, your data collection documentation should include the following:</p>
-<ol start="0" type="1">
-<li><p><strong>Include all code used for data collection</strong> in the notebook below</p></li>
-<li><p><strong>Data Source Information</strong></p>
-<ul>
-<li>Specify where the data comes from, whether public datasets, APIs, or original collection.</li>
-<li>Provide links to datasets or API documentation and explain their relevance to the project.</li>
-</ul></li>
-<li><p><strong>Data Collection Methods</strong></p>
-<ul>
-<li>If you used an API or web scraping, explain the tools (e.g., <code>BeautifulSoup</code>, <code>Selenium</code>) and the process.</li>
-<li>Include links to your code for replicating data collection.</li>
-</ul></li>
-<li><p><strong>Data Structure and Format</strong></p>
-<ul>
-<li>Describe the structure of your raw data (e.g., rows, columns, data types) and its format (CSV, JSON, etc.).</li>
-</ul></li>
-<li><p><strong>Linking to Data</strong></p>
-<ul>
-<li>Include links to the <strong>raw dataset</strong>, ensuring transparency and allowing replication.</li>
-</ul></li>
-<li><p><strong>Code and Reproducibility</strong></p>
-<ul>
-<li>Link to all relevant code, including data collection , with clear documentation to enable replication.</li>
-</ul></li>
-<li><p><strong>Transparency and Replicability</strong></p>
-<ul>
-<li>Ensure your entire workflow is transparent and reproducible by linking all data, code, and documentation. This allows others to follow your process from start to finish.</li>
-</ul></li>
-</ol>
-</section>
+<p>For this project, data was collected primarily through APIs, which provided access to two key datasets: food-related nutritional data and food waste data. These datasets were fetched using requests to interact with the respective APIs, ensuring the collection of real-time and up-to-date information.</p>
+<p>The food data was obtained from the FoodData Central API, which offered comprehensive details about food items, including nutritional attributes (e.g., protein, fats, carbohydrates, vitamins, minerals) and serving sizes. The food waste data was sourced from the ReFED API, which provided insights into food surplus and waste across various food categories, along with their environmental and economic impact.</p>
+<p>The data collected from these APIs was then processed using Python libraries like pandas and cleaned to remove irrelevant columns, handle missing values, and standardize formats. This method of data collection ensured that the project had access to accurate, up-to-date, and comprehensive datasets to drive analysis on food waste patterns, nutritional content, and related metrics.</p>
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>In this section, provide a high-level overview for technical staff, summarizing the key tasks and processes carried out here. Include the following elements:</p>
-<ul>
-<li><strong>Goals</strong>: Clearly define the purpose of the tasks or analysis being conducted.</li>
-<li><strong>Motivation</strong>: Explain the reasoning behind the work, such as solving a specific problem, improving a system, or optimizing performance.</li>
-<li><strong>Objectives</strong>: Outline the specific outcomes you aim to achieve, whether it’s implementing a solution, analyzing data, or building a model.</li>
-</ul>
-<p>This overview should give technical staff a clear understanding of the context and importance of the work, while guiding them on what to focus on in the details that follow.</p>
-</section>
-<section id="methods" class="level1">
-<h1>Methods</h1>
-<p>In this section, provide an overview summary of the methods used on this page. This should include a brief description of the key techniques, algorithms, tools, or processes employed in your work. Make sure to outline the approach taken for data collection, processing, analysis, or any specific technical steps relevant to the project.</p>
-<p>If you are developing a package, include a reference to the relevant documentation and provide a link here for easy access. Ensure that the package details are properly documented in its dedicated section, but mentioned and connected here for a complete understanding of the methods used in this project.</p>
-</section>
-<section id="code" class="level1">
-<h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>Ensure that the code is well-commented to enhance readability and understanding for others who may review or use it. If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>This page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<p>In the following code, we first utilized the requests library to retrieve the HTML content from the Wikipedia page. Afterward, we employed BeautifulSoup to parse the HTML and locate the specific table of interest by using the find function. Once the table was identified, we extracted the relevant data by iterating through its rows, gathering country names and their respective populations. Finally, we used Pandas to store the collected data in a DataFrame, allowing for easy analysis and visualization. The data could also be optionally saved as a CSV file for further use.</p>
-<div id="cell-6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Send a request to Wikipedia page</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population'</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Parse the page content using BeautifulSoup</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(response.content, <span class="st">'html.parser'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Find the table containing the data (usually the first table for such lists)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find(<span class="st">'table'</span>, {<span class="st">'class'</span>: <span class="st">'wikitable'</span>})</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Extract data from the table rows</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>countries <span class="op">=</span> []</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>populations <span class="op">=</span> []</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over the table rows</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> table.find_all(<span class="st">'tr'</span>)[<span class="dv">1</span>:]:  <span class="co"># Skip the header row</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    cells <span class="op">=</span> row.find_all(<span class="st">'td'</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(cells) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        country <span class="op">=</span> cells[<span class="dv">1</span>].text.strip()  <span class="co"># The country name is in the second column</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        population <span class="op">=</span> cells[<span class="dv">2</span>].text.strip()  <span class="co"># The population is in the third column</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        countries.append(country)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        populations.append(population)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Create a DataFrame to store the results</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Country'</span>: countries,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Population'</span>: populations</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scraped data</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally save to CSV</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'../../data/raw-data/countries_population.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                                 Country     Population
-0                                  World  8,119,000,000
-1                                  China  1,409,670,000
-2                          1,404,910,000          17.3%
-3                          United States    335,893,238
-4                              Indonesia    281,603,800
-..                                   ...            ...
-235                   Niue (New Zealand)          1,681
-236                Tokelau (New Zealand)          1,647
-237                         Vatican City            764
-238  Cocos (Keeling) Islands (Australia)            593
-239                Pitcairn Islands (UK)             35
+<section id="introduction-and-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-motivation">Introduction and Motivation</h2>
+<p>Food waste is a global issue with profound economic, environmental, and social implications. According to the Food and Agriculture Organization (FAO), roughly one-third of all food produced globally—about 1.3 billion tons—is wasted annually, leading to significant losses in natural resources, energy, and human labor (FAO, 2013). In the United States, the Environmental Protection Agency (EPA) estimates that food waste constitutes 24% of municipal solid waste, making it the single largest category in landfills (EPA, 2021).</p>
+<p>This analysis examines a comprehensive dataset capturing the surplus and waste of various food categories, along with their nutritional compositions. The goal is to uncover insights into:</p>
+<pre><code>1.  The patterns and drivers of food surplus and waste.
 
-[240 rows x 2 columns]</code></pre>
-</div>
+2.  The relationship between nutrient density and food waste across categories.
+
+3.  How resources like water and energy are impacted by food wastage.</code></pre>
+<p>By quantifying these metrics and exploring trends, this analysis aims to inform policies and interventions to mitigate food waste while addressing nutritional and environmental challenges.</p>
+</section>
+<section id="data-source-information" class="level2">
+<h2 class="anchored" data-anchor-id="data-source-information">Data Source Information</h2>
+<p>• Food Waste Data: The food waste data comes from the ReFED Food Surplus Database, which is publicly available. It includes detailed food waste information, such as the category of food waste, food type, and surplus amounts. The data can be accessed from the following <a href="https://insights-engine.refed.org/food-waste-monitor?break_by=destination&amp;indicator=tons-surplus&amp;view=detail&amp;year=2018">link</a>.</p>
+<p>• Nutrient Data: Nutrient data is fetched using the USDA Food Database API. The API provides detailed information on food products, including nutrient content (e.g., calories, protein, fat, etc.), serving size, food category, and other attributes. The API documentation can be found <a href="https://api.nal.usda.gov/fdc/v1/foods/search">here</a>.</p>
+<p>• Original Data: The IPNI Estimates of Nutrient Uptake and Removal dataset is extracted from a PDF document using the pdfplumber library. The extracted data is then processed and saved as CSV files for further analysis.</p>
+</section>
+<section id="data-collection-methods" class="level2">
+<h2 class="anchored" data-anchor-id="data-collection-methods">Data Collection Methods</h2>
+<p>• API Use: The USDA Food Database API is used to gather detailed nutritional information for various food items. This includes attributes such as food name, serving size, brand, and various nutrients (protein, fat, carbs, vitamins, minerals, etc.). A Python script fetches data for each unique food name from the dataset food_waste. The API request is structured with parameters like food name and page size to collect relevant information.</p>
+</section>
+<section id="relevance-to-the-project" class="level2">
+<h2 class="anchored" data-anchor-id="relevance-to-the-project">Relevance to the Project</h2>
+<p>The ReFED Food Surplus Data is key to understanding food waste patterns across different food categories, helping identify the impact of food waste on the environment and the economy. The USDA Food Database is essential for providing the nutritional content of food items, enabling a comprehensive analysis of the relationship between food waste and nutrition. The IPNI Nutrient Data further supports the project by offering estimates of nutrient uptake and removal, which can be linked to food surplus and waste. These datasets together help analyze food waste, nutrients, and the overall environmental and health impact of wasted food.</p>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fitz  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pdfplumber</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rapidfuzz <span class="im">import</span> process</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> difflib <span class="im">import</span> SequenceMatcher</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'technical-details/data-collection/config.json'</span>) <span class="im">as</span> f:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> json.load(f)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>API_KEY <span class="op">=</span> keys[<span class="st">'fdaapi'</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="op">=</span> <span class="st">"https://api.nal.usda.gov/fdc/v1/foods/search"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#SOURE : https://insights-engine.refed.org/food-waste-monitor?break_by=destination&amp;indicator=tons-surplus&amp;view=detail&amp;year=2018</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>foodwaste <span class="op">=</span> pd.read_csv(<span class="st">"data/raw-data/ReFED_US_Food_Surplus_Detail.csv"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>foodwaste.columns</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>foodwaste[<span class="st">"food_category"</span>].nunique()</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>foodwaste[<span class="st">'food_name'</span>] <span class="op">=</span> foodwaste[<span class="st">'food_category'</span>].where(foodwaste[<span class="st">'food_category'</span>] <span class="op">!=</span> <span class="st">"Not Applicable"</span>, foodwaste[<span class="st">'food_type'</span>])</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fetch_food_data(df, page_size<span class="op">=</span><span class="dv">12</span>):</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    all_results <span class="op">=</span> [] </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'food_name'</span> <span class="kw">not</span> <span class="kw">in</span> df.columns <span class="kw">or</span> df[<span class="st">'food_name'</span>].empty:</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"DataFrame must contain a non-empty 'food_name' column"</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> food_name <span class="kw">in</span> df[<span class="st">'food_name'</span>].unique():</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">'query'</span>: <span class="bu">str</span>(food_name),</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">'api_key'</span>: API_KEY,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">'pageSize'</span>: page_size</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(BASE_URL, params<span class="op">=</span>params)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>            results <span class="op">=</span> response.json()</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="st">'foods'</span> <span class="kw">in</span> results:</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                all_results.extend(results[<span class="st">'foods'</span>])</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Error for </span><span class="sc">{</span>food_name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_results</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_food_data(data):</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    food_items <span class="op">=</span> []</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> data:</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> food <span class="kw">in</span> data:</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="st">'servingSizeUnit'</span> <span class="kw">in</span> food <span class="kw">and</span> food[<span class="st">'servingSizeUnit'</span>]:</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>                food_info <span class="op">=</span> {</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'food_name'</span>: food.get(<span class="st">'description'</span>, <span class="st">''</span>),</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'fdc_id'</span>: food.get(<span class="st">'fdcId'</span>, <span class="st">''</span>),</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'brand'</span>: food.get(<span class="st">'brandOwner'</span>, <span class="st">''</span>),</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'food_category'</span>: food.get(<span class="st">'foodCategory'</span>, <span class="st">''</span>),</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'market_country'</span>: food.get(<span class="st">'marketCountry'</span>, <span class="st">''</span>),</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'serving_size'</span>: food.get(<span class="st">'servingSize'</span>, <span class="dv">0</span>),</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'serving_size_unit'</span>: food.get(<span class="st">'servingSizeUnit'</span>, <span class="st">''</span>),</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> nutrient <span class="kw">in</span> food.get(<span class="st">'foodNutrients'</span>, []):</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>                    nutrient_name <span class="op">=</span> nutrient.get(<span class="st">'nutrientName'</span>, <span class="st">''</span>)</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>                    nutrient_value <span class="op">=</span> nutrient.get(<span class="st">'value'</span>, <span class="dv">0</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> nutrient_name <span class="op">==</span> <span class="st">'Energy'</span>:  <span class="co"># Calories</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'calories'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Protein'</span>:</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'protein'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Total lipid (fat)'</span>:  <span class="co"># Fat</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'fat'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Carbohydrate, by difference'</span>:  <span class="co"># Carbs</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'carbs'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Fiber, total dietary'</span>:  <span class="co"># Fiber</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'fiber'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Sugars, total'</span>:  <span class="co"># Sugar</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'sugar'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Vitamin A, IU'</span>:  <span class="co"># Vitamin A (IU)</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'vitamin_a_iu'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Vitamin C, total ascorbic acid'</span>:  <span class="co"># Vitamin C (mg)</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'vitamin_c_mg'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Cholesterol'</span>:  <span class="co"># Cholesterol (mg)</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'cholesterol_mg'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Fatty acids, total saturated'</span>:  <span class="co"># Saturated Fat (g)</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'saturated_fat_g'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Calcium, Ca'</span>:  <span class="co"># Calcium (mg)</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'calcium'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Iron, Fe'</span>:  <span class="co"># Iron (mg)</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'iron'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Sodium, Na'</span>:  <span class="co"># Sodium (mg)</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'sodium'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Potassium, K'</span>:  <span class="co"># Potassium (mg)</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'potassium'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Magnesium, Mg'</span>:  <span class="co"># Magnesium (mg)</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'magnesium'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> nutrient_name <span class="op">==</span> <span class="st">'Phosphorus, P'</span>:  <span class="co"># Phosphorus (mg)</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>                        food_info[<span class="st">'phosphorus'</span>] <span class="op">=</span> nutrient_value</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>                    food_info[<span class="st">'percent_daily_value'</span>] <span class="op">=</span> nutrient.get(<span class="st">'percentDailyValue'</span>, <span class="dv">0</span>)</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'microbes'</span>] <span class="op">=</span> <span class="st">', '</span>.join(<span class="bu">str</span>(microbe) <span class="cf">for</span> microbe <span class="kw">in</span> food.get(<span class="st">'microbes'</span>, [])) <span class="cf">if</span> food.get(<span class="st">'microbes'</span>) <span class="cf">else</span> <span class="st">'No microbes listed'</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'allergens'</span>] <span class="op">=</span> <span class="st">', '</span>.join(<span class="bu">str</span>(allergen) <span class="cf">for</span> allergen <span class="kw">in</span> food.get(<span class="st">'allergens'</span>, [<span class="st">'None'</span>])) <span class="cf">if</span> food.get(<span class="st">'allergens'</span>) <span class="cf">else</span> <span class="st">'None'</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'additives'</span>] <span class="op">=</span> <span class="st">', '</span>.join(<span class="bu">str</span>(additive) <span class="cf">for</span> additive <span class="kw">in</span> food.get(<span class="st">'additives'</span>, [])) <span class="cf">if</span> food.get(<span class="st">'additives'</span>) <span class="cf">else</span> <span class="st">'None'</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'labels'</span>] <span class="op">=</span> <span class="st">', '</span>.join(food.get(<span class="st">'labels'</span>, [<span class="st">'None'</span>])) <span class="cf">if</span> food.get(<span class="st">'labels'</span>) <span class="cf">else</span> <span class="st">'None'</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'nutrient_group'</span>] <span class="op">=</span> food.get(<span class="st">'nutrientGroup'</span>, <span class="st">'Unknown'</span>)</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'brand_name'</span>] <span class="op">=</span> food.get(<span class="st">'brandOwner'</span>, <span class="st">'Unknown'</span>)</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'food_labels'</span>] <span class="op">=</span> <span class="st">', '</span>.join(food.get(<span class="st">'labels'</span>, [<span class="st">'None'</span>])) <span class="cf">if</span> food.get(<span class="st">'labels'</span>) <span class="cf">else</span> <span class="st">'None'</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'package_size'</span>] <span class="op">=</span> food.get(<span class="st">'packageSize'</span>, <span class="st">'Not available'</span>)</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'food_safety_info'</span>] <span class="op">=</span> food.get(<span class="st">'foodSafetyInfo'</span>, <span class="st">'No safety info available'</span>)</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'expiration_date'</span>] <span class="op">=</span> food.get(<span class="st">'expirationDate'</span>, <span class="st">'Not available'</span>)</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>                food_info[<span class="st">'country_of_origin'</span>] <span class="op">=</span> food.get(<span class="st">'countryOfOrigin'</span>, <span class="st">'Not specified'</span>)</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>                food_items.append(food_info)</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> food_items:</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>        food_df <span class="op">=</span> pd.DataFrame(food_items)</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>        food_df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> food_df</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>food_data <span class="op">=</span> foodwaste(foodwaste)</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>food_data.head()</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>food_data.shape</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>foodwaste.head()</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>foodwaste.shape</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(food_data)</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(foodwaste)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>This section should be written for a <strong>technical audience</strong>, focusing on detailed analysis, factual reporting, and clear presentation of data. The following serves as a guide, but feel free to adjust as needed.</p>
 <section id="challenges" class="level2">
 <h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
-<ul>
-<li>Discuss any technical challenges faced during the project, such as data limitations, computational issues, or obstacles encountered during analysis.</li>
-<li>Explain unexpected results and their technical implications.</li>
-<li>Identify areas for future work, including potential optimizations, further analysis, or scaling solutions.</li>
-</ul>
+<p>During the course of this project, several technical challenges were encountered that impacted the analysis and interpretation of food waste data. One of the primary obstacles was the complexity and volume of the dataset, which included a wide range of food-related attributes, such as nutritional information, environmental impact, and waste characteristics. Handling missing data, inconsistent formatting, and discrepancies in unit measurements posed significant challenges during the preprocessing phase. Despite employing various data-cleaning techniques, some portions of the dataset still contained gaps or outliers that required careful treatment to avoid skewing the results.</p>
+<p>Computational limitations also became apparent when applying more complex machine learning algorithms, such as deep learning models or large-scale clustering techniques. These models required significant memory and processing power, particularly during the dimensionality reduction and clustering steps. Additionally, some algorithms, such as DBSCAN and hierarchical clustering, were sensitive to parameter tuning and often led to unexpected results, such as a high number of noise points or unclear cluster boundaries. This underlined the importance of selecting appropriate algorithms and fine-tuning their parameters for optimal results.</p>
+<p>Unexpected results, particularly in clustering and classification tasks, were observed when trying to identify distinct patterns in the food waste data. For instance, while PCA and t-SNE provided valuable insights into the structure of the data, they sometimes revealed overlapping clusters, making it difficult to draw definitive conclusions. These findings highlighted the inherent complexity of food waste patterns and suggested that more sophisticated feature engineering or additional data sources might be needed to improve model accuracy.</p>
+<p>Future work should focus on refining the feature engineering process to account for the broader contextual factors surrounding food waste, such as geographical location, socioeconomic status, and consumer behavior. Additionally, improving data quality through better standardization and exploring alternative machine learning models, such as ensemble techniques or advanced deep learning models, could enhance performance. Scaling the solution to handle larger datasets with more granular information would also be an important next step.</p>
 </section>
 <section id="benchmarks" class="level2">
 <h2 class="anchored" data-anchor-id="benchmarks">Benchmarks</h2>
-<ul>
-<li>Compare your findings to relevant research, industry benchmarks, or intuitive expectations, if applicable.</li>
-</ul>
+<p>The results of this project were compared to relevant industry benchmarks and existing research on food waste management and prediction. In general, the findings aligned with expectations from similar research, which suggests that food waste follows complex patterns influenced by various factors, such as nutritional content, environmental footprint, and supply chain dynamics.</p>
+<p>In terms of supervised learning, the accuracy of prediction models (such as regression and classification models) was assessed against known benchmarks in the field of food waste forecasting. While the results were promising, the performance of the models could be improved through additional data and feature refinement, which is consistent with challenges highlighted in existing literature.</p>
 </section>
 <section id="conclusion-and-future-steps" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion-and-future-steps">Conclusion and Future Steps</h2>
-<ul>
-<li>Summarize the key technical points and outcomes of the project.</li>
-<li>Suggest potential improvements or refinements to this part of the project.</li>
-<li>Based on the results, provide actionable recommendations for further research or optimization efforts.</li>
-</ul>
+<p>In conclusion, this project has provided valuable insights into the complex issue of food waste by employing a combination of unsupervised and supervised learning techniques. The results highlight both the potential and the limitations of using data science to address food waste. Key outcomes include the identification of clusters in the food waste data, the development of models for predicting economic impact, and the exploration of nutrient loss patterns. Despite these successes, several challenges remain, particularly in improving the precision of clustering results and refining the predictive models for greater accuracy.</p>
+<p>Future work should focus on optimizing the models and exploring additional sources of data, such as socio-economic factors, geographic information, and consumer behavior, to enhance prediction accuracy. Further investigation into advanced machine learning techniques, such as ensemble models or neural networks, may also help improve model robustness. Additionally, expanding the dataset to include more diverse food categories and waste disposal methods would help create a more comprehensive understanding of the issue. Based on the results, it is clear that data-driven solutions hold great potential for informing policies and practices aimed at reducing food waste and its associated economic, environmental, and nutritional costs.</p>
 
 
 </section>

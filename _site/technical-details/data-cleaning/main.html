@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -151,12 +185,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
-  <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#general-comments" id="toc-general-comments" class="nav-link" data-scroll-target="#general-comments">General comments:</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a></li>
-  </ul></li>
+  <li><a href="#managing-missing-data" id="toc-managing-missing-data" class="nav-link active" data-scroll-target="#managing-missing-data">Managing Missing Data</a></li>
+  <li><a href="#outlier-detection-and-treatment" id="toc-outlier-detection-and-treatment" class="nav-link" data-scroll-target="#outlier-detection-and-treatment">Outlier Detection and Treatment</a></li>
+  <li><a href="#normalization-and-scaling" id="toc-normalization-and-scaling" class="nav-link" data-scroll-target="#normalization-and-scaling">Normalization and Scaling:</a></li>
+  <li><a href="#subsetting-the-data" id="toc-subsetting-the-data" class="nav-link" data-scroll-target="#subsetting-the-data">Subsetting the Data</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   </ul>
 </nav>
@@ -183,85 +215,204 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you on this page will be specific you your project and data. Some things might “make more sense” on other pages, depending on your workflow, for example, you might feel that normalization and scaling should be included in a later section, dealing with machine learning, rather than here, that is totally fine. Organize your project in the way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+<p>The data cleaning process for this project involved several key steps aimed at preparing the raw food waste and food data for analysis. Initially, we removed unnecessary columns and filtered the data based on relevant criteria, such as valid serving size units. We also handled missing data by dropping rows with missing values in critical fields, ensuring the integrity of the dataset.</p>
+<p>Next, we standardized measurement units by converting various food quantities to grams, ensuring consistency across the dataset. This was particularly important for nutritional analysis, where accurate comparisons are required. Additionally, we transformed specific columns (e.g., vitamins, cholesterol) into consistent units, further improving data uniformity.</p>
+<p>We applied fuzzy matching techniques to merge food waste data with cleaned food data based on food name similarities. The fuzzy join method, using difflib’s SequenceMatcher, allowed us to handle slight variations in food names between datasets and find the best matches.</p>
+<p>Throughout the process, we focused on ensuring that the data was in a format suitable for analysis, with correctly formatted data types, consistent units, and minimal missing or inconsistent data. This rigorous cleaning approach enables more reliable exploratory data analysis (EDA) and model building, setting the foundation for insightful analysis of food waste and nutrition.</p>
+<section id="managing-missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="managing-missing-data">Managing Missing Data</h2>
+<p>• Identify Missing Values: Missing values are common in real-world datasets and can occur for various reasons. In this project, missing data was identified in columns such as serving_size, protein, fat, carbs, calories, and other nutritional values. Using pandas’ isnull() function, the locations of missing values were pinpointed across the dataset.</p>
+<p>• Handling Missing Data: Several strategies were employed to handle missing data. For numerical columns like protein, fat, and calories, missing values were replaced with the mean of the column to retain the data’s overall distribution. In some cases, rows with missing critical data, such as serving_size, were dropped entirely to ensure the integrity of further analysis.</p>
 </section>
-<section id="general-comments" class="level2">
-<h2 class="anchored" data-anchor-id="general-comments">General comments:</h2>
-<ul>
-<li><strong>Iterative Process</strong>: Data cleaning is often not a one-time process. As your analysis progresses, you may need to revisit the cleaning phase, and re-run the code, to adjust to new insights or requirements.</li>
-<li><strong>Clarity and Reproducibility</strong>: Ensure your documentation is clear and thorough. Others should be able to follow your steps and achieve the same results.</li>
-<li><strong>Visualizations</strong>: Use before-and-after visualizations to illustrate the impact of your cleaning steps, making the process more intuitive and transparent.</li>
-</ul>
-<p>By the end of this phase, your cleaned data should be well-documented and ready for further stages, such as <strong>Exploratory Data Analysis (EDA)</strong> and <strong>Machine Learning</strong>.</p>
+<section id="outlier-detection-and-treatment" class="level2">
+<h2 class="anchored" data-anchor-id="outlier-detection-and-treatment">Outlier Detection and Treatment</h2>
+<p>• Identify Outliers: Outliers were detected using statistical methods such as Z-scores and box plots. Variables like serving_size, protein, fat, and other nutritional values were checked for extreme values that might indicate outliers.</p>
+<p>• Addressing Outliers: Outliers were addressed depending on their nature. In some cases, extreme values were capped or transformed, while in others, they were removed if they were clearly erroneous. Retaining outliers for analysis was also considered when they provided valuable insights into the data distribution.</p>
+<p>• Visualize Outliers: Box plots were used to visualize the outliers before and after handling. These plots illustrated the distribution of values and how outliers were managed in various columns. By comparing the before and after visualizations, the effect of outlier treatment on the dataset could be clearly seen.</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>The <strong>Data Cleaning</strong> page of your portfolio is where you document the process of transforming your raw data into a usable format. Data cleaning is essential for ensuring the quality of your analysis, and this page should serve as a clear and reproducible guide for anyone reviewing your work. It also provides transparency, allowing others to trace the steps you took to prepare your data.</p>
-<p>The following is a guide to help you get started with possible thing to address on this page .</p>
-<ul>
-<li><strong>Description of the Data Cleaning Process</strong>: Explain the steps you took to clean and preprocess the data.</li>
-<li><strong>Code Documentation</strong>: Provide the code used in the data cleaning process (link to GitHub or embed the code directly).</li>
-<li><strong>Provide examples of data before and after cleaning</strong>: e.g.&nbsp;with df.head() or df.describe()</li>
-<li><strong>Raw and Cleaned Data Links</strong>: Ensure your page links to both the original (raw) dataset and the cleaned dataset. (please keep organized and store the cleaned data in <code>data/processed-data</code>, or similar location which doesn’t get synced to GitHub)</li>
-</ul>
-<p>Possible things to include:</p>
-<p><strong>Introduction to Data Cleaning</strong>:</p>
-<ul>
-<li>Provide a brief explanation of the data cleaning phase, its importance in preparing the data for further analysis (EDA, modeling), and its iterative nature.</li>
-<li>Mention that data cleaning may need to be revisited as the project evolves and analysis goals change.</li>
-</ul>
-<p><strong>Managing Missing Data</strong>:</p>
-<ul>
-<li><strong>Identify Missing Values</strong>: Explain how you identified missing data and where it occurred.</li>
-<li><strong>Handling Missing Data</strong>: Describe how missing values were addressed (e.g., imputation, removal of rows/columns).</li>
-<li><strong>Visualize Missing Data</strong>: Include visualizations (e.g., heatmaps) showing missing values before and after handling them.</li>
-</ul>
-<p><strong>Outlier Detection and Treatment</strong>:</p>
-<ul>
-<li><strong>Identify Outliers</strong>: Describe the methods you used to detect outliers in the dataset.</li>
-<li><strong>Addressing Outliers</strong>: Explain how outliers were treated (e.g., removal, transformation, or retaining them for analysis).</li>
-<li><strong>Visualize Outliers</strong>: Use visualizations (e.g., box plots) to show how outliers were managed.</li>
-</ul>
-<p><strong>Data Type Correction and Formatting</strong>:</p>
-<ul>
-<li><strong>Review Data Types</strong>: Summarize the types of variables (numerical, categorical, date-time, etc.) and ensure they are correctly formatted.</li>
-<li><strong>Transformation</strong>: Document any transformations performed, such as converting date formats, handling categorical variables, or encoding labels.</li>
-<li><strong>Impact of Changes</strong>: Briefly explain why these changes were necessary for accurate analysis.</li>
-</ul>
-<p><strong>Normalization and Scaling</strong>:</p>
-<ul>
-<li><strong>Data Distribution Analysis</strong>: Check and discuss the distribution of numerical variables (e.g., skewness).</li>
-<li><strong>Normalization Techniques</strong>: Describe any normalization or scaling techniques used (e.g., min-max scaling, z-score normalization).</li>
-<li><strong>Before-and-After Visualizations</strong>: Provide visualizations comparing the data before and after scaling or normalization.</li>
-</ul>
-<p><strong>Subsetting the Data</strong>:</p>
-<ul>
-<li><strong>Data Filtering</strong>: Explain any subsetting or filtering of the data (e.g., selecting quantitative or qualitative columns).</li>
-<li><strong>Rationale</strong>: Justify why you chose to work with a particular subset of the data.</li>
-</ul>
+<section id="normalization-and-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="normalization-and-scaling">Normalization and Scaling:</h2>
+<p>• Data Distribution Analysis: The distribution of numerical variables was initially analyzed using histograms and summary statistics to identify any skewness or irregular distributions. For example, variables like protein, carbs, and fat exhibited skewed distributions.</p>
+<p>• Normalization Techniques: To address this, normalization techniques such as min-max scaling and Z-score normalization were applied to certain columns. These methods ensured that variables with different ranges could be compared directly and improved the performance of certain machine learning models.</p>
+<p>• Before-and-After Visualizations: Before and after visualizations, such as histograms and box plots, were used to compare the data distributions. The effect of normalization could be seen in the flattening of skewed distributions, making them more suitable for modeling.</p>
 </section>
+<section id="subsetting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="subsetting-the-data">Subsetting the Data</h2>
+<p>• Data Filtering: The data was subsetted to focus on relevant columns and remove irrelevant ones. For example, columns related to allergens, microbes, and country of origin were removed, as they were not directly relevant to the analysis of food waste and nutritional content. Filtering also involved focusing on specific food categories and nutritional attributes, such as protein, fat, calories, and fiber.</p>
+<p>• Rationale: The rationale for filtering was to reduce the complexity of the data and focus on the most relevant features for analysis. By working with a smaller, more targeted subset, it was easier to perform focused analysis and avoid noise from unnecessary variables. The subsetted data was better suited for modeling and understanding the relationships between food waste and nutritional content.</p>
 </section>
-<section id="code" class="level1">
-<h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<div id="cell-2" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fitz  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pdfplumber</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rapidfuzz <span class="im">import</span> process</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> difflib <span class="im">import</span> SequenceMatcher</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>food_data <span class="op">=</span> pd.read_csv(<span class="st">"data/raw-data/foods_data.csv"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>food_waste <span class="op">=</span> pd.read_csv(<span class="st">"data/raw-data/ReFED_US_Food_Surplus_Detail.csv"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>food_waste.drop(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'Unnamed: 0'</span>,<span class="st">'sector'</span>, <span class="st">'sub_sector'</span>, <span class="st">'sub_sector_category'</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>       <span class="st">'food_type'</span>,<span class="st">'surplus_upstream_100_year_mtco2e_footprint'</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>     <span class="st">'surplus_downstream_100_year_mtco2e_footprint'</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>     <span class="st">'surplus_total_100_year_mtco2e_footprint'</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>     <span class="st">'surplus_upstream_100_year_mtch4_footprint'</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>     <span class="st">'surplus_downstream_100_year_mtch4_footprint'</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>     <span class="st">'surplus_total_100_year_mtch4_footprint'</span>], </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span>, </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    inplace<span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>food_data.drop(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'microbes'</span>, <span class="st">'allergens'</span>, <span class="st">'additives'</span>, <span class="st">'labels'</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>       <span class="st">'nutrient_group'</span>, <span class="st">'brand_name'</span>, <span class="st">'food_labels'</span>, <span class="st">'package_size'</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>       <span class="st">'food_safety_info'</span>, <span class="st">'expiration_date'</span>, <span class="st">'country_of_origin'</span>,<span class="st">'fdc_id'</span> ],</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span>, </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    inplace<span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>valid_units <span class="op">=</span> [<span class="st">'g'</span>, <span class="st">'grm'</span>, <span class="st">'gm'</span>, <span class="st">'mlt'</span>, <span class="st">'ml'</span>, <span class="st">'mg'</span>]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> food_data[food_data[<span class="st">'serving_size_unit'</span>].<span class="bu">str</span>.lower().isin(valid_units)]</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>df_filtered.columns</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_grams(row, column):</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    unit <span class="op">=</span> row[<span class="st">'serving_size_unit'</span>].lower()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If unit is grams (g, grm, gm), return the value as is</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> unit <span class="kw">in</span> [<span class="st">'g'</span>, <span class="st">'grm'</span>, <span class="st">'gm'</span>]:</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> row[column]</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If unit is milliliters (ml, mlt), assume 1 ml = 1 g (for liquids)</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> unit <span class="kw">in</span> [<span class="st">'ml'</span>, <span class="st">'mlt'</span>]:</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> row[column]  <span class="co"># Convert 1 ml to 1 g</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If unit is milligrams (mg), convert to grams</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> unit <span class="op">==</span> <span class="st">'mg'</span>:</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> row[column] <span class="op">*</span> <span class="fl">0.001</span>  <span class="co"># 1 mg = 0.001 g</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If unit is unknown or unsupported, return the value as is</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> row[column]</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># List of columns to convert</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>columns_to_convert <span class="op">=</span> [</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">'serving_size'</span>, <span class="st">'protein'</span>, <span class="st">'percent_daily_value'</span>, <span class="st">'fat'</span>, <span class="st">'carbs'</span>, <span class="st">'calories'</span>, </span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">'fiber'</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply conversion to each specified column</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> columns_to_convert:</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    df_filtered[column] <span class="op">=</span> df_filtered.<span class="bu">apply</span>(<span class="kw">lambda</span> row: convert_to_grams(row, column), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_grams(row):</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert Vitamin A (IU to grams)</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    vitamin_a_grams <span class="op">=</span> row[<span class="st">'vitamin_a_iu'</span>] <span class="op">*</span> <span class="fl">0.0000003</span> <span class="cf">if</span> pd.notnull(row[<span class="st">'vitamin_a_iu'</span>]) <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert Vitamin C (mg to grams)</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    vitamin_c_grams <span class="op">=</span> row[<span class="st">'vitamin_c_mg'</span>] <span class="op">*</span> <span class="fl">0.001</span> <span class="cf">if</span> pd.notnull(row[<span class="st">'vitamin_c_mg'</span>]) <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert Cholesterol (mg to grams)</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    cholesterol_grams <span class="op">=</span> row[<span class="st">'cholesterol_mg'</span>] <span class="op">*</span> <span class="fl">0.001</span> <span class="cf">if</span> pd.notnull(row[<span class="st">'cholesterol_mg'</span>]) <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series({<span class="st">'vitamin_a_grams'</span>: vitamin_a_grams, <span class="st">'vitamin_c_grams'</span>: vitamin_c_grams, <span class="st">'cholesterol_grams'</span>: cholesterol_grams})</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the conversion function to the DataFrame</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>df_filtered[[<span class="st">'vitamin_a_grams'</span>, <span class="st">'vitamin_c_grams'</span>, <span class="st">'cholesterol_grams'</span>]] <span class="op">=</span> df_filtered.<span class="bu">apply</span>(convert_to_grams, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the original columns</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df_filtered.drop(columns<span class="op">=</span>[<span class="st">'vitamin_a_iu'</span>, <span class="st">'vitamin_c_mg'</span>, <span class="st">'cholesterol_mg'</span>])</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df_filtered.drop(columns<span class="op">=</span>[<span class="st">'brand'</span>, <span class="st">'food_category'</span>, <span class="st">'market_country'</span>])</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>df_filtered.columns</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>df_filtered.head()</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_excluding_nulls(series):</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> series.dropna().mean()</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>df_grouped <span class="op">=</span> df_filtered.groupby(<span class="st">'food_name'</span>).agg({</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    <span class="st">'serving_size'</span>: mean_excluding_nulls,</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    <span class="st">'protein'</span>: mean_excluding_nulls,</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    <span class="st">'percent_daily_value'</span>: mean_excluding_nulls,</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    <span class="st">'fat'</span>: mean_excluding_nulls,</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    <span class="st">'carbs'</span>: mean_excluding_nulls,</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="st">'calories'</span>: mean_excluding_nulls,</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    <span class="st">'fiber'</span>: mean_excluding_nulls,</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    <span class="st">'calcium'</span>: mean_excluding_nulls,</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    <span class="st">'iron'</span>: mean_excluding_nulls,</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    <span class="st">'potassium'</span>: mean_excluding_nulls,</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sodium'</span>: mean_excluding_nulls,</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    <span class="st">'phosphorus'</span>: mean_excluding_nulls</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_overlap(str1, str2):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    matcher <span class="op">=</span> SequenceMatcher(<span class="va">None</span>, str1.lower(), str2.lower())</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> matcher.ratio()  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_best_match(food_name, df, used_matches):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    best_match <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    highest_overlap <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    best_index <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx, name2 <span class="kw">in</span> df[<span class="st">'food_name'</span>].items():  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> idx <span class="kw">not</span> <span class="kw">in</span> used_matches:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            overlap <span class="op">=</span> calculate_overlap(food_name, name2)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> overlap <span class="op">&gt;</span> highest_overlap:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                best_match <span class="op">=</span> name2</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                highest_overlap <span class="op">=</span> overlap</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                best_index <span class="op">=</span> idx</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> best_match, highest_overlap, best_index</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> []</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>used_matches <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name1 <span class="kw">in</span> food_waste[<span class="st">'food_name'</span>]:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    best_match, score, best_index <span class="op">=</span> find_best_match(name1, df_grouped, used_matches)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> best_match <span class="kw">and</span> score <span class="op">&gt;=</span> <span class="fl">0.60</span>:  </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        matches.append({</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">'food_name_food_waste'</span>: name1, </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">'best_match'</span>: best_match, </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">'score'</span>: score</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        used_matches.add(best_index) </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>matches_df <span class="op">=</span> pd.DataFrame(matches)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>food_waste_renamed <span class="op">=</span> food_waste.rename(columns<span class="op">=</span>{<span class="st">'food_name'</span>: <span class="st">'food_name_food_waste'</span>})</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.merge(food_waste_renamed, matches_df, left_on<span class="op">=</span><span class="st">'food_name_food_waste'</span>, right_on<span class="op">=</span><span class="st">'food_name_food_waste'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.merge(result, df_grouped, left_on<span class="op">=</span><span class="st">'best_match'</span>, right_on<span class="op">=</span><span class="st">'food_name'</span>, how<span class="op">=</span><span class="st">'left'</span>, suffixes<span class="op">=</span>(<span class="st">'_food_waste'</span>, <span class="st">'_grouped_df'</span>))</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>columns_to_convert <span class="op">=</span> [<span class="st">'calcium'</span>, <span class="st">'iron'</span>, <span class="st">'potassium'</span>, <span class="st">'sodium'</span>, <span class="st">'phosphorus'</span>]</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to grams</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> columns_to_convert:</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> result.columns:</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        result[col] <span class="op">=</span> result[col] <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co">#drop rows where serving_size is NA</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> result.dropna(subset<span class="op">=</span>[<span class="st">'serving_size'</span>])</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>result.columns</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>result.describe()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>result.to_csv(<span class="st">'data/processed-data/food_merged.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
