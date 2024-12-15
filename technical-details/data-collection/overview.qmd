@@ -1,5 +1,3 @@
-# Overview
-
 ## Introduction and Motivation
 
 Food waste is a global issue with profound economic, environmental, and social implications. According to the Food and Agriculture Organization (FAO), roughly one-third of all food produced globally—about 1.3 billion tons—is wasted annually, leading to significant losses in natural resources, energy, and human labor (FAO, 2013). In the United States, the Environmental Protection Agency (EPA) estimates that food waste constitutes 24% of municipal solid waste, making it the single largest category in landfills (EPA, 2021).
