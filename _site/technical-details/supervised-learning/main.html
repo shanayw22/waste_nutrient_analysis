@@ -185,7 +185,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#model-selection-and-code" id="toc-model-selection-and-code" class="nav-link active" data-scroll-target="#model-selection-and-code">Model Selection and Code</a>
+  <li><a href="#introduction-and-motivation" id="toc-introduction-and-motivation" class="nav-link active" data-scroll-target="#introduction-and-motivation">Introduction and Motivation</a></li>
+  <li><a href="#model-selection-and-code" id="toc-model-selection-and-code" class="nav-link" data-scroll-target="#model-selection-and-code">Model Selection and Code</a>
   <ul class="collapse">
   <li><a href="#model-rationale" id="toc-model-rationale" class="nav-link" data-scroll-target="#model-rationale">Model Rationale</a></li>
   <li><a href="#overview-of-algorithms" id="toc-overview-of-algorithms" class="nav-link" data-scroll-target="#overview-of-algorithms">Overview of Algorithms</a></li>
@@ -238,6 +239,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="introduction-and-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-motivation">Introduction and Motivation</h2>
+<p>While unsupervised learning helps uncover patterns in food waste data, supervised learning can provide actionable predictions that directly inform decision-making processes. Supervised learning techniques, such as classification and regression, are essential for predicting outcomes like the surplus dollar value of wasted food or classifying food donations based on nutritional composition. By training models on labeled data, we can predict which food items are most likely to be wasted, which can help inform better resource allocation and waste reduction strategies.</p>
+<p>In this project, supervised learning will be used to predict the economic impact of food waste by estimating the dollar surplus associated with surplus food. This involves building regression models that take into account factors such as the nutritional content, environmental footprint, and food category to forecast economic losses. Additionally, classification models will be employed to identify which food donations are most suitable for redistribution based on their nutritional value and waste characteristics. These insights will guide the development of policies and practices to reduce food waste and its associated environmental and economic costs. By combining supervised learning with unsupervised insights, this project aims to create a comprehensive framework for mitigating food waste through data-driven strategies.</p>
+</section>
 <section id="model-selection-and-code" class="level2">
 <h2 class="anchored" data-anchor-id="model-selection-and-code">Model Selection and Code</h2>
 <p>Here, we have built and evaluated three distinct types of machine learning models to address different aspects of food waste prediction and resource optimization. These models—multi-class classification, binary classification, and regression—each tackle unique challenges and offer insights into different dimensions of food waste management.</p>

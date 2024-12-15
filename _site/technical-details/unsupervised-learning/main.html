@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -151,16 +185,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
-  <ul class="collapse">
-  <li><a href="#suggested-page-structure" id="toc-suggested-page-structure" class="nav-link" data-scroll-target="#suggested-page-structure">Suggested page structure</a></li>
-  <li><a href="#what-to-address" id="toc-what-to-address" class="nav-link" data-scroll-target="#what-to-address">What to address</a>
-  <ul class="collapse">
-  <li><a href="#part-1-dimensionality-reduction" id="toc-part-1-dimensionality-reduction" class="nav-link" data-scroll-target="#part-1-dimensionality-reduction">Part 1: Dimensionality Reduction</a></li>
-  <li><a href="#part-2-clustering-methods" id="toc-part-2-clustering-methods" class="nav-link" data-scroll-target="#part-2-clustering-methods">Part 2: Clustering Methods</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#introduction-and-motivation" id="toc-introduction-and-motivation" class="nav-link active" data-scroll-target="#introduction-and-motivation">Introduction and Motivation</a></li>
+  <li><a href="#model-selection-and-code" id="toc-model-selection-and-code" class="nav-link" data-scroll-target="#model-selection-and-code">Model Selection and Code</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
+  <li><a href="#t-sne" id="toc-t-sne" class="nav-link" data-scroll-target="#t-sne">t-SNE</a></li>
+  <li><a href="#k-means" id="toc-k-means" class="nav-link" data-scroll-target="#k-means">K-Means</a></li>
+  <li><a href="#dbscan" id="toc-dbscan" class="nav-link" data-scroll-target="#dbscan">DBSCAN</a></li>
+  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering">Hierarchical Clustering</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -186,82 +219,553 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- After digesting the instructions, you can delete this cell, these are assignment instructions and do not need to be included in your final submission.  -->
-<section id="instructions" class="level1">
-<h1>Instructions</h1>
-<p><code>Note</code>: You should remove these instructions once you have read and understood them. They should not be included in your final submission.</p>
-<p><code>Remember:</code> Exactly what do you put on this page will be specific you your project and data. Some things might “make more sense” on one page rather than another, depending on your workflow. Organize your project in a logical way that makes the most sense to you.</p>
-<section id="suggested-page-structure" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-page-structure">Suggested page structure</h2>
-<p>Here’s one suggested structure for organizing your technical pages. You can adjust this as needed:</p>
-<p><code>Audience</code>:Remember that these are written for a technical audience. Assume they have completed the DSAN program, but would appreciate refreshers of the important concepts.</p>
-<ul>
-<li><strong>Introduction and Motivation:</strong> Briefly outline your plan. What are you doing on this page, and why? Provide context and explain the goals of your analysis.</li>
-<li><strong>Overview of Methods:</strong> Give a concise explanation of the methods used. For example, if using K-Means clustering, describe what it is, how it works, the inputs and outputs, and key hyperparameters.</li>
-<li><strong>Code:</strong> Include the code you used to implement your workflow.</li>
-<li><strong>Summary and Interpretation of Results:</strong> Summarize your findings, interpret the results, and discuss their technical implications.</li>
-</ul>
+<section id="introduction-and-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-motivation">Introduction and Motivation</h2>
+<p>Food waste is a significant global issue that has wide-ranging implications for sustainability, public health, and economic systems. Approximately one-third of all food produced globally is wasted, creating substantial environmental, social, and economic costs. One of the core challenges in addressing food waste lies in understanding the complex relationships between food production, consumption, and disposal. Unsupervised learning offers a powerful tool for uncovering hidden patterns and insights in large, unstructured datasets related to food waste. By leveraging clustering, dimensionality reduction, and other unsupervised techniques, this project aims to gain a deeper understanding of food waste behaviors, nutrient loss, and disposal trends.</p>
+<p>In the context of this project, unsupervised learning will help identify groups of food items with similar waste characteristics, such as nutritional composition, environmental impact, and economic loss. These clusters can provide actionable insights for targeting interventions, whether through donation strategies, better supply chain management, or more efficient waste disposal practices. Additionally, dimensionality reduction methods like PCA and t-SNE will be used to visualize the multidimensional nature of the food waste data, offering a more intuitive understanding of how different factors correlate and contribute to the problem. By applying unsupervised learning techniques to the Nutrient Waste dataset, this project aims to uncover novel insights that can inform more sustainable food management strategies and policies.</p>
 </section>
-<section id="what-to-address" class="level2">
-<h2 class="anchored" data-anchor-id="what-to-address">What to address</h2>
-<p>The following is a list of some of the things you should address on this page. This list is not exhaustive, and you should use your judgment to decide what is most relevant to your project.</p>
-<p>This page is designed to give you hands-on experience with key unsupervised learning techniques, including clustering methods and dimensionality reduction, applied to real-world datasets. Please apply algorithms such as K-Means, DBSCAN, Hierarchical clustering, PCA, and t-SNE to your data. Through this process, you’ll deepen your understanding of how unsupervised learning can reveal hidden patterns and structure in data.</p>
-<section id="part-1-dimensionality-reduction" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-dimensionality-reduction">Part 1: Dimensionality Reduction</h3>
-<p>The objective of this section is to explore and demonstrate the effectiveness of PCA and t-SNE in reducing the dimensionality of complex data while preserving essential information and improving visualization.</p>
+<section id="model-selection-and-code" class="level2">
+<h2 class="anchored" data-anchor-id="model-selection-and-code">Model Selection and Code</h2>
+<p>The goal is to classify food donations, predict dollar surplus from surplus food, and understand primary disposal methods. To achieve this, this section employs several unsupervised learning techniques to uncover patterns and insights from the data, which is structured based on various food-related attributes (e.g., nutritional values, waste amounts, water footprint).</p>
+<p>Key Techniques Used for Model Selection:</p>
 <ol type="1">
-<li><strong>PCA (Principal Component Analysis):</strong>
-<ul>
-<li>Apply PCA to your dataset.</li>
-<li>Determine the optimal number of principal components.</li>
-<li>Visualize the reduced-dimensional data.</li>
-<li>Analyze and interpret the results.</li>
-</ul></li>
-<li><strong>t-SNE (t-distributed Stochastic Neighbor Embedding):</strong>
-<ul>
-<li>Implement t-SNE on the same dataset.</li>
-<li>Experiment with different perplexity values.</li>
-<li>Visualize the t-SNE output to reveal patterns and clusters.</li>
-<li>Compare the results of t-SNE with those from PCA.</li>
-</ul></li>
-<li><strong>Evaluation and Comparison:</strong>
-<ul>
-<li>Evaluate the effectiveness of PCA and t-SNE in preserving data structure.</li>
-<li>Compare the visualization capabilities of both techniques.</li>
-<li>Discuss the trade-offs and scenarios where one technique may perform better than the other.</li>
-</ul></li>
+<li><p><strong>Preprocessing</strong>:- Before applying any machine learning techniques, the data undergoes thorough preprocessing to ensure its suitability for analysis:</p>
+<p>• Handling Missing Values: The project uses imputation strategies to fill missing data, ensuring the integrity of the dataset. The imputer applies strategies median imputation.</p>
+<p>• Normalization: The numeric columns are normalized using standard or min-max scaling to ensure that all variables contribute equally during clustering and dimensionality reduction. After applying z-score scaling and min-max scaling it was evident that the untransformed data was better for clustering than the normalized data.</p></li>
+<li><p><strong>Dimensionality Reduction</strong>:</p>
+<p>• PCA (Principal Component Analysis): PCA is used for reducing the dimensionality of the dataset while retaining as much variance as possible. This helps in visualizing the data and understanding the primary sources of variability. The explained variance plot provides an insight into the number of components needed to represent the dataset effectively.</p>
+<p>• t-SNE (t-Distributed Stochastic Neighbor Embedding): t-SNE is applied to visualize the data in two or three dimensions, helping to identify potential clusters or patterns. This technique is particularly useful when dealing with high-dimensional data.</p></li>
+<li><p><strong>Clustering</strong>:</p>
+<p>• K-Means Clustering: The K-Means algorithm is applied to group the data into a predefined number of clusters. This method is chosen due to its simplicity and efficiency. The silhouette score, which measures how well-defined the clusters are, helps in assessing the quality of the clusters. The results are visualized using PCA-reduced data.</p>
+<p>• DBSCAN (Density-Based Spatial Clustering of Applications with Noise): DBSCAN is chosen for its ability to identify clusters of varying shapes and handle noise effectively. This is especially relevant for datasets where there might be outliers or regions of differing density. Silhouette scores are also computed to assess clustering quality.</p>
+<p>• Hierarchical Clustering: Hierarchical clustering, using methods like “ward” or “average,” is applied to create a dendrogram. This technique is valuable for understanding the hierarchical relationships between data points and visualizing how clusters are formed at different distance thresholds.</p></li>
+<li><p><strong>Evaluation Metrics</strong>:</p>
+<p>• Silhouette Score: To evaluate the clustering results, the silhouette score is used. This score measures how similar each point is to its own cluster compared to other clusters. A higher silhouette score indicates well-defined and meaningful clusters. This metric is calculated for K-Means, DBSCAN, and hierarchical clustering.</p>
+<p>• Cluster Visualization: After applying each clustering method, the results are visualized to help understand the distribution of data points and the validity of the identified clusters. Visualizations using PCA or t-SNE reduce the data to two or three dimensions for easier interpretation.</p></li>
 </ol>
+<p>By applying these unsupervised learning techniques, the project aims to uncover hidden patterns in food waste, such as identifying which food categories are most often wasted, understanding the relationships between nutritional composition and waste, and classifying surplus food into clusters that may correlate with its economic value or environmental impact. The combination of dimensionality reduction, clustering, and silhouette-based evaluation ensures that the analysis is both comprehensive and interpretable, making it possible to derive actionable insights for smarter food waste management practices.</p>
+<div id="cell-2" class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans, DBSCAN</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.cluster.hierarchy <span class="im">import</span> dendrogram, linkage, fcluster</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> SimpleImputer</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder, StandardScaler, MinMaxScaler</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> UnsupervisedLearning:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data):</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Initialize the UnsupervisedLearning class with the dataset.</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">            data (pd.DataFrame): Input dataset for analysis.</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data <span class="op">=</span> data</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pca_result <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tsne_result <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.clusters <span class="op">=</span> {}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preprocess_data(<span class="va">self</span>, impute_strategy<span class="op">=</span><span class="st">'mean'</span>, drop_na_threshold<span class="op">=</span><span class="fl">0.5</span>, normalize<span class="op">=</span><span class="va">True</span>, scaler_type<span class="op">=</span><span class="st">'standard'</span>):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">        Preprocess the data to ensure it's suitable for unsupervised learning:</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">        - Drop columns with excessive missing values.</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">        - Impute missing values for numeric columns.</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">        - Convert non-numeric columns to numeric using encoding.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">        - Normalize numeric columns if required.</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">            impute_strategy (str): Strategy for imputing missing values ('mean', 'median', 'most_frequent').</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">            drop_na_threshold (float): Threshold for dropping columns with missing values (default: 0.5).</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">            normalize (bool): Whether to normalize numeric columns (default: True).</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">            scaler_type (str): Type of scaler to use ('standard' for StandardScaler, 'minmax' for MinMaxScaler).</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Drop columns with excessive missing values</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        missing_ratio <span class="op">=</span> <span class="va">self</span>.data.isna().mean()</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        cols_to_drop <span class="op">=</span> missing_ratio[missing_ratio <span class="op">&gt;</span> drop_na_threshold].index</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data.drop(columns<span class="op">=</span>cols_to_drop, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Separate numeric and non-numeric columns</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        numeric_cols <span class="op">=</span> <span class="va">self</span>.data.select_dtypes(include<span class="op">=</span>[<span class="st">'number'</span>]).columns</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        non_numeric_cols <span class="op">=</span> <span class="va">self</span>.data.select_dtypes(exclude<span class="op">=</span>[<span class="st">'number'</span>]).columns</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Handle non-numeric columns</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(non_numeric_cols) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.data <span class="op">=</span> pd.get_dummies(<span class="va">self</span>.data, columns<span class="op">=</span>non_numeric_cols, drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Impute missing values in numeric columns</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        imputer <span class="op">=</span> SimpleImputer(strategy<span class="op">=</span>impute_strategy)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data[numeric_cols] <span class="op">=</span> imputer.fit_transform(<span class="va">self</span>.data[numeric_cols])</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Normalize numeric columns if required</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> normalize:</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>            scaler <span class="op">=</span> StandardScaler() <span class="cf">if</span> scaler_type <span class="op">==</span> <span class="st">'standard'</span> <span class="cf">else</span> MinMaxScaler()</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.data[numeric_cols] <span class="op">=</span> scaler.fit_transform(<span class="va">self</span>.data[numeric_cols])</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> apply_pca(<span class="va">self</span>, n_components<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co">        Apply PCA to the dataset and visualize the explained variance ratio.</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">            n_components (int, optional): Number of components for PCA. </span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co">                                          If None, all components are considered.</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>        pca <span class="op">=</span> PCA(n_components<span class="op">=</span>n_components)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>        pca_result <span class="op">=</span> pca.fit_transform(<span class="va">self</span>.data)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pca_result <span class="op">=</span> pd.DataFrame(pca_result, columns<span class="op">=</span>[<span class="ss">f'PC</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pca_result.shape[<span class="dv">1</span>])])</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Explained variance plot</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        plt.plot(<span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(pca.explained_variance_ratio_) <span class="op">+</span> <span class="dv">1</span>), np.cumsum(pca.explained_variance_ratio_), marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'Cumulative Explained Variance by PCA Components'</span>)</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Number of Components'</span>)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Cumulative Explained Variance'</span>)</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        plt.grid()</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> visualize_pca(<span class="va">self</span>):</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Visualize PCA-reduced data if 2 or 3 components are present."""</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.pca_result <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Please run `apply_pca()` first."</span>)</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.pca_result.shape[<span class="dv">1</span>] <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>            plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>            sns.scatterplot(data<span class="op">=</span><span class="va">self</span>.pca_result, x<span class="op">=</span><span class="st">'PC1'</span>, y<span class="op">=</span><span class="st">'PC2'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>            plt.title(<span class="st">'PCA Visualization (First Two Components)'</span>)</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>            plt.xlabel(<span class="st">'PC1'</span>)</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>            plt.ylabel(<span class="st">'PC2'</span>)</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>            plt.grid()</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>            plt.show()</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"PCA visualization requires at least 2 components."</span>)</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> apply_tsne(<span class="va">self</span>, perplexity<span class="op">=</span><span class="dv">30</span>, n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co">        Apply t-SNE to the dataset and visualize the results.</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="co">            perplexity (int): Perplexity parameter for t-SNE.</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="co">            n_components (int): Number of dimensions for t-SNE.</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">            random_state (int): Random state for reproducibility.</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>        tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span>n_components, perplexity<span class="op">=</span>perplexity, random_state<span class="op">=</span>random_state)</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>        tsne_result <span class="op">=</span> tsne.fit_transform(<span class="va">self</span>.data)</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tsne_result <span class="op">=</span> pd.DataFrame(tsne_result, columns<span class="op">=</span>[<span class="ss">f'Dim</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_components)])</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>        <span class="co"># t-SNE plot</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>        sns.scatterplot(x<span class="op">=</span><span class="va">self</span>.tsne_result[<span class="st">'Dim1'</span>], y<span class="op">=</span><span class="va">self</span>.tsne_result[<span class="st">'Dim2'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f't-SNE Visualization (Perplexity=</span><span class="sc">{</span>perplexity<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Dim1'</span>)</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Dim2'</span>)</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>        plt.grid()</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> kmeans_clustering(<span class="va">self</span>, n_clusters):</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="co">        Apply K-Means clustering and visualize clusters.</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="co">            n_clusters (int): Number of clusters for K-Means.</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>        kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> kmeans.fit_predict(<span class="va">self</span>.data)</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.clusters[<span class="st">'kmeans'</span>] <span class="op">=</span> labels</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>        silhouette <span class="op">=</span> silhouette_score(<span class="va">self</span>.data, labels)</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"K-Means Silhouette Score: </span><span class="sc">{</span>silhouette<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cluster visualization</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>        sns.scatterplot(x<span class="op">=</span><span class="va">self</span>.pca_result[<span class="st">'PC1'</span>], y<span class="op">=</span><span class="va">self</span>.pca_result[<span class="st">'PC2'</span>], hue<span class="op">=</span>labels, palette<span class="op">=</span><span class="st">'tab10'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'K-Means Clustering (PCA Reduced Data)'</span>)</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'PC1'</span>)</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'PC2'</span>)</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>        plt.legend(title<span class="op">=</span><span class="st">'Cluster'</span>)</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>        plt.grid()</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> kmeans_clustering_tsne(<span class="va">self</span>, n_clusters, palette<span class="op">=</span><span class="st">'tab10'</span>):</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="co">        Apply K-Means clustering and visualize clusters.</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="co">            n_clusters (int): Number of clusters for K-Means.</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">hasattr</span>(<span class="va">self</span>, <span class="st">'tsne_result'</span>) <span class="kw">or</span> <span class="va">self</span>.tsne_result.empty:</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"t-SNE results not found. Run apply_tsne() before clustering."</span>)</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply K-Means clustering</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>        kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> kmeans.fit_predict(<span class="va">self</span>.data)</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.clusters[<span class="st">'kmeans'</span>] <span class="op">=</span> labels</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate silhouette score</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>        silhouette <span class="op">=</span> silhouette_score(<span class="va">self</span>.data, labels)</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"K-Means Silhouette Score: </span><span class="sc">{</span>silhouette<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Visualization</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>        sns.scatterplot(</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="va">self</span>.tsne_result[<span class="st">'Dim1'</span>],</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="va">self</span>.tsne_result[<span class="st">'Dim2'</span>],</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span>labels,</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>            palette<span class="op">=</span>palette,</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>            alpha<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>            legend<span class="op">=</span><span class="st">'full'</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'K-Means Clustering (t-SNE Reduced Data)'</span>)</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Dim1'</span>)</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Dim2'</span>)</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>        plt.legend(title<span class="op">=</span><span class="st">'Cluster'</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>        plt.grid()</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> silhouette</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> dbscan_clustering(<span class="va">self</span>, eps, min_samples):</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="co">        Apply DBSCAN clustering and visualize clusters.</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="co">            eps (float): The maximum distance between two samples for them to be considered as in the same neighborhood.</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="co">            min_samples (int): The number of samples in a neighborhood for a point to be considered as a core point.</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>        dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span>eps, min_samples<span class="op">=</span>min_samples)</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> dbscan.fit_predict(<span class="va">self</span>.data)</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.clusters[<span class="st">'dbscan'</span>] <span class="op">=</span> labels</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>        silhouette <span class="op">=</span> silhouette_score(<span class="va">self</span>.data, labels) <span class="cf">if</span> <span class="bu">len</span>(<span class="bu">set</span>(labels)) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">"N/A"</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"DBSCAN Silhouette Score: </span><span class="sc">{</span>silhouette<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cluster visualization</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>        sns.scatterplot(x<span class="op">=</span><span class="va">self</span>.pca_result[<span class="st">'PC1'</span>], y<span class="op">=</span><span class="va">self</span>.pca_result[<span class="st">'PC2'</span>], hue<span class="op">=</span>labels, palette<span class="op">=</span><span class="st">'tab10'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'DBSCAN Clustering (PCA Reduced Data)'</span>)</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'PC1'</span>)</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'PC2'</span>)</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>        plt.legend(title<span class="op">=</span><span class="st">'Cluster'</span>)</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>        plt.grid()</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> hierarchical_clustering(<span class="va">self</span>, method<span class="op">=</span><span class="st">'ward'</span>, distance_threshold<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="co">        Apply Hierarchical clustering and visualize dendrogram.</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters:</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="co">            method (str): Linkage criterion (e.g., 'ward', 'complete', 'average').</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="co">            distance_threshold (float): Threshold for cutting the dendrogram.</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>        linkage_matrix <span class="op">=</span> linkage(<span class="va">self</span>.data, method<span class="op">=</span>method)</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>        dendrogram(linkage_matrix, truncate_mode<span class="op">=</span><span class="st">'level'</span>, p<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'Hierarchical Clustering Dendrogram'</span>)</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Sample Index'</span>)</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Distance'</span>)</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> distance_threshold <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>            labels <span class="op">=</span> fcluster(linkage_matrix, t<span class="op">=</span>distance_threshold, criterion<span class="op">=</span><span class="st">'distance'</span>)</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.clusters[<span class="st">'hierarchical'</span>] <span class="op">=</span> labels</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>            silhouette <span class="op">=</span> silhouette_score(<span class="va">self</span>.data, labels)</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Hierarchical Clustering Silhouette Score: </span><span class="sc">{</span>silhouette<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'../../data/processed-data/food_merged.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>category_columns <span class="op">=</span> [</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tons_donations'</span>, <span class="st">'tons_industrial_uses'</span>, <span class="st">'tons_animal_feed'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tons_anaerobic_digestion'</span>, <span class="st">'tons_composting'</span>, <span class="st">'tons_not_harvested'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tons_incineration'</span>, <span class="st">'tons_land_application'</span>, <span class="st">'tons_landfill'</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tons_sewer'</span>, <span class="st">'tons_dumping'</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'total'</span>] <span class="op">=</span> data[category_columns].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the percentage of total for each column</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>percentage_df <span class="op">=</span> data[category_columns].div(data[<span class="st">'total'</span>], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the column with the maximum percentage for each row</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'disposal_method'</span>] <span class="op">=</span> percentage_df.idxmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'disposal_method'</span>] <span class="op">=</span> data[<span class="st">'disposal_method'</span>].<span class="bu">str</span>.replace(<span class="st">'tons_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the total column if no longer needed</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">'total'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'donation_bin'</span>] <span class="op">=</span> np.where(data[<span class="st">'tons_donations'</span>] <span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(7084, 42)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/sj/4yswlk7n08x8jfcfnyw2vkqw0000gn/T/ipykernel_93714/718609560.py:16: FutureWarning: The behavior of DataFrame.idxmax with all-NA values, or any-NA and skipna=False, is deprecated. In a future version this will raise ValueError
+  data['disposal_method'] = percentage_df.idxmax(axis=1)</code></pre>
+</div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>unsupervised_learner <span class="op">=</span> UnsupervisedLearning(data)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.preprocess_data(impute_strategy<span class="op">=</span><span class="st">'median'</span>, normalize<span class="op">=</span><span class="va">False</span>, scaler_type<span class="op">=</span><span class="st">'standard'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply PCA</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.apply_pca(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.visualize_pca()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-4-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="part-2-clustering-methods" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-clustering-methods">Part 2: Clustering Methods</h3>
-<p>Apply clustering techniques (K-Means, DBSCAN, and Hierarchical clustering) to a selected dataset. The goal is to understand how each method works, compare their performance, and interpret the results.</p>
+<section id="pca" class="level2">
+<h2 class="anchored" data-anchor-id="pca">PCA</h2>
+<p>PCA is a linear technique that aims to maximize the variance of the data across the principal components. It does so by finding the directions in which the data varies the most and projecting the data onto these directions. While PCA effectively captures global structure and preserves variance in the data, it is not necessarily the best at preserving local relationships or non-linear structures in the data. For example, if the data lies on a non-linear manifold (e.g., a circle or spiral), PCA may not be able to capture this structure well. However, PCA is computationally efficient, interpretable, and works well when the data is linearly separable or when the goal is to reduce dimensionality while retaining as much variance as possible.</p>
+<p>• First Plot: The first two principal components capture 99.994% of the variance in the dataset, indicating that these components effectively represent the majority of the data’s variation. This suggests that the dataset’s structure is well captured in these two dimensions.</p>
+<p>• Second Plot: This plot visualizes the higher-dimensional data in a 2D space. It reveals that many of the data points are similar, but a significant portion of the dataset is spread across the first two principal components. This distribution suggests the potential for clustering within the data, as there may be groups of points that are more tightly packed together.</p>
+<div id="cell-6" class="cell" data-execution_count="178">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.apply_tsne(perplexity<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.apply_tsne(perplexity<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.apply_tsne(perplexity<span class="op">=</span><span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-5-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="t-sne" class="level2">
+<h2 class="anchored" data-anchor-id="t-sne">t-SNE</h2>
+<p>t-SNE is a non-linear technique designed specifically to preserve local structure by minimizing the divergence between probability distributions over pairwise similarities in the high-dimensional and low-dimensional spaces. It is particularly effective for visualizing data that has a complex, non-linear structure, as it tends to group similar data points together in the low-dimensional space. However, t-SNE has some limitations, such as its computational complexity, sensitivity to hyperparameters (like perplexity), and tendency to distort global structure in favor of local relationships. This makes t-SNE less suitable for tasks where preserving the global relationships between clusters or outliers is important.</p>
+<p>The following three plots demonstrate the effect of varying the perplexity parameter on t-SNE dimensionality reduction:</p>
 <ol type="1">
-<li><strong>Clustering Methods:</strong>
-<ul>
-<li>Apply <strong>K-Means</strong>, <strong>DBSCAN</strong>, and <strong>Hierarchical clustering</strong> to your dataset.</li>
-<li>Write a technical summary for each method (2–4 paragraphs per method) explaining how it works, its purpose, and any model selection methods used (e.g., Elbow, Silhouette).</li>
-</ul></li>
-<li><strong>Results Section:</strong>
-<ul>
-<li>Discuss and visualize the results of each clustering analysis.</li>
-<li>Compare the performance of different clustering methods, noting any insights gained from the analysis.</li>
-<li>Visualize cluster patterns and how they relate (if at all) to existing labels in the dataset.</li>
-<li>Use professional, labeled, and clear visualizations that support your discussion.</li>
-</ul></li>
-<li><strong>Conclusion:</strong>
-<ul>
-<li>Summarize the key findings and their real-world implications in a non-technical way. Focus on the most important results and how they could apply to practical situations.</li>
-</ul></li>
+<li><p>Perplexity = 15: At this setting, the t-SNE output shows more spread-out data points, with clusters being less discernible. The reduced dimensionality does not reveal clear groupings within the data.</p></li>
+<li><p>Perplexity = 30: With a perplexity of 30, the t-SNE output is less spread out compared to the previous plot, but still does not reveal any separable clusters. The data points appear more concentrated, yet distinct groupings are still not visible.</p></li>
+<li><p>Perplexity = 60: At a higher perplexity value, the t-SNE output becomes even more compressed, with the data points appearing inseparable. The points are tightly packed, making it challenging to identify meaningful clusters in the reduced dimensional space.</p></li>
 </ol>
+<div id="cell-8" class="cell" data-execution_count="179">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> elbow_method_kmeans(data, max_clusters<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    inertia <span class="op">=</span> []</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n_clusters <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, max_clusters <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        kmeans.fit(data)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        inertia.append(kmeans.inertia_)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot inertia vs. number of clusters</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    plt.plot(<span class="bu">range</span>(<span class="dv">1</span>, max_clusters <span class="op">+</span> <span class="dv">1</span>), inertia, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'Elbow Method for Optimal Number of Clusters'</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Number of Clusters'</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Inertia'</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>elbow_method_kmeans(unsupervised_learner.data)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.kmeans_clustering(n_clusters<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>K-Means Silhouette Score: 0.8908</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-6-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
+<section id="k-means" class="level2">
+<h2 class="anchored" data-anchor-id="k-means">K-Means</h2>
+<p>K-Means clustering is one of the most widely used unsupervised learning algorithms for partitioning data into distinct groups. The algorithm works by initializing a set of K centroids and iteratively refining them by assigning each data point to the nearest centroid. After assigning points to centroids, the centroids are updated to be the mean of the points in each cluster. This process repeats until convergence, where the centroids no longer change significantly. The K-Means algorithm is computationally efficient and performs well when clusters are spherical and relatively well-separated.</p>
+<p>In our analysis, K-Means was applied to the PCA-reduced data, where the elbow method indicated that 3 clusters was the optimal choice. This choice was confirmed by the high silhouette score of 0.8908, which indicates that the clusters were well-separated and cohesive. Visualizations of the clusters showed clear groupings of data points, although some points were located between clusters, suggesting that the clusters could be further refined. The K-Means algorithm is sensitive to the initial placement of centroids, which can affect the final clusters. This limitation can be mitigated by running the algorithm multiple times with different initializations (using techniques like K-Means++ to improve the initialization process).</p>
+<p>Despite its strengths, K-Means has limitations. It assumes that clusters are spherical and equally sized, which may not be true for all datasets. Additionally, it requires specifying the number of clusters (K) in advance, which can be challenging when the optimal number is not obvious. In this case, the elbow method and silhouette scores helped determine the best K, but this is not always straightforward in other scenarios. K-Means also struggles with outliers, as they can disproportionately influence the position of centroids. However, when the data is well-suited to K-Means, as seen in our analysis, it provides a powerful and efficient clustering method.</p>
+<div id="cell-10" class="cell" data-execution_count="171">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#from sklearn.cluster import DBSCAN</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#from sklearn.metrics import silhouette_score</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#import numpy as np</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># def dbscan_grid_search(data, eps_range, min_samples_range):</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     best_score = -1</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     best_params = {'eps': None, 'min_samples': None}</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     for eps in eps_range:</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         for min_samples in min_samples_range:</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             # Apply DBSCAN</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             dbscan = DBSCAN(eps=eps, min_samples=min_samples)</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#             labels = dbscan.fit_predict(data)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#             # DBSCAN labels: -1 represents noise, so we need at least 2 clusters to compute silhouette score</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#             if len(set(labels)) &gt; 1:</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#                 score = silhouette_score(data, labels)</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#                 print(f"eps: {eps}, min_samples: {min_samples}, Silhouette Score: {score:.4f}")</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#                 if score &gt; best_score:</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#                     best_score = score</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#                     best_params = {'eps': eps, 'min_samples': min_samples}</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#     print(f"Best Parameters: {best_params}, Best Silhouette Score: {best_score:.4f}")</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#     return best_params, best_score</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># # Example usage:</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># eps_range = np.linspace(0.1, 1.0, 10)  # Modify the range as needed</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># min_samples_range = range(3, 10)  # Modify the range as needed</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># best_params, best_score = dbscan_grid_search(unsupervised_learner.data, eps_range, min_samples_range)</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Best Parameters: {'eps': 0.1, 'min_samples': 5}, Best Silhouette Score: 0.5665</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.dbscan_clustering(eps<span class="op">=</span><span class="fl">0.1</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DBSCAN Silhouette Score: 0.5664975908757899</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
+<section id="dbscan" class="level2">
+<h2 class="anchored" data-anchor-id="dbscan">DBSCAN</h2>
+<p>DBSCAN is a density-based clustering algorithm that groups points that are closely packed together, marking as noise points that lie in low-density regions. Unlike K-Means, DBSCAN does not require the user to specify the number of clusters in advance. Instead, it relies on two key parameters: epsilon (eps), which defines the maximum distance between two points for them to be considered neighbors, and min_samples, which specifies the minimum number of neighbors required to form a dense region. DBSCAN’s ability to detect noise points makes it especially useful in real-world datasets that contain outliers or irregular cluster shapes.</p>
+<p>In our experiment, DBSCAN was applied with a grid search to find the optimal parameters. The best combination was found to be eps = 0.1 and min_samples = 5. However, the algorithm resulted in a silhouette score of 0.5665, which indicates moderate cluster cohesion and separation. Additionally, many points were labeled as noise (indicated by a label of -1), meaning they did not belong to any cluster. This suggests that DBSCAN struggled to find meaningful clusters in this dataset, possibly due to the relatively uniform distribution of points or the choice of parameters.</p>
+<p>One of DBSCAN’s main strengths is its ability to detect arbitrarily shaped clusters and identify outliers as noise, which is useful for datasets with complex structures. However, DBSCAN is highly sensitive to the choice of parameters, especially eps. If eps is too small, the algorithm may label too many points as noise, while if eps is too large, it may merge distinct clusters. Additionally, DBSCAN can struggle when clusters have varying densities, as it uses the same density criteria for all clusters. In our analysis, the inability to form meaningful clusters and the high number of noise points suggest that DBSCAN is not the best choice for this dataset.</p>
+<div id="cell-12" class="cell" data-execution_count="177">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.metrics import silhouette_score</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from sklearn.cluster import AgglomerativeClustering</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import numpy as np</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># def hierarchical_grid_search(data, method_range, distance_threshold_range):</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     best_score = -1</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     best_params = {'method': None, 'distance_threshold': None}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     for method in method_range:</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#         for distance_threshold in distance_threshold_range:</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             # Apply Agglomerative Clustering</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             hierarchical = AgglomerativeClustering(linkage=method, distance_threshold=distance_threshold, n_clusters=None)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#             labels = hierarchical.fit_predict(data)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#             # Get number of unique clusters</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#             unique_labels = set(labels)</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#             num_clusters = len(unique_labels) - (1 if -1 in unique_labels else 0)  # Exclude noise (-1) if present</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#             # Check if the number of clusters is valid for silhouette score (between 2 and n_samples-1)</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#             if num_clusters &gt;= 2 and num_clusters &lt; len(data):  # Ensure at least two clusters</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co">#                 try:</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#                     score = silhouette_score(data, labels)</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                     print(f"method: {method}, distance_threshold: {distance_threshold}, Silhouette Score: {score:.4f}")</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#                     if score &gt; best_score:</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co">#                         best_score = score</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co">#                         best_params = {'method': method, 'distance_threshold': distance_threshold}</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co">#                 except ValueError:</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co">#                     print(f"Error calculating silhouette score for method: {method}, distance_threshold: {distance_threshold}")</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co">#             else:</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co">#                 print(f"Skipping method: {method}, distance_threshold: {distance_threshold} due to invalid number of clusters.")</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     print(f"Best Parameters: {best_params}, Best Silhouette Score: {best_score:.4f}")</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co">#     return best_params, best_score</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="co"># # Example usage:</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="co"># method_range = ['ward', 'complete', 'average', 'single']  # Different linkage methods</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="co"># distance_threshold_range = np.linspace(2, 10000, 10)  # Modify the range as needed</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co"># best_params, best_score = hierarchical_grid_search(unsupervised_learner.data, method_range, distance_threshold_range)</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co">#Best Parameters: {'method': 'single', 'distance_threshold': 10000.0}, Best Silhouette Score: 0.4168</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>unsupervised_learner.hierarchical_clustering(<span class="st">"single"</span>,distance_threshold <span class="op">=</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hierarchical Clustering Silhouette Score: 0.4168</code></pre>
+</div>
+</div>
 </section>
-<section id="code" class="level1">
-<h1>Code</h1>
-<p>Provide the source code used for this section of the project here.</p>
-<p>If you’re using a package for code organization, you can import it at this point. However, make sure that the <strong>actual workflow steps</strong>—including data processing, analysis, and other key tasks—are conducted and clearly demonstrated on this page. The goal is to show the technical flow of your project, highlighting how the code is executed to achieve your results.</p>
-<p>If relevant, link to additional documentation or external references that explain any complex components. This section should give readers a clear view of how the project is implemented from a technical perspective.</p>
-<p>Remember, this page is a technical narrative, NOT just a notebook with a collection of code cells, include in-line Prose, to describe what is going on.</p>
+<section id="hierarchical-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering">Hierarchical Clustering</h2>
+<p>Hierarchical clustering is a method of cluster analysis that builds a hierarchy of clusters. It can be performed using either an agglomerative approach (bottom-up) or a divisive approach (top-down). In agglomerative hierarchical clustering, each data point starts as its own cluster, and pairs of clusters are merged at each step based on their similarity, typically measured using a distance metric (e.g., Euclidean distance). The process continues until all points are merged into a single cluster or until a predefined stopping criterion is met. The result of hierarchical clustering is typically represented in a dendrogram, which shows the hierarchical relationships between the clusters.</p>
+<p>In our analysis, we applied agglomerative hierarchical clustering with various methods (single, complete, average) and distance thresholds. The single linkage method, which merges clusters based on the closest pair of points, resulted in the best silhouette score of 0.4168. The clusters formed were relatively coherent, but the silhouette score indicates that the clustering was less distinct compared to K-Means. Hierarchical clustering’s main advantage is that it does not require the number of clusters to be specified in advance, as the tree-like structure allows for flexible cluster cutting at any level. However, the resulting clusters may not always be as well-separated as those produced by K-Means, especially when the data has more complex structures.</p>
+<p>While hierarchical clustering provides useful insights into the relationships between data points, it can become computationally expensive with large datasets due to its pairwise distance calculations. The method also tends to be sensitive to the choice of distance metric and linkage method. In this case, the single method and distance threshold of 10000.0 gave the best results, but the moderate silhouette score suggests that the clusters were not as well-defined as with K-Means. This makes hierarchical clustering more suitable for exploratory data analysis or when hierarchical relationships are important, rather than when distinct and well-separated clusters are required for practical applications.</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>In this section, we present and analyze the outcomes from the different clustering methods applied to the dataset. We evaluated the effectiveness of K-Means, DBSCAN, and Hierarchical Clustering, highlighting the strengths and weaknesses of each approach.</p>
+<p>K-Means Clustering:</p>
+<pre><code>•   We applied K-Means clustering with an optimal number of clusters identified through the elbow method. The silhouette score of 0.8908 indicates strong cluster cohesion and separation. The clusters were well-defined when visualized on the PCA-reduced data. However, there were some ambiguous points between clusters 0 and 1, suggesting that further refinement could improve the classification.</code></pre>
+<p>DBSCAN Clustering:</p>
+<pre><code>•   DBSCAN, with the optimal parameters (eps: 0.1, min_samples: 5), resulted in a silhouette score of 0.5665. Several points were labeled as noise, indicating that DBSCAN struggled to form meaningful clusters. This suggests that DBSCAN may not be suitable for this dataset, as it does not capture the inherent structure as well as K-Means.</code></pre>
+<p>Hierarchical Clustering:</p>
+<pre><code>•   Hierarchical clustering with the single method and a distance_threshold of 10000.0 achieved a silhouette score of 0.4168. This result suggests that the method produced somewhat coherent clusters, but with less clarity than K-Means. The dendrogram helped visualize the relationships between samples, but the moderate silhouette score indicates the clusters were not highly distinct.</code></pre>
+<p>Cluster Visualization and Comparison:</p>
+<pre><code>•   Visualizations were used to display the results of each clustering method, highlighting the separation of clusters. PCA and t-SNE reduction techniques were employed to project the data into 2D, making it easier to visualize the clustering outcomes.
+
+•   K-Means clusters appeared well-separated, though there were some overlapping points.
+
+•   DBSCAN showed scattered clusters with many noise points.
+
+•   Hierarchical clustering, while offering a reasonable structure, did not achieve the same level of separation as K-Means.</code></pre>
+<p>Cluster-Label Comparison:</p>
+<pre><code>•   When comparing the clustering results with the known labels in the dataset, we observed that the K-Means clustering provided the best match in terms of consistency. DBSCAN and Hierarchical clustering, however, did not align as well, especially with DBSCAN’s high number of noise points.</code></pre>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In this analysis, we applied three clustering techniques to understand the underlying structure of the dataset: K-Means, DBSCAN, and Hierarchical Clustering.</p>
+<p>Key Findings:</p>
+<pre><code>•   K-Means clustering emerged as the most effective method, yielding clear clusters with strong cohesion and separation, as reflected in its high silhouette score of 0.8908.
+
+•   DBSCAN, while offering the advantage of identifying noise points, did not perform well on this dataset, with a lower silhouette score (0.5665) and many points classified as noise.
+
+•   Hierarchical clustering, despite providing some useful insights into the data structure, resulted in a moderate silhouette score (0.4168), indicating that its performance was not as robust as K-Means.</code></pre>
+<p>Practical Implications:</p>
+<pre><code>•   K-Means is the most suitable clustering technique for this dataset, offering clear, actionable clusters that can inform further analysis or decision-making processes.
+
+•   DBSCAN’s inability to form meaningful clusters suggests that it may not be the right choice for datasets with complex, but dense structures.
+
+•   Hierarchical clustering provides valuable hierarchical relationships but may not be the best method when distinct cluster separation is needed for practical applications.</code></pre>
+<p>These findings suggest that K-Means could be used for segmenting this type of data in real-world applications such as food waste analysis, where identifying distinct clusters of waste categories or nutritional groups is important for developing targeted sustainability measures.</p>
 
 
 </section>
