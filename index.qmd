@@ -92,6 +92,9 @@ The problem of food waste is a pressing global challenge, with significant envir
   <iframe src="assets/wastemethod.html" width="100%" height="400" style="border: none;"></iframe>
 </div>
 
+Here, recycling refers to food waste which is composted, used as land applications, used for industrial purposes, for anaerobic digestion, or for animal feed.
+
+Food Waste on the other hand refers to food waste which is dumped in a landfill, a sewer, is not harvested or is incinerated
 
 **Food Waste and Nutrient Analysis**
 

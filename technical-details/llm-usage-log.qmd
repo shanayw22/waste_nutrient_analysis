@@ -2,20 +2,48 @@
 title: "LLM usage log"
 ---
 
-This page can serve as a "catch-all" for LLM use cases that don’t involve content creation, such as reformatting your own ideas, commenting code that you wrote, or proofreading text, PDF summarization.
+The prompts below were used to chat with GPT-4o and build this project.
 
-LLM tools were used in the following way for the tasks below
 
 ## Brainstorming
 
-* To create the initial idea, LLM tools were used to brainstorm ideas and provide feedback and refine the project plan.
+help me build out a brief literature review section on this topic. relevant to our questions of classifying food donations based on the nutrients of food waste, and building a regression of dollar surplus and one for classifying the primary disposal method
+
+
 
 ## Writing: 
 
-* Reformating text from bulleted lists into proses 
-* Proofreading
-* Text summarization for literature review 
+Rephrase the following and make them better structured sentences with richer analytical content -
+
+The above scatter plot with a trendline shows the clear positive relationship protein rich foods have with the gallons of water associated with their upstream manufacturing process. 
+
+The above elbow plot reveals that 3 clusters is the optimal number of clusters. Applying this to the PCA reduced data we see that this may be the correct option but there are points between cluster "0" and cluster "1" which may be ambiguous.
+
+The above commented out code performs a grid search over values of epsilon and min-samples to find the optimal params which maximise the silhouette score. The optimal params are {'eps': 0.1, 'min_samples': 5}.
+
+DBSCAN has a silhouette score 0.5665 and several many points labelled as noise indicated by -1. This indicates that this clustering method does not work well
 
 ## Code: 
 
-* Code commenting and explanatory documentation 
+how do I include a cell_id from a ipynb
+
+how do i get correlational coef in python for 2 df cols
+
+I got the following errors could you help me with what it means and why Im getting it - 
+
+Input X contains NaN.
+KMeans does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+
+
+p/anaconda3/lib/python3.12/site-packages/scipy/linalg/_misc.py:146, in norm(a, ord, axis, keepdims, check_finite)
+    144 # Differs from numpy only in non-finite handling and the use of blas.
+    145 if check_finite:
+--> 146     a = np.asarray_chkfinite(a)
+    147 else:
+    148     a = np.asarray(a)
+...
+--> 630     raise ValueError(
+    631         "array must not contain infs or NaNs")
+    632 return a
+
+ValueError: array must not contain infs or NaNs

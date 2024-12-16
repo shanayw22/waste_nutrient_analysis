@@ -127,10 +127,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../instructions/overview.html"> 
-<span class="menu-text">Instructions</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../../report/report.html"> 
 <span class="menu-text">Report</span></a>
   </li>  
@@ -160,10 +156,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Supervised Learning</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../technical-details/progress-log.html">
- <span class="dropdown-text">Progress Log</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../../technical-details/llm-usage-log.html">
  <span class="dropdown-text">LLM usage Log</span></a>
   </li>  
@@ -185,9 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
-  <ul class="collapse">
-  <li><a href="#introduction-and-motivation" id="toc-introduction-and-motivation" class="nav-link" data-scroll-target="#introduction-and-motivation">Introduction and Motivation</a></li>
+  <li><a href="#introduction-and-motivation" id="toc-introduction-and-motivation" class="nav-link active" data-scroll-target="#introduction-and-motivation">Introduction and Motivation</a></li>
   <li><a href="#data-source-information" id="toc-data-source-information" class="nav-link" data-scroll-target="#data-source-information">Data Source Information</a></li>
   <li><a href="#data-collection-methods" id="toc-data-collection-methods" class="nav-link" data-scroll-target="#data-collection-methods">Data Collection Methods</a></li>
   <li><a href="#relevance-to-the-project" id="toc-relevance-to-the-project" class="nav-link" data-scroll-target="#relevance-to-the-project">Relevance to the Project</a></li>
@@ -195,7 +185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
   <li><a href="#benchmarks" id="toc-benchmarks" class="nav-link" data-scroll-target="#benchmarks">Benchmarks</a></li>
   <li><a href="#conclusion-and-future-steps" id="toc-conclusion-and-future-steps" class="nav-link" data-scroll-target="#conclusion-and-future-steps">Conclusion and Future Steps</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,8 +213,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For this project, data was collected primarily through APIs, which provided access to two key datasets: food-related nutritional data and food waste data. These datasets were fetched using requests to interact with the respective APIs, ensuring the collection of real-time and up-to-date information.</p>
 <p>The food data was obtained from the FoodData Central API, which offered comprehensive details about food items, including nutritional attributes (e.g., protein, fats, carbohydrates, vitamins, minerals) and serving sizes. The food waste data was sourced from the ReFED API, which provided insights into food surplus and waste across various food categories, along with their environmental and economic impact.</p>
 <p>The data collected from these APIs was then processed using Python libraries like pandas and cleaned to remove irrelevant columns, handle missing values, and standardize formats. This method of data collection ensured that the project had access to accurate, up-to-date, and comprehensive datasets to drive analysis on food waste patterns, nutritional content, and related metrics.</p>
-<section id="overview" class="level1">
-<h1>Overview</h1>
 <section id="introduction-and-motivation" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-and-motivation">Introduction and Motivation</h2>
 <p>Food waste is a global issue with profound economic, environmental, and social implications. According to the Food and Agriculture Organization (FAO), roughly one-third of all food produced globally—about 1.3 billion tons—is wasted annually, leading to significant losses in natural resources, energy, and human labor (FAO, 2013). In the United States, the Environmental Protection Agency (EPA) estimates that food waste constitutes 24% of municipal solid waste, making it the single largest category in landfills (EPA, 2021).</p>
@@ -415,7 +402,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Future work should focus on optimizing the models and exploring additional sources of data, such as socio-economic factors, geographic information, and consumer behavior, to enhance prediction accuracy. Further investigation into advanced machine learning techniques, such as ensemble models or neural networks, may also help improve model robustness. Additionally, expanding the dataset to include more diverse food categories and waste disposal methods would help create a more comprehensive understanding of the issue. Based on the results, it is clear that data-driven solutions hold great potential for informing policies and practices aimed at reducing food waste and its associated economic, environmental, and nutritional costs.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
