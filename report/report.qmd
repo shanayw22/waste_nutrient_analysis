@@ -16,9 +16,13 @@ Additionally, the project leverages machine learning models to predict the US Do
 
 The key findings of this study are presented below -
 
-1. Using input features such as ‘gallons_water_footprint,’ ‘serving_size,’ ‘calories,’ ‘protein,’ ‘fat,’ ‘carbs,’ ‘fiber,’ ‘calcium,’ ‘iron,’ and ‘sodium,’ our Random Forest model achieves an impressive classification accuracy of 93%. This model identifies the primary disposal method for various food items, providing actionable insights into food waste management. The high accuracy of this model offers a practical tool for consumers, helping them determine which foods are suitable for recycling as compost or animal feed. By promoting informed disposal decisions, this approach can contribute to reducing overall food waste and supporting ssustainable waste management practices.
+1. Using input features such as ‘gallons_water_footprint,’ ‘serving_size,’ ‘calories,’ ‘protein,’ ‘fat,’ ‘carbs,’ ‘fiber,’ ‘calcium,’ ‘iron,’ and ‘sodium,’ our Random Forest model achieves an impressive classification accuracy of 93%. This model identifies the primary disposal method for various food items, providing actionable insights into food waste management. The high accuracy of this model offers a practical tool for consumers, helping them determine which foods are suitable for recycling as compost or animal feed. By promoting informed disposal decisions, this approach can contribute to reducing overall food waste and supporting sustainable waste management practices.
+
+![Confusion Matrix for predicting the primary disposal method of unseen foods from the testing dataset using the RandomForest Model](../assets/mc_sl.png){width=460 height=400}
 
 2. Based on the aforementioned input features our KNN model can classify a food item as either "donatable" or not with a cross validation score of approximately 94%. Integrating this model into the existing logistics pipeline for food waste could help boost food donation efforts and spearhead more sustainable food management practices.
+
+![Confusion Matrix for predicting whether an unseen food from the testing dataset can be donated or not using the KNN Model](../assets/knn_SL.png){width=400 height=400}
 
 3. Using input features such as ‘serving_size,’ ‘calories,’ ‘protein,’ ‘fat,’ ‘carbs,’ ‘fiber,’ ‘calcium,’ ‘iron,’ ‘sodium,’ and ‘food_category’ (one-hot encoded), our Random Forest model achieved an R-squared value of approximately 0.968 in predicting the US Dollar Surplus value. This high R-squared value indicates that the model can accurately explain nearly 97% of the variability in surplus spending based on these input features.
 
@@ -45,23 +49,23 @@ These methods provided a robust framework for understanding food waste and its n
 
 ## Visualizations
 
-This section provides a few important data visualizations along with drawn from them.
+This section provides a few important data visualizations along with insights drawn from them.
 
 ![Serving Size (g) vs Tons Uneaten](../assets/ss_tu.png){width=600 height=400}
 
-The above plot helps visualize how serving sizes of food items (in grams) is positively correlated with tons of food uneaten. A major finding of this study is that smaller serving sizes can prevent food from being wasted. Furthermore, smaller serving sizes would also reduce the cost of production for companies in the long term.
+The above plot helps visualize how serving sizes of food items (in grams) is positively correlated with tons of food uneaten. A major finding of this study is that smaller serving sizes can prevent food from being wasted. Furthermore, smaller serving sizes would also reduce the cost of production for companies in the long term. The food and beverage industry could use insights from this project to improve their current packaging canon to simultaneously reduce costs and avoid food wastage.
 
 ![Protein Content (g) vs USD Surplus](../assets/usd_protein.png){width=600 height=400}
 
-The above plot indicates that high-protein foods are frequently associated with higher USD surplus values. This insight could be valuable in educating individuals and families about food consumption habits. Foods with high protein content disproportionately contribute to higher USD surplus values, highlighting their significant role in food waste and surplus production.
+The above plot indicates that high-protein foods are associated with higher USD surplus values. This insight could be valuable in educating individuals and families about food consumption habits and patterns. Foods with high protein content disproportionately contribute to higher USD surplus values, highlighting their significant role in food waste and surplus production.
 
-To mitigate this, consumers can be encouraged to plan their purchases more effectively, avoiding over-purchasing high-protein foods that are more likely to go unused. Additionally, this finding underscores the importance of targeted interventions in food donation or recycling programs, focusing on redistributing surplus high-protein foods to areas where they can be utilized, such as food banks or animal feed initiatives. By addressing the surplus generation of such nutrient-dense foods, efforts to reduce food waste can become more impactful and sustainable.
+To mitigate this, consumers can be encouraged to plan their purchases more efficiently, avoiding over-purchasing high-protein foods that are more likely to go unused. Additionally, this finding highlights the importance of targeted interventions in food donation drives or recycling programs, focusing on redistributing surplus high-protein foods to areas where they can be utilized, such as food banks or animal feed initiatives. By addressing the surplus generation of such nutrient-dense foods, efforts to reduce food waste can become more impactful and sustainable.
 
 ![Protein Content (g) vs Gallons of Water Footprint](../assets/gw_prot.png){width=600 height=400}
 
 The above plot demonstrates that foods with higher protein content (measured in grams) require significantly more gallons of water during upstream processing. This trend is likely attributable to high-protein foods such as beef, poultry, and dairy, which have a substantial environmental footprint due to intensive resource requirements in their production processes.
 
-This finding emphasizes the need for promoting more sustainable dietary choices. Reducing the consumption of resource-intensive, high-protein foods can help minimize water usage and decrease the overall environmental impact of food production. Public awareness campaigns and policy interventions could encourage shifts toward plant-based proteins and other sustainable alternatives, fostering a more environmentally conscious approach to food consumption.
+This finding emphasizes the need for promoting more sustainable dietary choices. Reducing the consumption of resource-intensive, high-protein foods which can help minimize water usage and decrease the overall environmental impact of food production. Public awareness campaigns and policy interventions could encourage shifts toward plant-based proteins and other sustainable alternatives, fostering a more environmentally conscious approach to food consumption.
 
 ![Fiber Content (g) vs Tons Recycled](../assets/usd_prot.png){width=600 height=400}
 
@@ -113,4 +117,4 @@ Here are some of the recommendations from this study -
 
 ## Conclusion
 
-In conclusion, this study is a promising step toward understanding and mitigating food waste by leveraging data-driven approaches. By analyzing the nutrient profiles and waste patterns of food, we have identified key factors that contribute to food surpluses and waste, such as serving size, protein content, and water footprint. The use of machine learning models has shown potential for predicting surplus values and identifying opportunities for food donations or recycling, thereby helping reduce food waste and its environmental impact. The recommendations provided can guide the food and beverage industry, policymakers, and consumers toward more sustainable practices, ultimately contributing to a more efficient and less wasteful food system. However, further research and continuous improvements in data collection and model accuracy will be essential to fully optimize these strategies for wider adoption.
+In conclusion, this study is a promising step toward understanding and mitigating food waste by leveraging data-driven insights. Through the analysis of nutrient profiles and waste patterns, we have identified the factors that contribute to food surpluses and waste, such as serving size, protein content, and water footprint. The use of machine learning models has shown potential for predicting surplus values and identifying opportunities for food donations, recycling or USD surpluses, thereby helping reduce food waste, environmental impact, and costs of production for the food and beverage industry. The recommendations provided here can guide the food and beverage industry, policymakers, and consumers toward more sustainable practices, ultimately contributing to a more efficient and less wasteful food and nutrient reuptake system. Further research and continuous improvements in data collection and model accuracy will be essential to fully optimize these strategies for wider adoption.

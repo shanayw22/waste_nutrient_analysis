@@ -176,22 +176,22 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Food waste represents a critical issue at the intersection of sustainability, public health, and economics. Globally, one-third of all food produced is wasted, leading to significant environmental strain, economic loss, and missed opportunities to alleviate hunger. Addressing this challenge requires an interdisciplinary approach, leveraging data science to analyze and inform actionable solutions. My project, Nutrient Waste: Analyzing the Journey of Food Waste Through Economic, Environmental, and Nutritional Lenses, aims to bridge these dimensions and provide a comprehensive framework for understanding and mitigating food waste.</p>
-<p>Through this project, I aim to classify food donations based on nutrient composition, predict dollar surplus associated with surplus food, and explore primary disposal methods using advanced statistical and machine learning techniques. These efforts will contribute to smarter policies and practices for a more sustainable future.</p>
+<p>Food waste represents a critical issue at the intersection of sustainability, public health, and economics. Around the world, one-third of all produce is wasted, leading to significant environmental strain, economic loss, and missed opportunities to alleviate hunger. In addressing this challenge we have employed an interdisciplinary approach, leveraging data science to analyze and inform actionable solutions. My project, Nutrient Waste: Analyzing the Journey of Food Waste Through Economic, Environmental, and Nutritional Lenses, aims to bridge these dimensions and provide a comprehensive framework for understanding and mitigating food waste.</p>
+<p>Through this project, I aim to classify food donations based on nutrient composition, predict dollar surplus associated with surplus food, and explore the primary disposal methods using advanced statistical and machine learning techniques. These efforts will contribute to smarter policies and practices for a more sustainable future.</p>
 <div class="embed-container" style="text-align: center; width: 100%; margin: 0 auto;">
 <p><iframe src="assets/voronoi.html" width="100%" height="600" style="border: none;"></iframe></p>
 </div>
 </section>
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
-<p>This project attempts to answer the following research questions:</p>
+<p>This project uses machine learning techniques to answer the following questions:</p>
 <ol type="1">
 <li><p>How can we classify food donations based on the nutrient profiles of surplus food items?</p>
-<p>• This question focuses on building machine learning models to categorize surplus food by its nutritional content, enabling more effective redistribution strategies.</p></li>
+<p>• We use KNN, SVM and random forest models to make the binary prediction of “donatable” or “non-donatable”</p></li>
 <li><p>What is the economic surplus value (in dollars) associated with specific food categories, and how can we predict it?</p>
-<p>• A regression model will estimate the dollar surplus of food waste, offering insights into economic losses and potential cost-saving strategies.</p></li>
+<p>• We use a regression model to estimate the dollar surplus of food waste, and offer insights into economic losses and potential cost-saving strategies.</p></li>
 <li><p>What are the primary disposal methods for various types of food waste, and what factors determine these methods?</p>
-<p>• Classification models will help identify and predict disposal methods based on categorical and continuous features of food waste.</p></li>
+<p>• We use classification models to help identify and predict disposal methods based on categorical and continuous features of food waste.</p></li>
 <li><p>What patterns emerge when analyzing food waste through clustering and dimensionality reduction techniques like PCA and t-SNE?</p>
 <p>• These methods will uncover latent structures in the dataset, informing further exploratory and predictive modeling efforts.</p></li>
 <li><p>How do waste patterns vary across food categories, and which attributes most significantly impact food’s fitness for human consumption?</p>
@@ -205,11 +205,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <p>In this project, I am using advanced data science techniques to analyze food waste from multiple perspectives:</p>
 <ol type="1">
-<li><p>Classification Models: I am applying supervised learning techniques to classify food donations based on their nutrient profiles.</p></li>
-<li><p>Regression Analysis: I am building regression models to predict the dollar surplus of food waste, considering physical waste characteristics, water footprints, and nutritional attributes.</p></li>
-<li><p>Disposal Method Prediction: I am using classification models to identify the primary disposal method for food waste, allowing me to develop targeted interventions to reduce landfill contributions.</p></li>
-<li><p>Dimensionality Reduction and Clustering: I am utilizing techniques like PCA and clustering to uncover latent patterns in food waste data and segment food categories by waste characteristics.</p></li>
-<li><p>Data Integration and Cleaning: I am combining diverse datasets, addressing missing values, and ensuring a solid foundation for analysis.</p></li>
+<li><p>Data Integration and Cleaning: Combining diverse datasets, addressing missing values, and ensuring a solid foundation for analysis.</p></li>
+<li><p>Classification Models: Applying supervised learning techniques to classify food donations based on their nutrient profiles.</p></li>
+<li><p>Regression Analysis: Building regression models to predict the dollar surplus of food waste, considering physical waste characteristics, water footprints, and nutritional attributes.</p></li>
+<li><p>Disposal Method Prediction: Using classification models to identify the primary disposal method for food waste, allowing me to develop targeted interventions to reduce landfill contributions.</p></li>
+<li><p>Dimensionality Reduction and Clustering: Utilizing techniques like PCA and clustering to uncover latent patterns in food waste data and segment food categories by waste characteristics.</p></li>
 </ol>
 </section>
 <section id="call-to-action" class="level2">
@@ -251,7 +251,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Gaps and Opportunities</strong></p>
 <p>While substantial progress has been made, there are gaps in integrating nutritional, economic, and environmental dimensions into a unified analytical framework. Few studies explicitly combine nutrient profiling with economic surplus modeling or disposal classification. Bridging these dimensions could yield a comprehensive approach to managing food waste more effectively. Additionally, the inclusion of socio-economic factors, such as accessibility and donation feasibility, remains underexplored.</p>
 <p><strong>Relevance to Current Research</strong></p>
-<p>This body of work informs our project’s design in the following ways: 1. Classification of Food Donations: Drawing on techniques from Fiore et al.&nbsp;(2020), we aim to build nutrient-based classification models to optimize food redistribution. 2. Regression Modeling for Dollar Surplus: Guided by Gunders et al.&nbsp;(2017), we will leverage regression analysis to quantify the economic value of surplus food. 3. Disposal Method Prediction: Inspired by Song et al.&nbsp;(2018), we intend to develop a predictive model for disposal methods, incorporating both categorical and continuous data.</p>
+<p>This body of work informs our project’s design in the following ways:</p>
+<pre><code>1.  Classification of Food Donations: Drawing on techniques from Fiore et al. (2020), we aim to build nutrient-based classification models to optimize food redistribution.
+
+2.  Regression Modeling for Dollar Surplus: Guided by Gunders et al. (2017), we will leverage regression analysis to quantify the economic value of surplus food.
+
+3.  Disposal Method Prediction: Inspired by Song et al. (2018), we intend to develop a predictive model for disposal methods, incorporating both categorical and continuous data.</code></pre>
 <p>My project seeks to advance the integration of these dimensions, addressing gaps identified in the literature and contributing to a holistic understanding of food waste management.</p>
 
 
